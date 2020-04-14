@@ -23,6 +23,10 @@ public class IssueCommand extends Command {
             return;
         }
 
+        if (args[1].startsWith("#")) {
+            args[1] = args[1].substring(0, 2);
+        }
+
         // TODO: check if issue link is valid
         channel.sendMessage(new MessageEmbed(
                 "https://github.com/kami-blue/" + args[0] + "/issues/" + args[1],
