@@ -16,4 +16,7 @@ dependencies {
     compile ('net.dv8tion:JDA:4.1.1_136') {
         exclude module: 'opus-java'
     }
+    compile(group: 'org.reflections', name: 'reflections', version: '0.9.12') {
+        exclude group: 'com.google.guava', module: 'guava'
+    }
 }
