@@ -1,4 +1,4 @@
-<img src="https://github.com/kami-blue/assets/blob/assets/assets/icons/kami.svg" align="left" width="120"/>
+<img src="https://github.com/kami-blue/assets/blob/assets/assets/icons/kami.png" align="left" width="120"/>
 
 # The KAMI Blue Discord bot.
 
