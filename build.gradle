@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+group 'kamiblue'
+version '1.0.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    compile ('net.dv8tion:JDA:4.1.1_136') {
+        exclude module: 'opus-java'
+    }
+}
