@@ -1,5 +1,7 @@
 package kamiblue.bot.command;
 
+import net.dv8tion.jda.api.entities.MessageChannel;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -38,7 +40,7 @@ public abstract class Command {
 
     public List<String> getAliases() { return aliases; }
 
-    public abstract void call(String[] args);
+    public abstract void call(String[] args, MessageChannel channel);
 
     public enum Category {
         MODERATION("Moderation", false),

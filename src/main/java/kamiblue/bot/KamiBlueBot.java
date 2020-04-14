@@ -5,6 +5,7 @@ import kamiblue.bot.command.CommandManager;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
@@ -26,7 +27,8 @@ public class KamiBlueBot {
             if (event.getAuthor().isBot()) return;
             Message message = event.getMessage();
             String content = message.getContentRaw().substring(0, Command.prefix.length() + 1);
-            CommandManager.callCommand(content);
+            MessageChannel channel = event.getChannel();
+            CommandManager.callCommand(content, channel);
 
         }
     }

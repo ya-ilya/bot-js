@@ -1,6 +1,7 @@
 package kamiblue.bot.command;
 
 import kamiblue.bot.command.commands.*;
+import net.dv8tion.jda.api.entities.MessageChannel;
 import org.reflections.Reflections;
 
 import java.util.*;
@@ -26,7 +27,7 @@ public class CommandManager {
         }
     }
 
-    public static void callCommand(String command) {
+    public static void callCommand(String command, MessageChannel channel) {
         String[] parts = command.split(" (?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)"); // Split by every space if it isn't surrounded by quotes
 
         String label = parts[0].contains(" ") ? parts[0].substring(parts[0].indexOf(" ")).substring(1) : parts[0].substring(1);
@@ -39,10 +40,10 @@ public class CommandManager {
 
         for (Command c : commands) {
             if (c.getLabel().equalsIgnoreCase(label)) {
-                c.call(parts);
+                c.call(parts, channel);
                 return;
             } else if (c.getAliases().stream().anyMatch(alias -> alias.equalsIgnoreCase(label))) {
-                c.call(parts);
+                c.call(parts, channel);
                 return;
             }
         }
