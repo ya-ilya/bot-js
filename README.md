@@ -26,7 +26,7 @@ Start developing!
 
 [DV8FromTheWorld](https://github.com/DV8FromTheWorld/) for [JDA](https://github.com/DV8FromTheWorld/JDA) which the bot uses.
 
-[zeroeightysix](https://github.com/zeroeightysix) for the original [KAMI](https://github.com/zeroeightysix/KAMI) which [KAMI Blue](https://github.com/kami-blue) is based upon
+[zeroeightysix](https://github.com/zeroeightysix) for the original [KAMI](https://github.com/zeroeightysix/KAMI) which [KAMI Blue](https://github.com/kami-blue) is based upon.
 
-[KAMI Blue Contributors](https://github.com/kami-blue/client/graphs/contributors) for making [KAMI Blue](https://github.com/kami-blue) which the bot is for
+[KAMI Blue Contributors](https://github.com/kami-blue/client/graphs/contributors) for making [KAMI Blue](https://github.com/kami-blue) which the bot is for.
 
