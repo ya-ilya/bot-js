@@ -13,7 +13,6 @@ public class IssueCommand extends Command {
         super("issue", "issue <repoName> <issueNumber>", "Fetches github link of issue", Category.Links, "issuelookup", "il", "i");
     }
 
-    // TODO: Make this command do something
     @Override
     public void call(String[] args, MessageChannel channel) {
         if (args[0] == null) {

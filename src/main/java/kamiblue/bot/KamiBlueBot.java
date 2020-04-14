@@ -19,8 +19,7 @@ public class KamiBlueBot {
         api = JDABuilder.createDefault(token).build();
     }
 
-    public class MyListener extends ListenerAdapter
-    {
+    public class MyListener extends ListenerAdapter {
         @Override
         public void onMessageReceived(MessageReceivedEvent event)
         {
