@@ -2,7 +2,8 @@ package kamiblue.bot.command.commands;
 
 import kamiblue.bot.command.Command;
 import kamiblue.bot.command.CommandManager;
-import net.dv8tion.jda.api.entities.EmbedType;
+import kamiblue.bot.utils.EmbedType;
+import kamiblue.bot.utils.KamiBotUtils;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 
@@ -18,8 +19,6 @@ public class HelpCommand extends Command {
     public void call(String[] args, MessageChannel channel) {
         // TODO: recognize categorical help commands
 
-
-
         if (!compiledText) {
             for (Command c : CommandManager.getCommands()) {
                 if (c.getSyntax() == null || c.getSyntax().equals("")) {
@@ -31,22 +30,6 @@ public class HelpCommand extends Command {
             compiledText = true;
         }
 
-        // TODO: Use embed
-        /*channel.sendMessage(new MessageEmbed(
-                null,
-                "Kami Blue Bot Commands",
-                null,
-                EmbedType.UNKNOWN,
-                null,
-                39423,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null)).queue();*/
-
-        channel.sendMessage("Kami Blue Bot Commands:\n\n" + text);
+        channel.sendMessage(KamiBotUtils.generateEmbedResponse(EmbedType.RESPONSE, "KAMI Blue Bot Commands", text));
     }
 }
