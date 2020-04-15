@@ -17,9 +17,9 @@ public class IssueCommand extends Command {
     public IssueCommand(String label, String syntax, String description, Category category, String... aliases) {
         super(
                 "issue",
-                "issue <repoName> <issueNumber>",
+                "<repoName> <issueNumber>",
                 "Fetches github link of issue",
-                Category.Links,
+                Category.LINKS,
                 "issuelookup", "il", "i");
     }
 

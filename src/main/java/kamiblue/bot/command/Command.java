@@ -43,8 +43,9 @@ public abstract class Command {
     public abstract void call(String[] args, MessageChannel channel);
 
     public enum Category {
+        INFO("Help", false),
         MODERATION("Moderation", false),
-        Links("Links", false);
+        LINKS("Links", false);
 
         boolean hidden;
         String name;

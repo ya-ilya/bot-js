@@ -70,7 +70,7 @@ public class CommandManager {
         return str;
     }
 
-    public ArrayList<Command> getCommands() {
+    public static ArrayList<Command> getCommands() {
         return commands;
     }
 }
