@@ -23,9 +23,9 @@ public class HelpCommand extends Command {
         if (!compiledText) {
             for (Command c : CommandManager.getCommands()) {
                 if (c.getSyntax() == null || c.getSyntax().equals("")) {
-                    text = text.concat(c.getLabel() + " " + c.getSyntax() + ": " + c.getDescription() + "\n");
+                    text = text.concat(Command.getCommandPrefix() + c.getLabel() + " " + c.getSyntax() + ": " + c.getDescription() + "\n");
                 } else {
-                    text = text.concat(c.getLabel() + ": " + c.getDescription() + "\n");
+                    text = text.concat(Command.getCommandPrefix() + c.getLabel() + ": " + c.getDescription() + "\n");
                 }
             }
             compiledText = true;
