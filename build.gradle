@@ -19,4 +19,5 @@ dependencies {
     compile(group: 'org.reflections', name: 'reflections', version: '0.9.12') {
         exclude group: 'com.google.guava', module: 'guava'
     }
+    compile 'com.google.code.gson:gson:2.7'
 }
