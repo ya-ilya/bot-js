@@ -10,7 +10,7 @@ import java.time.OffsetDateTime;
 public class IssueCommand extends Command {
 
     public IssueCommand(String label, String syntax, String description, Category category, String... aliases) {
-        super("issue", "issue <repoName> <issueNumber>", "Fetches github link of issue", Category.Links, "issuelookup", "il", "i");
+        super("issue", "issue <repoName> <issueNumber>", "Fetches github link of issue", Category.LINKS, "issuelookup", "il", "i");
     }
 
     // TODO: Make this command do something
