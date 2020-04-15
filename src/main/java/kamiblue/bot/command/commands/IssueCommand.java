@@ -1,106 +1,43 @@
-package me.zeroeightsix.kami.util;
+package kamiblue.bot.command.commands;
 
-import com.google.gson.Gson;
-import me.zeroeightsix.kami.KamiMod;
+import kamiblue.bot.command.Command;
+import net.dv8tion.jda.api.entities.EmbedType;
+import net.dv8tion.jda.api.entities.MessageChannel;
+import net.dv8tion.jda.api.entities.MessageEmbed;
 
-import javax.net.ssl.HttpsURLConnection;
-import java.awt.*;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URI;
-import java.net.URL;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedList;
+import java.time.OffsetDateTime;
 
-/**
- * Created by Dewy on 09/04/2020
- * Updated by d1gress/Qther on 13 April 2020
- */
-public class WebUtils {
+public class IssueCommand extends Command {
 
-    public static void openWebLink(URI url) {
-        try {
-            Desktop.getDesktop().browse(url);
-        } catch (IOException e) {
-            KamiMod.log.error("Couldn't open link: " + url.toString());
+    public IssueCommand(String label, String syntax, String description, Category category, String... aliases) {
+        super("issue", "issue <repoName> <issueNumber>", "Fetches github link of issue", Category.Links, "issuelookup", "il", "i");
+    }
+
+    // TODO: Make this command do something
+    @Override
+    public void call(String[] args, MessageChannel channel) {
+        if (args[0] == null) {
+            channel.sendMessage("No Repository Name was given").queue();
+            return;
+        } else if (args[1] == null) {
+            channel.sendMessage("No Issue Number was given").queue();
+            return;
         }
-    }
 
-    public static java.util.List<GithubUser> getContributors() {
-        // log attempt
-        KamiMod.log.info("Attempting to get contributors from github api...");
-
-        //initialize list
-        java.util.List<GithubUser> contributorsAsList = new LinkedList<>(Collections.emptyList());
-
-        new Thread(() -> {
-            try {
-                // connect to https://api.github.com/repos/kami-blue/client/contributors
-                HttpsURLConnection connection = (HttpsURLConnection) new URL(KamiMod.CAPES_JSON).openConnection();
-                connection.connect();
-
-                // then parse it
-                GithubUser[] contributors = new Gson().fromJson(new InputStreamReader(connection.getInputStream()), GithubUser[].class);
-
-                // disconnect from api
-                connection.disconnect();
-
-                // add contributors to the list
-                contributorsAsList.addAll(Arrays.asList(contributors));
-
-            } catch (Throwable t) {
-                // throw error
-                KamiMod.log.error("Attempt to get contributors from github api failed.\nError:\n\n" + t.toString());
-            }
-        }).start();
-
-
-        return contributorsAsList;
-    }
-
-    public static java.util.List<GithubUser> getContributors(java.util.List<Integer> exceptions) {
-            // log attempt
-            KamiMod.log.info("Attempting to get contributors from github api...");
-
-            //initialize list
-            java.util.List<GithubUser> contributorsAsList = new LinkedList<>(Collections.emptyList());
-
-            new Thread(() -> {
-                try {
-                    // connect to https://api.github.com/repos/kami-blue/client/contributors
-                    HttpsURLConnection connection = (HttpsURLConnection) new URL("https://api.github.com/repos/kami-blue/client/contributors").openConnection();
-                    connection.connect();
-
-                    // then parse it
-                    GithubUser[] contributors = new Gson().fromJson(new InputStreamReader(connection.getInputStream()), GithubUser[].class);
-
-                    // disconnect from api
-                    connection.disconnect();
-
-                    // add contributors to the list
-                    for (GithubUser githubUser : contributors) {
-                        contributorsAsList.add(githubUser);
-                        for (int exception : exceptions) {
-                            if (githubUser.id == exception) {
-                                contributorsAsList.remove(githubUser);
-                            }
-                        }
-                    }
-
-                } catch (Throwable t) {
-                    // throw error
-                    KamiMod.log.error("Attempt to get contributors from github api failed.\nError:\n\n" + t.toString());
-                    MessageSendHelper.sendErrorMessage("Attempt to get contributors from github api failed.\nError:\n\n" + t.toString());
-                }
-            }).start();
-
-        return contributorsAsList;
-    }
-
-    public class GithubUser {
-        public String login;
-        public int id;
-        public String contributions;
+        // TODO: check if issue link is valid
+        channel.sendMessage(new MessageEmbed(
+                "https://github.com/kami-blue/" + args[0] + "/issues/" + args[1],
+                "Here's the issue!",
+                null,
+                EmbedType.LINK,
+                null,
+                39423,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null)).queue();
     }
 }
