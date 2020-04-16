@@ -37,7 +37,8 @@ public class KamiBlueBot extends ListenerAdapter {
         Message message = event.getMessage();
         MessageChannel channel = event.getChannel();
         if (message.getContentRaw().startsWith(Command.prefix)) {
-            String content = message.getContentRaw();
+            //let's remove the prefix here
+            String content = message.getContentRaw().substring(Command.prefix.length());
             try {
                 CommandManager.callCommand(content, channel);
             }catch (Exception ex){

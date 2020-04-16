@@ -22,9 +22,9 @@ public class CommandManager {
         //String label = parts[0].contains(" ") ? parts[0].substring(parts[0].indexOf(" ")).substring(1) : parts[0].substring(1);
         /*
           this should do the job
-          there is no way a command starts with " as it wont match
+          there is no way a command contains spaces as they are already split
          */
-        String label = parts[0].substring(Command.prefix.length()).toLowerCase();
+        String label = parts[0].toLowerCase();
         //let's skip command name more efficiently
         String[] args = Arrays.copyOfRange(parts,1,parts.length);
 
