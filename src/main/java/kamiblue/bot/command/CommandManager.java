@@ -12,20 +12,8 @@ public class CommandManager {
 
     static {
         commands = new ArrayList<>();
-
-        Set<Class> classList = findClasses(IssueCommand.class.getPackage().getName(), Command.class);
-        System.out.println(Command.class.getPackage().getName() + ".commands");
-        for (Class s : classList) {
-            if (Command.class.isAssignableFrom(s)) {
-                try {
-                    Command command = (Command) s.getConstructor().newInstance();
-                    commands.add(command);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    System.err.println("Couldn't initiate command " + s.getSimpleName() + "! Err: " + e.getClass().getSimpleName() + ", message: " + e.getMessage());
-                }
-            }
-        }
+        commands.add(new IssueCommand(null,null,null,null,null));
+        commands.add(new HelpCommand(null,null,null,null,null));
     }
 
     public static void callCommand(String command, MessageChannel channel) {

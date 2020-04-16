@@ -11,6 +11,10 @@ public class IssueCommand extends Command {
         super("issue", "<repoName> <issueNumber>", "Fetches github link of issue", Category.LINKS, "issuelookup", "il", "i");
     }
 
+    public IssueCommand() {
+        super("issue", "<repoName> <issueNumber>", "Fetches github link of issue", Category.LINKS, "issuelookup", "il", "i");
+    }
+
     // TODO: Make this command do something
     @Override
     public void call(String[] args, MessageChannel channel) {

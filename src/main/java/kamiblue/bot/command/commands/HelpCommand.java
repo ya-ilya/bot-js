@@ -11,6 +11,10 @@ public class HelpCommand extends Command {
         super("help", "", "Gets information of commands", Category.INFO, "?", "h", "commands");
     }
 
+    public HelpCommand() {
+        super("help", "", "Gets information of commands", Category.INFO, "?", "h", "commands");
+    }
+
     private static boolean compiledText;
     public static String text;
 
