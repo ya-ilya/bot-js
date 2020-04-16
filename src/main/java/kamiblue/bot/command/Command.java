@@ -4,6 +4,7 @@ import net.dv8tion.jda.api.entities.MessageChannel;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class Command {
     public static String prefix = ";"; // TODO: Make json and changeable via command
@@ -15,11 +16,11 @@ public abstract class Command {
     protected List<String> aliases;
 
     public Command(String label, String syntax, String description, Category category, String... aliases) {
-        this.label = label;
+        this.label = label.toLowerCase();
         this.syntax = syntax;
         this.description = description;
         this.category = category;
-        this.aliases = Arrays.asList(aliases);
+        this.aliases = Arrays.stream(aliases).map(String::toLowerCase).collect(Collectors.toList());
     }
 
     protected void setDescription(String description) {

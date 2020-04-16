@@ -19,39 +19,27 @@ public class CommandManager {
     public static void callCommand(String command, MessageChannel channel) {
         String[] parts = command.split(" +(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)"); // Split by every space if it isn't surrounded by quotes
 
-        String label = parts[0].contains(" ") ? parts[0].substring(parts[0].indexOf(" ")).substring(1) : parts[0].substring(1);
-        String[] args = removeElement(parts, 0);
+        //String label = parts[0].contains(" ") ? parts[0].substring(parts[0].indexOf(" ")).substring(1) : parts[0].substring(1);
+        /*
+          this should do the job
+          there is no way a command contains spaces as they are already split
+         */
+        String label = parts[0].toLowerCase();
+        //let's skip command name more efficiently
+        String[] args = Arrays.copyOfRange(parts,1,parts.length);
 
         for (int i = 0; i < args.length; i++) {
-            if (args[i] == null) continue;
+            if (args[i] == null) continue; //a bit impossible to happen but i'll leave it
             args[i] = strip(args[i], "\"");
         }
 
         for (Command c : commands) {
-            if (c.getLabel().equalsIgnoreCase(label)) {
-                c.call(parts, channel);
-                return;
-            } else if (c.getAliases().stream().anyMatch(alias -> alias.equalsIgnoreCase(label))) {
-                c.call(parts, channel);
+            if (c.getLabel().equals(label) || c.getAliases().contains(label)) {
+                c.call(args, channel);
                 return;
             }
         }
 
-    }
-
-    private static String[] removeElement(String[] input, int indexToDelete) {
-        List result = new LinkedList();
-
-        for (int i = 0; i < input.length; i++) {
-            if (i != indexToDelete) result.add(input[i]);
-        }
-
-        return (String[]) result.toArray(input);
-    }
-
-    public static Set<Class> findClasses(String pack, Class subType) {
-        Reflections reflections = new Reflections(pack);
-        return reflections.getSubTypesOf(subType);
     }
 
     private static String strip(String str, String key) {
