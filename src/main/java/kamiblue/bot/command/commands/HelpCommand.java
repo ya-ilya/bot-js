@@ -31,8 +31,9 @@ public class HelpCommand extends Command {
                 }
             }
             compiledText = true;
+        }
 
 
-        channel.sendMessage(KamiBotUtils.generateEmbedResponse(EmbedType.RESPONSE, "KAMI Blue Bot Commands", text));
+        channel.sendMessage(KamiBotUtils.generateEmbedResponse(EmbedType.RESPONSE, "KAMI Blue Bot Commands", text)).queue();
     }
 }
