@@ -25,13 +25,13 @@ public class HelpCommand extends Command {
         if (!compiledText) {
             for (Command c : CommandManager.getCommands()) {
                 if (c.getSyntax() == null || c.getSyntax().equals("")) {
-                    text = text.concat(Command.getCommandPrefix() + c.getLabel() + " " + c.getSyntax() + ": " + c.getDescription() + "\n");
+                    text = text.concat(Command.prefix + c.getLabel() + " " + c.getSyntax() + ": " + c.getDescription() + "\n");
                 } else {
-                    text = text.concat(Command.getCommandPrefix() + c.getLabel() + ": " + c.getDescription() + "\n");
+                    text = text.concat(Command.prefix + c.getLabel() + ": " + c.getDescription() + "\n");
                 }
             }
             compiledText = true;
-        }
+
 
         channel.sendMessage(KamiBotUtils.generateEmbedResponse(EmbedType.RESPONSE, "KAMI Blue Bot Commands", text));
     }

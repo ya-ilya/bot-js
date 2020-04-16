@@ -12,12 +12,12 @@ public class CommandManager {
 
     static {
         commands = new ArrayList<>();
-        commands.add(new IssueCommand(null,null,null,null,null));
-        commands.add(new HelpCommand(null,null,null,null,null));
+        commands.add(new IssueCommand());
+        commands.add(new HelpCommand());
     }
 
     public static void callCommand(String command, MessageChannel channel) {
-        String[] parts = command.split(" (?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)"); // Split by every space if it isn't surrounded by quotes
+        String[] parts = command.split(" +(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)"); // Split by every space if it isn't surrounded by quotes
 
         String label = parts[0].contains(" ") ? parts[0].substring(parts[0].indexOf(" ")).substring(1) : parts[0].substring(1);
         String[] args = removeElement(parts, 0);
