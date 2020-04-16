@@ -1,12 +1,13 @@
 package kamiblue.bot.command;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.entities.MessageChannel;
 
 import java.util.Arrays;
 import java.util.List;
 
 public abstract class Command {
-    public static String prefix = "."; // TODO: Make json and changeable via command
+    public static String prefix = ";"; // TODO: Make json and changeable via command
 
     protected String label;
     protected String description;

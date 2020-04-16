@@ -21,6 +21,9 @@ public class KamiBlueBot extends ListenerAdapter {
 
         api = JDABuilder.createDefault(token).addEventListeners(new KamiBlueBot()).build();
 
+        //DEBUG
+        System.out.println("The prefix is: " + Command.prefix);
+
     }
 
     @Override
@@ -28,7 +31,7 @@ public class KamiBlueBot extends ListenerAdapter {
         if (event.getAuthor().isBot()) return;
         Message message = event.getMessage();
         MessageChannel channel = event.getChannel();
-        if (message.getContentRaw().startsWith(Command.getCommandPrefix())) {
+        if (message.getContentRaw().startsWith(Command.prefix)) {
             String content = message.getContentRaw().substring(0, Command.prefix.length() + 1);
             CommandManager.callCommand(content, channel);
         } else if (channel.getId().equalsIgnoreCase("634010802403409931") || channel.getId().equalsIgnoreCase("665638113732984872")) {
