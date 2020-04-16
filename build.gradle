@@ -10,6 +10,13 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
     jcenter()
+
+    maven {
+        name = 'sponge'
+        url = 'https://repo.spongepowered.org/maven'
+    }
+
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -20,4 +27,5 @@ dependencies {
         exclude group: 'com.google.guava', module: 'guava'
     }
     compile 'com.google.code.gson:gson:2.7'
+    compile 'io.github.cdimascio:java-dotenv:5.1.3'
 }
