@@ -1,7 +1,6 @@
 package kamiblue.bot;
 
 import io.github.cdimascio.dotenv.Dotenv;
-import jdk.internal.joptsimple.internal.Strings;
 import kamiblue.bot.command.Command;
 import kamiblue.bot.command.CommandManager;
 import kamiblue.bot.utils.EmbedType;

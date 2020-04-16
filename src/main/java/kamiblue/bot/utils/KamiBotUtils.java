@@ -23,7 +23,7 @@ public class KamiBotUtils
         switch (type)
         {
             case RESPONSE:
-                embedBuilder.setColor(new Color(112, 209, 230)); // Light Blue
+                embedBuilder.setColor(new Color(155, 144, 255)); // KAMI Blue
                 break;
             case ERROR:
                 embedBuilder.setColor(new Color(90, 10, 18)); // Dark Crimson
