@@ -23,13 +23,20 @@ public class HelpCommand extends Command {
         // TODO: recognize categorical help commands
 
         if (!compiledText) {
+            StringBuilder sb = new StringBuilder();
             for (Command c : CommandManager.getCommands()) {
                 if (c.getSyntax() == null || c.getSyntax().equals("")) {
-                    text = text.concat(Command.prefix + c.getLabel() + " " + c.getSyntax() + ": " + c.getDescription() + "\n");
+                    sb.append(Command.prefix)
+                            .append(c.getLabel()).append(" ")
+                            .append(c.getSyntax()).append(": ")
+                            .append(c.getDescription()).append("\n");
                 } else {
-                    text = text.concat(Command.prefix + c.getLabel() + ": " + c.getDescription() + "\n");
+                    sb.append(Command.prefix)
+                            .append(c.getLabel()).append(": ")
+                            .append(c.getDescription()).append("\n");
                 }
             }
+            text = sb.toString();
             compiledText = true;
         }
 
