@@ -10,10 +10,11 @@ public class CommandManager {
 
     private static ArrayList<Command> commands;
 
-    public CommandManager() {
+    static {
         commands = new ArrayList<>();
 
         Set<Class> classList = findClasses(IssueCommand.class.getPackage().getName(), Command.class);
+        System.out.println(Command.class.getPackage().getName() + ".commands");
         for (Class s : classList) {
             if (Command.class.isAssignableFrom(s)) {
                 try {

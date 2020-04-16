@@ -5,7 +5,6 @@ import kamiblue.bot.command.CommandManager;
 import kamiblue.bot.utils.EmbedType;
 import kamiblue.bot.utils.KamiBotUtils;
 import net.dv8tion.jda.api.entities.MessageChannel;
-import net.dv8tion.jda.api.entities.MessageEmbed;
 
 public class HelpCommand extends Command {
     public HelpCommand(String label, String syntax, String description, Category category, String... aliases) {

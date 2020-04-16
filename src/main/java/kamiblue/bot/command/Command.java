@@ -1,6 +1,5 @@
 package kamiblue.bot.command;
 
-import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.entities.MessageChannel;
 
 import java.util.Arrays;

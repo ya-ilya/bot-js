@@ -5,12 +5,10 @@ import net.dv8tion.jda.api.entities.EmbedType;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 
-import java.time.OffsetDateTime;
-
 public class IssueCommand extends Command {
 
     public IssueCommand(String label, String syntax, String description, Category category, String... aliases) {
-        super("issue", "issue <repoName> <issueNumber>", "Fetches github link of issue", Category.LINKS, "issuelookup", "il", "i");
+        super("issue", "<repoName> <issueNumber>", "Fetches github link of issue", Category.LINKS, "issuelookup", "il", "i");
     }
 
     // TODO: Make this command do something
