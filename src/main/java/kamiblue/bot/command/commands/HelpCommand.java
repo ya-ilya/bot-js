@@ -7,12 +7,8 @@ import kamiblue.bot.utils.KamiBotUtils;
 import net.dv8tion.jda.api.entities.MessageChannel;
 
 public class HelpCommand extends Command {
-    public HelpCommand(String label, String syntax, String description, Category category, String... aliases) {
-        super("help", "", "Gets information of commands", Category.INFO, "?", "h", "commands");
-    }
-
     public HelpCommand() {
-        super("help", "", "Gets information of commands", Category.INFO, "?", "h", "commands");
+        super("help", "", "Gets information of commands", Category.INFO, "?", "h", "commands", "cmds");
     }
 
     private static boolean compiledText;

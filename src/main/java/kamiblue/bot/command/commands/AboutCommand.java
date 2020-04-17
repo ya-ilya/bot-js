@@ -5,12 +5,7 @@ import kamiblue.bot.utils.EmbedType;
 import kamiblue.bot.utils.KamiBotUtils;
 import net.dv8tion.jda.api.entities.MessageChannel;
 
-public class AboutCommand extends Command
-{
-    public AboutCommand(String label, String syntax, String description, Category category, String... aliases) {
-        super("about", null, "Gets info of the bot", Category.INFO, "abt", "bot");
-    }
-
+public class AboutCommand extends Command {
     public AboutCommand() {
         super("about", null, "Gets info of the bot", Category.INFO, "abt", "bot");
     }
