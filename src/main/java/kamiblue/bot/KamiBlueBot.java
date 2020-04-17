@@ -38,7 +38,7 @@ public class KamiBlueBot extends ListenerAdapter {
         if (event.getAuthor().isBot()) return;
         Message message = event.getMessage();
         MessageChannel channel = event.getChannel();
-        if (developmentMode && !channel.getId().equalsIgnoreCase("699982782515904603")) {
+        if (developmentMode && !channel.getId().equalsIgnoreCase("699982782515904603") && message.getContentRaw().startsWith(Command.prefix)) {
             channel.sendMessage("Bot is in Development Mode and only recognizes commands in the private channel").queue();
         } else if (message.getContentRaw().startsWith(Command.prefix)) {
             //let's remove the prefix here
