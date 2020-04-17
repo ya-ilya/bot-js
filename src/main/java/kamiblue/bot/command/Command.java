@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class Command {
-    public static String prefix = (Dotenv.load().entries().contains("PREFIX") ? Dotenv.load().get("PREFIX") : ";"); // TODO: Make json and changeable via command
+    public static String prefix = (Dotenv.load().get("PREFIX") != null ? Dotenv.load().get("PREFIX") : ";"); // TODO: Make json and changeable via command
 
     protected String label;
     protected String description;

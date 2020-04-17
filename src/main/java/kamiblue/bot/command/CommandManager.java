@@ -4,6 +4,7 @@ import kamiblue.bot.command.commands.*;
 import kamiblue.bot.utils.EmbedType;
 import kamiblue.bot.utils.KamiBotUtils;
 import net.dv8tion.jda.api.entities.MessageChannel;
+import net.dv8tion.jda.api.entities.User;
 
 import java.util.*;
 
@@ -18,7 +19,7 @@ public class CommandManager {
         commands.add(new AboutCommand());
     }
 
-    public static void callCommand(String command, MessageChannel channel) {
+    public static void callCommand(String command, MessageChannel channel, User author) {
         String[] parts = command.split(" +(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)"); // Split by every space if it isn't surrounded by quotes
         boolean shouldReturn = false;
 

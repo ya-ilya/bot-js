@@ -39,7 +39,7 @@ public class KamiBlueBot extends ListenerAdapter {
             //let's remove the prefix here
             String content = message.getContentRaw().substring(Command.prefix.length());
             try {
-                CommandManager.callCommand(content, channel);
+                CommandManager.callCommand(content, channel, event.getAuthor());
             }catch (Exception ex){
                 StringWriter sw = new StringWriter();
                 ex.printStackTrace(new PrintWriter(sw));
