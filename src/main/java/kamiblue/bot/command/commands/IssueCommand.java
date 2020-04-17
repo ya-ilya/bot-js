@@ -22,7 +22,7 @@ public class IssueCommand extends Command {
         }
 
         // TODO: check if issue link is valid
-        channel.sendMessage(new MessageEmbed(
+        /*channel.sendMessage(new MessageEmbed(
                 "https://github.com/kami-blue/" + args[0] + "/issues/" + args[1],
                 "Here's the issue!",
                 "https://github.com/kami-blue/" + args[0] + "/issues/" + args[1],
@@ -35,6 +35,7 @@ public class IssueCommand extends Command {
                 null,
                 null,
                 null,
-                null)).queue();
+                null)).queue();*/
+        channel.sendMessage("Here's the issue!\nhttps://github.com/kami-blue/" + args[0] + "/issues/" + args[1]).queue();
     }
 }
