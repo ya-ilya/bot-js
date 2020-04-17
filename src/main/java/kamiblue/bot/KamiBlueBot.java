@@ -15,13 +15,16 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import javax.security.auth.login.LoginException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Objects;
 
 public class KamiBlueBot extends ListenerAdapter {
     public static JDA api;
+    private static Boolean developmentMode;
 
     public static void main(String[] args) throws LoginException {
         Dotenv dotenv = Dotenv.load();
         String token = dotenv.get("TOKEN");
+        developmentMode = Objects.requireNonNull(dotenv.get("DEVELOPMENT")).equalsIgnoreCase("true");
 
         api = JDABuilder.createDefault(token).addEventListeners(new KamiBlueBot()).build();
 
@@ -35,7 +38,9 @@ public class KamiBlueBot extends ListenerAdapter {
         if (event.getAuthor().isBot()) return;
         Message message = event.getMessage();
         MessageChannel channel = event.getChannel();
-        if (message.getContentRaw().startsWith(Command.prefix)) {
+        if (developmentMode && !channel.getId().equalsIgnoreCase("699982782515904603")) {
+            channel.sendMessage("Bot is in Development Mode and only recognizes commands in the private channel").queue();
+        } else if (message.getContentRaw().startsWith(Command.prefix)) {
             //let's remove the prefix here
             String content = message.getContentRaw().substring(Command.prefix.length());
             try {
