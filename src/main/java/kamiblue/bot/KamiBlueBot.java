@@ -40,7 +40,7 @@ public class KamiBlueBot extends ListenerAdapter {
             String content = message.getContentRaw().substring(Command.prefix.length());
             try {
                 CommandManager.callCommand(content, channel, event.getAuthor());
-            }catch (Exception ex){
+            } catch (Exception ex){
                 StringWriter sw = new StringWriter();
                 ex.printStackTrace(new PrintWriter(sw));
                 String exceptionAsString = sw.toString();

@@ -12,7 +12,7 @@ public class AboutCommand extends Command {
 
     @Override
     public void call(String[] args, MessageChannel channel) {
-        channel.sendMessage(KamiBotUtils.generateEmbedResponse(EmbedType.RESPONSE, Command.prefix + label, "**Overview**" +
+        channel.sendMessage(KamiBotUtils.generateEmbedResponse(EmbedType.RESPONSE, null, "**Overview**" +
                   "\n" +
                   "\nKAMI Blue Discord Bot\n" +
                   "Version 1.0.0" +
@@ -22,6 +22,7 @@ public class AboutCommand extends Command {
                   "\n- Qther" +
                   "\n- Dominika" +
                   "\n- Dewy" +
-                  "\n- RemainingToast")).queue();
+                  "\n- RemainingToast" +
+                  "\n- mattymatty")).queue();
     }
 }
