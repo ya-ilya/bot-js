@@ -8,12 +8,16 @@ import net.dv8tion.jda.api.entities.MessageChannel;
 public class AboutCommand extends Command
 {
     public AboutCommand(String label, String syntax, String description, Category category, String... aliases) {
-        super(label, syntax, description, category, aliases);
+        super("about", null, "Gets info of the bot", Category.INFO, "abt", "bot");
+    }
+
+    public AboutCommand() {
+        super("about", null, "Gets info of the bot", Category.INFO, "abt", "bot");
     }
 
     @Override
     public void call(String[] args, MessageChannel channel) {
-        channel.sendMessage(KamiBotUtils.generateEmbedResponse(EmbedType.RESPONSE, "KAMI Blue (カミブル) Bot", "**Overview**" +
+        channel.sendMessage(KamiBotUtils.generateEmbedResponse(EmbedType.RESPONSE, Command.prefix + label, "**Overview**" +
                   "\n" +
                   "\nKAMI Blue Discord Bot\n" +
                   "Version 1.0.0" +

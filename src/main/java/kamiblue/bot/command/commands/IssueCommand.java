@@ -30,7 +30,7 @@ public class IssueCommand extends Command {
         channel.sendMessage(new MessageEmbed(
                 "https://github.com/kami-blue/" + args[0] + "/issues/" + args[1],
                 "Here's the issue!",
-                null,
+                "https://github.com/kami-blue/" + args[0] + "/issues/" + args[1],
                 EmbedType.LINK,
                 null,
                 39423,

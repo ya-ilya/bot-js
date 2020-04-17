@@ -27,12 +27,11 @@ public class HelpCommand extends Command {
             for (Command c : CommandManager.getCommands()) {
                 if (c.getSyntax() == null || c.getSyntax().equals("")) {
                     sb.append(Command.prefix)
-                            .append(c.getLabel()).append(" ")
-                            .append(c.getSyntax()).append(": ")
+                            .append(c.getLabel()).append(" - ")
                             .append(c.getDescription()).append("\n");
                 } else {
                     sb.append(Command.prefix)
-                            .append(c.getLabel()).append(": ")
+                            .append(c.getLabel()).append(" ").append(c.getSyntax()).append(" - ")
                             .append(c.getDescription()).append("\n");
                 }
             }

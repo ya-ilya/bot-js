@@ -14,6 +14,7 @@ public class CommandManager {
         commands = new ArrayList<>();
         commands.add(new IssueCommand());
         commands.add(new HelpCommand());
+        commands.add(new AboutCommand());
     }
 
     public static void callCommand(String command, MessageChannel channel) {

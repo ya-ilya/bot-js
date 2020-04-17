@@ -33,7 +33,7 @@ public class KamiBotUtils
                 break;
         }
 
-        embedBuilder.setAuthor("KAMI Blue Bot");
+        embedBuilder.setAuthor("KAMI Blue (\u30ab\u30df\u30d6\u30eb) Bot");
         embedBuilder.setTitle(title);
         embedBuilder.setDescription(msg);
 

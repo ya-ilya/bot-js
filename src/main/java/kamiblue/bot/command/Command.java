@@ -1,5 +1,6 @@
 package kamiblue.bot.command;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.entities.MessageChannel;
 
 import java.util.Arrays;
@@ -7,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class Command {
-    public static String prefix = ";"; // TODO: Make json and changeable via command
+    public static String prefix = (Dotenv.load().entries().contains("PREFIX") ? Dotenv.load().get("PREFIX") : ";"); // TODO: Make json and changeable via command
 
     protected String label;
     protected String description;
