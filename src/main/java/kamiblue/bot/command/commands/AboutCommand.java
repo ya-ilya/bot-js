@@ -19,7 +19,6 @@ public class AboutCommand extends Command {
                   "\n" +
                   "\n**Developers**" +
                   "\n" +
-                  "\n- Qther" +
                   "\n- Dominika" +
                   "\n- Dewy" +
                   "\n- RemainingToast" +
