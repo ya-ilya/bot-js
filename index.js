@@ -18,7 +18,7 @@ const config = {
    
       ["How do I install KAMI Blue?",
       [[" how ", " do ", " i ", " install " [" this ", " kami "]],[" you ", " retard ", " faq ", "```", " monkey ", " javascript ", " gui ", " menu ", " hacks "]],
-      2,
+      0,
       "You can install KAMI Blue by first installing forge for Minecraft 1.12.2, then double clicking KAMI. This should open an installer where you can choose which flavor you want. Simple click a button and install. To find out more, please read:\nhttps://kamiblue.org/faq"]
     ],
     helpPages: [
