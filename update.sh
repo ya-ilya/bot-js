@@ -1,3 +1,4 @@
 #!/bin/bash
 
-./home/mika/bot/run.sh
+cd /home/mika/bot
+./run.sh
