@@ -5,7 +5,7 @@ const exec = require('child_process').exec;
 module.exports.run = async (client, message, args) => {
 if (!(message.author.id === "563138570953687061") && !(message.author.id === "297096161842429963")) return;
 message.reply("sure")
-exec('git rev-parse `git branch -r --sort=committerdate | tail -1`', (error, stdout, stderr) => {
+exec('git rev-parse `git branch -r --sort=committerdate | tail -1', (error, stdout, stderr) => {
   if (error) {
     console.log(`exec error: ${error}`);
     return;
