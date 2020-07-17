@@ -1,8 +1,11 @@
 const Discord = require("discord.js");
 const fs = require("graceful-fs");
 const exec = require('child_process').exec, child;
-const myShellScript = exec('sh update.sh /home/mika/bot/');
 
+module.exports.run = async (client, message, args) => {
+if (!message.author.id ==== "563138570953687061" || !message.author.id ==== "297096161842429963") return;
+message.reply("ok")
+const myShellScript = exec('sh update.sh /home/mika/bot/');
 myShellScript.stdout.on('data', (data)=>{
     console.log(data); 
     // do whatever you want here with data
@@ -11,16 +14,14 @@ myShellScript.stdout.on('data', (data)=>{
 myShellScript.stderr.on('data', (data)=>{
     console.error(data);
 });
-
-module.exports.run = async (client, message, args) => {
-  message.channel.send("Updated!")
-};
+  
+} 
 
 module.exports.config = {
   name: "update",
   aliases: [],
   use: "update",
-  description: "Update the bot",
-  state: "gamma",
-  page: 1
+  description: "update da bot!",
+  state : "gamma",
+  page: 4
 };
