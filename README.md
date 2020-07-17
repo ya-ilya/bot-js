@@ -10,12 +10,9 @@
 ```
 git clone git@github.com:kami-blue/bot.git kamiBlueBot
 cd kamiBlueBot
-chmod +x gradlew
-./gradlew build
+npm i
+node index.js
 ```
-
-Import `build.gradle` into your preferred IDE
-
 ## Thank you
 
-[DV8FromTheWorld](https://github.com/DV8FromTheWorld/) for [JDA](https://github.com/DV8FromTheWorld/JDA) which the bot uses.
+Javascript: for being so cool and awesome
