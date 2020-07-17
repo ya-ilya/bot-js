@@ -47,8 +47,8 @@ client.colors = {
 client.config = config;
 
 client.on("ready", () => {
-    const activities_list = ["You skid KAMI"]; // add more then add the type of them below
-    const activities_type = ["WATCHING"]; // types are PLAYING WATCHING LISTENING and STREAMING
+    const activities_list = ["You skid KAMI", "カミブルー！"]; // add more then add the type of them below
+    const activities_type = ["WATCHING", "PLAYING"]; // types are PLAYING WATCHING LISTENING and STREAMING
 	setInterval(() => {
 		const activityIndex = Math.floor(Math.random() * (activities_list.length - 1) + 1);
 		client.user.setPresence({
