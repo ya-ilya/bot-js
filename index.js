@@ -9,17 +9,17 @@ const config = {
       ["How do I open the GUI menu?",  // Question (Not used by code)
         [[[" gui ", " menu "], " how ", " do ", " i ", " open "], [" y ", " you ", " retard ", " faq ", "```", " monkey ", " javascript ", " install ", " get ", " download "]], // first index is positives next is negatives
         2, // How much does not have to be in the query
-        "To open the KAMI Blue Gui, you should press the `Y` key on your keyboard. On a normal qwerty keyboard; it should be located to the right of the `T` key and to the left of the `U` key. To find out more, please read:\nhttps://kamiblue.org/faq"], // What does it respond when the message gets deleted
+        "To open the KAMI Blue Gui, you should press the `Y` key on your keyboard.\nTo find out more, please read:https://kamiblue.org/faq"], // What does it respond when the message gets deleted
       
       ["Is KAMI Blue come out for 1.16?",
         [[[" 115", " 116"], [" update ",  " port "], [" when ", " will ", " is "], [" out ", " for ", " there "], [" kami ", "version"]], [" vasya ", " you ", " retard ", " faq ", "```", " monkey ", " fabric ", " no ", " impossible "]],
         1,
-        "No, Kami Blue will not be coming out for the current version of Minecraft. It will stay on version `1.12.2` because of how some of the code is. The developers, however, are working on a new client called Vasya. To find out more, please read:\nhttps://kamiblue.org/faq\nVasya Website: https://vasya.dominikaaaa.org/"],
+        "No, KAMI Blue will not be coming out for newer versions of Minecraft. It will stay on version `1.12.2` because it relies on version specific code. The developers, are instead working on a new client called Vasya.\nTo find out more, please read:https://kamiblue.org/faq\nVasya Website: https://vasya.dominikaaaa.org/"],
    
       ["How do I install KAMI Blue?",
       [[" how ", " do ", " i ", " install " [" this ", " kami "]],[" you ", " retard ", " faq ", "```", " monkey ", " javascript ", " gui ", " menu ", " hacks "]],
       0,
-      "You can install KAMI Blue by first installing forge for Minecraft 1.12.2, then double clicking KAMI. This should open an installer where you can choose which flavor you want. Simple click a button and install. To find out more, please read:\nhttps://kamiblue.org/faq"]
+      "Download KAMI Blue from <#634549110145286156> or the website at https://kamiblue.org/download, then open the file. This should open an installer where you can choose which version you want.\nTo find out more, please read the <More Info> at:https://kamiblue.org/download"]
     ],
     helpPages: [
     {"name":"Developer Commands","emoji":"☕"},
