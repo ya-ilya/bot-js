@@ -9,7 +9,7 @@ module.exports.config = {
   name: "elytra",
   aliases: [],
   use: "elytra",
-  description: "How to use ElytraFlight",
+  description: "How to use ElytraFlight on KAMI Blue",
   state: "gamma",
   page: 2
 };

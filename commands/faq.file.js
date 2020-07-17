@@ -9,7 +9,7 @@ module.exports.config = {
   name: "file",
   aliases: [],
   use: "file",
-  description: "Why you can't see .txt",
+  description: "Why you can't see .txt extensions",
   state: "gamma",
   page: 2
 };

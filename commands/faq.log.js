@@ -9,7 +9,7 @@ module.exports.config = {
   name: "log",
   aliases: [],
   use: "log",
-  description: "Info for troubleshooting",
+  description: "How to get info for troubleshooting",
   state: "gamma",
   page: 2
 };
