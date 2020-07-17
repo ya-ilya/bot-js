@@ -9,7 +9,7 @@ const config = {
       ["How do I open the GUI menu?",  // Question (Not used by code)
         [[[" gui ", " menu "], " how ", " do ", " i ", " open "], [" y ", " you ", " retard ", " faq ", "```", " monkey ", " javascript ", " install ", " get ", " download "]], // first index is positives next is negatives
         2, // How much does not have to be in the query
-        "To open the KAMI Blue Gui, you should press the `Y` key on your keyboard.\nTo find out more, please read:https://kamiblue.org/faq"], // What does it respond when the message gets deleted
+        "To open the KAMI Blue Gui, you should press the `Y` key on your keyboard.\nTo find out more, please read: https://kamiblue.org/faq"], // What does it respond when the message gets deleted
       
       ["Is KAMI Blue come out for 1.16?",
         [[[" 115", " 116"], [" update ",  " port "], [" when ", " will ", " is "], [" out ", " for ", " there "], [" kami ", "version"]], [" vasya ", " you ", " retard ", " faq ", "```", " monkey ", " fabric ", " no ", " impossible "]],
@@ -120,7 +120,7 @@ client.on('message', async message => {
     }
   
     let query = ` ${message.content.toLowerCase().replace(/[^a-zA-Z 0-9]+/g,"")} `;
-  config["queryParams"].forEach(Params => {if(queryScanMessage(query, Params[1], Params[2]) /* && !message.content.startsWith(prefix) && !!!message.member.roles.cache.map.length*/) return message.delete() && message.reply(Params[3]);})
+  config["queryParams"].forEach(Params => {if(queryScanMessage(query, Params[1], Params[2]) && !message.content.startsWith(prefix) /*&& !!!message.member.roles.cache.map.length*/) return message.delete() && message.reply(Params[3]);})
     
     
     // Command Handler
