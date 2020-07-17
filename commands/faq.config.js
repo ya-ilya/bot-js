@@ -9,7 +9,7 @@ module.exports.config = {
   name: "config",
   aliases: [],
   use: "config",
-  description: "FAQ Command!",
+  description: "How to configure settings",
   state: "gamma",
-  page: 3
+  page: 2
 };

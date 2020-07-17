@@ -9,7 +9,7 @@ module.exports.config = {
   name: "install",
   aliases: [],
   use: "install",
-  description: "FAQ Command!",
+  description: "How to install KAMI Blue",
   state: "gamma",
-  page: 3
+  page: 2
 };

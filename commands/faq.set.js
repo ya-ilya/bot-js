@@ -9,7 +9,7 @@ module.exports.config = {
   name: "set",
   aliases: [],
   use: "set",
-  description: "FAQ Command!",
+  description: "Instructions for ;set",
   state: "gamma",
-  page: 3
+  page: 2
 };

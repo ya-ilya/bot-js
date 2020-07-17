@@ -9,7 +9,7 @@ module.exports.config = {
   name: "elytra",
   aliases: [],
   use: "elytra",
-  description: "FAQ Command!",
+  description: "How to use ElytraFlight",
   state: "gamma",
-  page: 3
+  page: 2
 };

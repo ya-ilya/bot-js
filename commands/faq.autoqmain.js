@@ -9,7 +9,7 @@ module.exports.config = {
   name: "autoqmain",
   aliases: [],
   use: "autoqmain",
-  description: "FAQ Command!",
+  description: "What is AutoQMain?",
   state: "gamma",
-  page: 3
+  page: 2
 };

@@ -27,5 +27,5 @@ module.exports.config = {
   use: "issue [repoName] [issueNumber]",
   description: "Fetches github link of issue",
   state: "gamma",
-  page: 2
+  page: 3
 };

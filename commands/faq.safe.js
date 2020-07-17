@@ -9,7 +9,7 @@ module.exports.config = {
   name: "safe",
   aliases: [],
   use: "safe",
-  description: "FAQ Command!",
+  description: "Is KAMI Blue safe?",
   state: "gamma",
-  page: 3
+  page: 2
 };

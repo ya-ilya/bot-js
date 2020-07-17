@@ -24,8 +24,8 @@ const config = {
     helpPages: [
     {"name":"Developer Commands","emoji":"☕"},
     {"name":"Basic Commands","emoji":"📜"},
-    {"name":"Github Commands","emoji":"<:jarfix:661737679351971840>"},
     {"name":"FAQ Commands","emoji":"<:kamiblue:637407885357482004>"},
+    {"name":"Github Commands","emoji":"<:jarfix:661737679351971840>"},
     {"name":"Moderation & Utility Commands","emoji":"🔧"}
   ]
 }

@@ -9,7 +9,7 @@ module.exports.config = {
   name: "gray",
   aliases: [],
   use: "gray",
-  description: "FAQ Command!",
+  description: "mfw issue is caused by other client",
   state: "gamma",
-  page: 3
+  page: 2
 };

@@ -9,7 +9,7 @@ module.exports.config = {
   name: "shulkerpreview",
   aliases: [],
   use: "shulkerpreview",
-  description: "FAQ Command!",
+  description: "Why ShulkerPreview doesn't work on 2b2t",
   state: "gamma",
-  page: 3
+  page: 2
 };

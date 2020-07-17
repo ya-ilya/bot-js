@@ -9,7 +9,7 @@ module.exports.config = {
   name: "contributing",
   aliases: [],
   use: "contributing",
-  description: "FAQ Command!",
+  description: "Instructions for devs!",
   state: "gamma",
-  page: 3
+  page: 2
 };
