@@ -6,9 +6,9 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.config = {
-  name: "contributing",
+  name: "config",
   aliases: [],
-  use: "contributing",
+  use: "config",
   description: "FAQ Command!",
   state: "gamma",
   page: 3
