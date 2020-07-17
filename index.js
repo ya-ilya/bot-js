@@ -120,7 +120,7 @@ client.on('message', async message => {
     }
   
     let query = ` ${message.content.toLowerCase().replace(/[^a-zA-Z 0-9]+/g,"")} `;
-  config["queryParams"].forEach(Params => {if(queryScanMessage(query, Params[1], Params[2]) && !message.content.startsWith(prefix) && !!!message.member.roles.cache.map.length) return message.delete() && message.reply(Params[3]);})
+  config["queryParams"].forEach(Params => {if(queryScanMessage(query, Params[1], Params[2]) && !message.content.startsWith(prefix) /*&& !!!message.member.roles.cache.map.length*/) return message.delete() && message.reply(Params[3]);})
     
     
     // Command Handler
