@@ -14,7 +14,7 @@ exec('git rev-parse `git branch -r --sort=committerdate | tail -1`', (error, std
   message.channel.send(`stderr: ${stderr}`);
 });
 
-exec('git ls-remote --sort=committerdate', (error, stdout, stderr) => {
+exec('git rev-parse --verify HEAD', (error, stdout, stderr) => {
   if (error) {
     message.channel.send(`exec error: ${error}`);
     return;
