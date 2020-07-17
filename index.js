@@ -49,15 +49,16 @@ client.config = config;
 client.on("ready", () => {
     const activities_list = ["You skid KAMI"]; // add more then add the type of them below
     const activities_type = ["WATCHING"]; // types are PLAYING WATCHING LISTENING and STREAMING
-    console.log("Bot online");
-    const activityIndex = Math.floor(Math.random() * (activities_list.length - 1) + 1);
-    client.user.setPresence({
-        activity: {
-            name: activities_list[activityIndex],
-            type: activities_type[activityIndex]
-        }
-    });
+	setInterval(() => {
+		const activityIndex = Math.floor(Math.random() * (activities_list.length - 1) + 1);
+		client.user.setPresence({
+			activity: {
+				name: activities_list[activityIndex],
+				type: activities_type[activityIndex]
+			}
+		});
 
+	}, 1e4); // Ten Seconds
 });
 
 fs.readdir("./commands/", (err, files) => {
