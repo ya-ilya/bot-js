@@ -50,15 +50,14 @@ client.on("ready", () => {
     const activities_list = ["You skid KAMI"]; // add more then add the type of them below
     const activities_type = ["WATCHING"]; // types are PLAYING WATCHING LISTENING and STREAMING
     console.log("Bot online");
-    setInterval(() => {
-        const activityIndex = Math.floor(Math.random() * (activities_list.length - 1) + 1);
-        client.user.setPresence({
-            activity: {
-                name: activities_list[activityIndex],
-                type: activities_type[activityIndex]
-            }
-        });
-    }, 1e4); // Ten Seconds
+    const activityIndex = Math.floor(Math.random() * (activities_list.length - 1) + 1);
+    client.user.setPresence({
+        activity: {
+            name: activities_list[activityIndex],
+            type: activities_type[activityIndex]
+        }
+    });
+
 });
 
 fs.readdir("./commands/", (err, files) => {
