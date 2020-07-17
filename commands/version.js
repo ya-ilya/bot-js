@@ -7,20 +7,20 @@ if (!(message.author.id === "563138570953687061") && !(message.author.id === "29
 message.reply("sure")
 exec('git rev-parse `git branch -r --sort=committerdate | tail -1`', (error, stdout, stderr) => {
   if (error) {
-    message.channel.send(`exec error: ${error}`);
+    console.log(`exec error: ${error}`);
     return;
   }
   message.channel.send(`latest: ${stdout}`);
-  message.channel.send(`stderr: ${stderr}`);
+  console.log(`stderr: ${stderr}`);
 });
 
-exec('git ls-remote --sort=committerdate`', (error, stdout, stderr) => {
+exec('git ls-remote --sort=committerdate', (error, stdout, stderr) => {
   if (error) {
-    message.channel.send(`exec error: ${error}`);
+    console.log(`exec error: ${error}`);
     return;
   }
   message.channel.send(`local: ${stdout}`);
-  message.channel.send(`stderr: ${stderr}`);
+  console.log(`stderr: ${stderr}`);
 });
   
 } 
