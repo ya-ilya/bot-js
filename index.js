@@ -93,7 +93,7 @@ client.on("ready", () => {
             }
         });
 
-    }, 1e4); // Ten Seconds
+    }, 60000); // One minute
     client.channels.cache.get("699982782515904603").send("Bot has started up! !!!111");
 });
 
