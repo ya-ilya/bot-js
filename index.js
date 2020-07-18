@@ -5,6 +5,7 @@ const auth = require("./auth.json");
 
 const config = {
     prefix: ";",
+    blacklist: ["d.gg/", "discord.g", " hack", " fag", "nig", "tranny"],
     queryParams: [
         ["How do I open the GUI menu?", // Question (Not used by code)
             [
@@ -124,7 +125,17 @@ client.on('message', async message => {
     let messageArray = message.content.split(" ")
     let cmd = messageArray[0].toLowerCase();
     let args = messageArray.slice(1);
-
+    
+    
+    config["blacklist"].forEach(bannedPhrase => {
+         if (message.content.toLowerCase().indexOf(bannedPhrase) >= 0) {
+             if (message.member.roles.cache.map.length == 0) {
+                message.channel.send("Please do not say that.");
+                return message.delete();
+                //todo warn
+             }
+         }
+    })
 
     if (message.content.toLowerCase().indexOf("1 sec") >= 0) message.channel.send("It has been one second.");
 
