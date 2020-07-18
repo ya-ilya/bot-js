@@ -13,8 +13,8 @@ module.exports.run = async (client, message, args) => {
             return;
         }
         fetch(`https://api.github.com/repos/kami-blue/bot/commits/master`).then(res => res.json()).then((out) => {
-            var latest_sha = out.sha;
-            var local_sha = stdout;
+            var latest_sha = out["sha"].replace(/[^0-9a-z]/gi, '');
+            var local_sha = stdout.replace(/[^0-9a-z]/gi, '');
             let embedTitle;
             if (local_sha === latest_sha) {
                 embedTitle = "All up to date!!";
