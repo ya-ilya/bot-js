@@ -4,7 +4,7 @@ const fs = require("graceful-fs");
 
 module.exports.run = async (client, message, args) => {
     if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("How would you like it if I banned **you**!");
-    let member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
+    let member = message.mentions.members.first() || client.users.cache.get(args[0]);
     if (!member) return message.channel.send("Please mention a valid user.");
     if (!member.bannable) return message.channel.send("This member cannot be banned?");
     let reason = args.slice(1).join(" ");
