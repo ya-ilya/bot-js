@@ -85,7 +85,7 @@ client.on("ready", () => {
     const activities_list = ["You skid KAMI", ";help"]; // add more then add the type of them below
     const activities_type = ["WATCHING", "PLAYING"]; // types are PLAYING WATCHING LISTENING and STREAMING
     setInterval(() => {
-        const activityIndex = Math.floor(Math.random() * (activities_list.length - 1) + 1);
+        const activityIndex = Math.floor(Math.random() * activities_list.length);
         client.user.setPresence({
             activity: {
                 name: activities_list[activityIndex],
