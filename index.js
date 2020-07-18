@@ -129,7 +129,7 @@ client.on('message', async message => {
     
     config["blacklist"].forEach(bannedPhrase => {
          if (message.content.toLowerCase().indexOf(bannedPhrase) >= 0) {
-             if (message.member.roles.cache.map.length == 0) {
+             if (!message.member.hasPermission("CHANGE_NICKNAME")) {
                 message.channel.send("Please do not say that.");
                 return message.delete();
                 //todo warn
