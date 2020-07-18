@@ -82,8 +82,8 @@ client.config = config;
 
 client.on("ready", () => {
     console.log("Based.");
-    const activities_list = ["You skid KAMI", ";help"]; // add more then add the type of them below
-    const activities_type = ["WATCHING", "PLAYING"]; // types are PLAYING WATCHING LISTENING and STREAMING
+    const activities_list = ["you skid KAMI", ";help", "help in the #help-en channel"]; // add more then add the type of them below
+    const activities_type = ["WATCHING", "LISTENING", "STREAMING"]; // types are PLAYING WATCHING LISTENING and STREAMING
     setInterval(() => {
         const activityIndex = Math.floor(Math.random() * activities_list.length);
         client.user.setPresence({
