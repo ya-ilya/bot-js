@@ -15,7 +15,7 @@ module.exports.run = async (client, message, args) => {
         fetch(`https://api.github.com/repos/kami-blue/bot/commits/master`).then(res => res.json()).then((out) => {
             var latest_sha = out.sha;
             var local_sha = stdout;
-            if (local_sha === latest_sha) let embedTitle = "All up to date!!";
+            if (local_sha === latest_sha) var embedTitle = "All up to date!!";
 
             let versionEmbed = new Discord.MessageEmbed()
                 .setTitle(embedTitle || "Update available")
