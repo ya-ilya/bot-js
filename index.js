@@ -42,7 +42,7 @@ client.queue = new Map();
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 client.colors = {
-  kamiblue: "6dcdeb"
+  kamiblue: "9b90ff" // mfw magenta
 }
 client.config = config;
 
