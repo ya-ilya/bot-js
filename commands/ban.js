@@ -7,7 +7,7 @@ module.exports.run = async (client, message, args) => {
     let member = message.mentions.members.first() || client.users.cache.get(args[0]);
     if (!member) return message.channel.send("Please mention a valid user.");
     if (!member.bannable) return message.channel.send("This member cannot be banned?");
-    if (!member.hasPermission("BAN_MEMBERS")) return message.channel.send("How would you like it if I banned **you**!");
+    if (member.hasPermission("BAN_MEMBERS")) return message.channel.send("How would you like it if I banned **you**!");
     let reason = args.slice(1).join(" ");
     if (!reason) reason = "No Reason Provided";
     await member.ban(reason).catch(error => message.channel.send(error));
