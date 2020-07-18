@@ -15,15 +15,10 @@ module.exports.run = async (client, message, args) => {
         fetch(`https://api.github.com/repos/kami-blue/bot/commits/master`).then(res => res.json()).then((out) => {
             var latest_sha = out["sha"].replace(/[^0-9a-z]/gi, '');
             var local_sha = stdout.replace(/[^0-9a-z]/gi, '');
-            let embedTitle;
-            if (local_sha === latest_sha) {
-                embedTitle = "All up to date!!";
-            } else {
-                embedTitle = "Update available";
-            }
+            if (local_sha === latest_sha) var embedTitle = "All up to date!!";
 
             let versionEmbed = new Discord.MessageEmbed()
-                .setTitle(embedTitle)
+                .setTitle(embedTitle || "Update available")
                 .setColor(client.colors.kamiblue)
                 .setDescription(`**Latest Sha:** ${latest_sha}\n**Local Sha:** ${local_sha}`);
             message.channel.send(versionEmbed);
