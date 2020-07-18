@@ -6,28 +6,62 @@ const auth = require("./auth.json");
 const config = {
     prefix: ";",
     queryParams: [
-      ["How do I open the GUI menu?",  // Question (Not used by code)
-        [[[" gui ", " menu "], " how ", " do ", " i ", " open "], [" y ", " you ", " retard ", " faq ", "```", " monkey ", " javascript ", " install ", " get ", " download "]], // first index is positives next is negatives
-        2, // How much does not have to be in the query
-        "To open the KAMI Blue Gui, you should press the `Y` key on your keyboard.\nTo find out more, please read: https://kamiblue.org/faq"], // What does it respond when the message gets deleted
-      
-      ["Is KAMI Blue come out for 1.16?",
-        [[[" 115", " 116"], [" update ",  " port "], [" when ", " will ", " is "], [" out ", " for ", " there "], [" kami ", "version"]], [" vasya ", " you ", " retard ", " faq ", "```", " monkey ", " fabric ", " no ", " impossible "]],
-        1,
-        "No, KAMI Blue will not be coming out for newer versions of Minecraft. It will stay on version `1.12.2` because it relies on version specific code. The developers, are instead working on a new client called Vasya.\nTo find out more, please read:https://kamiblue.org/faq\nVasya Website: https://vasya.dominikaaaa.org/"],
-   
-      ["How do I install KAMI Blue?",
-      [[" how ", " do ", " i ", " install " [" this ", " kami "]],[" you ", " retard ", " faq ", "```", " monkey ", " javascript ", " gui ", " menu ", " hacks "]],
-      0,
-      "Download KAMI Blue from <#634549110145286156> or the website at https://kamiblue.org/download, then open the file. This should open an installer where you can choose which version you want.\nTo find out more, please read the <More Info> at:https://kamiblue.org/download"]
+        ["How do I open the GUI menu?", // Question (Not used by code)
+            [
+                [
+                    [" gui ", " menu "], " how ", " do ", " i ", " open "
+                ],
+                [" y ", " you ", " retard ", " faq ", "```", " monkey ", " javascript ", " install ", " get ", " download "]
+            ], // first index is positives next is negatives
+            2, // How much does not have to be in the query
+            "To open the KAMI Blue Gui, you should press the `Y` key on your keyboard.\nTo find out more, please read: https://kamiblue.org/faq"
+        ], // What does it respond when the message gets deleted
+
+        ["Is KAMI Blue come out for 1.16?",
+            [
+                [
+                    [" 115", " 116"],
+                    [" update ", " port "],
+                    [" when ", " will ", " is "],
+                    [" out ", " for ", " there "],
+                    [" kami ", "version"]
+                ],
+                [" vasya ", " you ", " retard ", " faq ", "```", " monkey ", " fabric ", " no ", " impossible "]
+            ],
+            1,
+            "No, KAMI Blue will not be coming out for newer versions of Minecraft. It will stay on version `1.12.2` because it relies on version specific code. The developers, are instead working on a new client called Vasya.\nTo find out more, please read:https://kamiblue.org/faq\nVasya Website: https://vasya.dominikaaaa.org/"
+        ],
+
+        ["How do I install KAMI Blue?",
+            [
+                [" how ", " do ", " i ", " install " [" this ", " kami "]],
+                [" you ", " retard ", " faq ", "```", " monkey ", " javascript ", " gui ", " menu ", " hacks "]
+            ],
+            0,
+            "Download KAMI Blue from <#634549110145286156> or the website at https://kamiblue.org/download, then open the file. This should open an installer where you can choose which version you want.\nTo find out more, please read the <More Info> at:https://kamiblue.org/download"
+        ]
     ],
-    helpPages: [
-    {"name":"Developer Commands","emoji":"☕"},
-    {"name":"Basic Commands","emoji":"📜"},
-    {"name":"FAQ Commands","emoji":"<:kamiblue:637407885357482004>"},
-    {"name":"Github Commands","emoji":"<:jarfix:661737679351971840>"},
-    {"name":"Moderation & Utility Commands","emoji":"🔧"}
-  ]
+    helpPages: [{
+            "name": "Developer Commands",
+            "emoji": "☕"
+        },
+        {
+            "name": "Basic Commands",
+            "emoji": "📜"
+        },
+        {
+            "name": "FAQ Commands",
+            "emoji": "<:kamiblue:637407885357482004>"
+        },
+        {
+            "name": "Github Commands",
+            "emoji": "<:jarfix:661737679351971840>"
+        },
+        {
+            "name": "Moderation & Utility Commands",
+            "emoji": "🔧"
+        }
+    ]
 }
 
 // Import Modules (for this file)
@@ -42,23 +76,25 @@ client.queue = new Map();
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 client.colors = {
-  kamiblue: "9b90ff" // mfw magenta
+    kamiblue: "9b90ff" // mfw magenta
 }
 client.config = config;
 
 client.on("ready", () => {
+    console.log("Based.");
     const activities_list = ["You skid KAMI", ";help"]; // add more then add the type of them below
     const activities_type = ["WATCHING", "PLAYING"]; // types are PLAYING WATCHING LISTENING and STREAMING
-	setInterval(() => {
-		const activityIndex = Math.floor(Math.random() * (activities_list.length - 1) + 1);
-		client.user.setPresence({
-			activity: {
-				name: activities_list[activityIndex],
-				type: activities_type[activityIndex]
-			}
-		});
+    setInterval(() => {
+        const activityIndex = Math.floor(Math.random() * (activities_list.length - 1) + 1);
+        client.user.setPresence({
+            activity: {
+                name: activities_list[activityIndex],
+                type: activities_type[activityIndex]
+            }
+        });
 
-	}, 1e4); // Ten Seconds
+    }, 1e4); // Ten Seconds
+    client.channels.cache.get("699982782515904603").send("Bot has started up! !!!111");
 });
 
 fs.readdir("./commands/", (err, files) => {
@@ -105,25 +141,31 @@ client.on('message', async message => {
      "Automatically answers silly questions"
     */
 
-    
 
-    function queryScanMessage(query, parameters, leeway=2) {
+
+    function queryScanMessage(query, parameters, leeway = 2) {
         let ticker = 0;
         let looper = true;
-        parameters[1].forEach(phrase => { if (query.indexOf(phrase)>=0) return looper = !ticker; })
-        if (looper) parameters[0].forEach(phrase => {
-          if (phrase instanceof Array) {
-              phrase.forEach(phrase => { if (query.indexOf(phrase)>=0) return ticker++; })
-          } else if (query.indexOf(phrase)>=0) ticker++;   
+        parameters[1].forEach(phrase => {
+            if (query.indexOf(phrase) >= 0) return looper = !ticker;
         })
-        if (ticker > parameters[0].length-leeway) return true; /*Actually its -2 but it starts at 0 so its -1*/
+        if (looper) parameters[0].forEach(phrase => {
+            if (phrase instanceof Array) {
+                phrase.forEach(phrase => {
+                    if (query.indexOf(phrase) >= 0) return ticker++;
+                })
+            } else if (query.indexOf(phrase) >= 0) ticker++;
+        })
+        if (ticker > parameters[0].length - leeway) return true; /*Actually its -2 but it starts at 0 so its -1*/
         return false;
     }
-  
+
     let query = ` ${message.content.toLowerCase().replace(/[^a-zA-Z 0-9]+/g,"")} `;
-  config["queryParams"].forEach(Params => {if(queryScanMessage(query, Params[1], Params[2]) && !message.content.startsWith(prefix) /*&& !!!message.member.roles.cache.map.length*/) return message.delete() && message.reply(Params[3]);})
-    
-    
+    config["queryParams"].forEach(Params => {
+        if (queryScanMessage(query, Params[1], Params[2]) && !message.content.startsWith(prefix) /*&& !!!message.member.roles.cache.map.length*/ ) return message.delete() && message.reply(Params[3]);
+    })
+
+
     // Command Handler
     if (!message.content.startsWith(prefix)) return;
     let commandfile = client.commands.get(cmd.slice(prefix.length)) || client.commands.get(client.aliases.get(cmd.slice(prefix.length)));
