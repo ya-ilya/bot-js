@@ -4,7 +4,7 @@ const fs = require("graceful-fs");
 
 module.exports.run = async (client, message, args) => {
     if (!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send("How would you like it if I kicked **you**!");
-    let member = message.mentions.members.first() || client.users.cache.get(args[0]);
+    let member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
     if (!member) return message.channel.send("Please mention a valid user.");
     if (!member.kickable) return message.channel.send("This member cannot be kicked?");
     if (member.hasPermission("KICK_MEMBERS")) return message.channel.send("How would you like it if I banned **you**!");
