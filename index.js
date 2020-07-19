@@ -194,10 +194,12 @@ client.on('message', async message => {
 		if (elytraAnswerFour.test(message.content.toLowerCase())) matches++;
 		
 		if (matches > 1) return message.channel.send("Make sure you're using default settings in the latest beta. Run the defaults button in ElytraFlight's settings if you updated KAMI Blue before.\n\nIf it still doesn't help, make sure you're not using NoFall or any other movement related mods from **other** clients, such as Sprint in Rage mode, as they make you go over the speed limit and rubberband.");
-	}
-	
-	var crashReg = new RegExp("(c(?!a).{0,2}sh)");
+
+    	var crashReg = new RegExp("(c(?!a).{0,2}sh)");
 	if (crashReg.test(message.content.toLowerCase())) message.channel.send("Find the `latest.log` file inside `~/.minecraft/logs` and paste the contents to https://pastebin.com/, and the send the link.");
+
+    }
+	
 
     // Command Handler
     if (!message.content.startsWith(prefix)) return;
