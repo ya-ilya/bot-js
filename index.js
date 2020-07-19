@@ -129,10 +129,10 @@ client.on('message', async message => {
         if ((message.content.toLowerCase().indexOf("hack") >= 0) || (message.content.toLowerCase().indexOf("cheat") >= 0)) {
             message.channel.send("Hacks / cheats are against Discord TOS (Rules 3 and 9)");
         } else if (discordInvite.test(message.content.toLowerCase())) {
-            message.reply("lmfao stop advertising your discord server");
+            message.reply("lmfao stop advertising your discord server (Rule 5)");
             return message.delete();
         } else if ((message.content.toLowerCase().indexOf("nig") >= 0) || (message.content.toLowerCase().indexOf("tranny") >= 0) || (message.content.toLowerCase().indexOf(" fag") >= 0)) { //add more slur detection later
-            message.reply("If you think slurs are a funny as a joke, then head to https://kamiblue.org/backdoored\n(Slurs are against Rule 1)");
+            message.reply("Slurs are against Rule 1");
             return message.delete()
         }
 
