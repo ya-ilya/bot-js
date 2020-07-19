@@ -4,7 +4,7 @@ const fs = require("graceful-fs");
 module.exports.run = async (client, message, args) => {
    let regArgs = args.join(" ").split("#");
    var regEz = new RegExp(regArgs[1]);
-   return message.channel.send((regEz.exec(regArgs[0])));
+   return message.channel.send((regEz.test(regArgs[0])));
 } 
 
 module.exports.config = {
