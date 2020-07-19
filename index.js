@@ -1,11 +1,8 @@
-"use strict";
-
 // Import AuthFile
 const auth = require("./auth.json");
 
 const config = {
     prefix: ";",
-    blacklist: ["d.gg/", "discord.g", " hack", " fag", "nig", "tranny"],
     queryParams: [
         ["How do I open the GUI menu?", // Question (Not used by code)
             [
@@ -120,67 +117,73 @@ fs.readdir("./commands/", (err, files) => {
 });
 
 client.on('message', async message => {
-    if (message.author.bot) return; // Prevent Botcepttion Loop (Now Required)
-    let prefix = config.prefix;
-    let messageArray = message.content.split(" ")
-    let cmd = messageArray[0].toLowerCase();
-    let args = messageArray.slice(1);
-    
-    
-    config["blacklist"].forEach(bannedPhrase => {
-         if (message.content.toLowerCase().indexOf(bannedPhrase) >= 0) {
-             if (!message.member.hasPermission("CHANGE_NICKNAME")) {
-                message.channel.send("Please do not say that.");
-                return message.delete();
-                //todo warn
-             }
-         }
-    })
-
-    if (message.content.toLowerCase().indexOf("1 sec") >= 0) message.channel.send("It has been one second.");
+            if (message.author.bot) return; // Prevent Botcepttion Loop (Now Required)
+            let prefix = config.prefix;
+            let messageArray = message.content.split(" ")
+            let cmd = messageArray[0].toLowerCase();
+            let args = messageArray.slice(1);
 
 
-    /*
-         ___        _         ______          
-       / _ \      | |        |  ___|         
-      / /_\ \_   _| |_ ___   | |_ __ _  __ _ 
-      |  _  | | | | __/ _ \  |  _/ _` |/ _` |
-      | | | | |_| | || (_) | | || (_| | (_| |
-      \_| |_/\__,_|\__\___/  \_| \__,_|\__, |
-                                          | |
-                                          |_|
-     "Automatically answers silly questions"
-    */
+            if (!message.member.hasPermission("CHANGE_NICKNAME")) {
+                var discordInvite = new RegExp("d.{0,3}i.{0,3}s.{0,3}c.{0,3}o.{0,3}r.{0,3}d).{0,7}(gg|com.{0,3}invite");
+                if ((message.content.toLowerCase().indexOf("hack") >= 0) || (message.content.toLowerCase().indexOf("cheat") >= 0)) {
+                    message.channel.send("Hacks / cheats are against Discord TOS (Rules 3 and 9)");
+                } else if (discordInvite.test(message.content.toLowerCase()) {
+                        message.reply("lmfao stop advertising your discord server");
+                        return message.delete();
+                    } else if (message.content.toLowerCase().indexOf("nig") >= 0) { //add more slur detection later
+                        message.reply("If you think slurs are a funny joke, then head to https://kamiblue.org/backdoored\n(Slurs are against Rule 1)");
+                        return message.delete()
+                    }
+
+
+                    //todo warn
+                }
+
+                if (message.content.toLowerCase().indexOf("1 sec") >= 0) message.channel.send("It has been one second.");
+
+
+                /*
+                     ___        _         ______          
+                   / _ \      | |        |  ___|         
+                  / /_\ \_   _| |_ ___   | |_ __ _  __ _ 
+                  |  _  | | | | __/ _ \  |  _/ _` |/ _` |
+                  | | | | |_| | || (_) | | || (_| | (_| |
+                  \_| |_/\__,_|\__\___/  \_| \__,_|\__, |
+                                                      | |
+                                                      |_|
+                 "Automatically answers silly questions"
+                */
 
 
 
-    function queryScanMessage(query, parameters, leeway = 2) {
-        let ticker = 0;
-        let looper = true;
-        parameters[1].forEach(phrase => {
-            if (query.indexOf(phrase) >= 0) return looper = !ticker;
-        })
-        if (looper) parameters[0].forEach(phrase => {
-            if (phrase instanceof Array) {
-                phrase.forEach(phrase => {
-                    if (query.indexOf(phrase) >= 0) return ticker++;
+                function queryScanMessage(query, parameters, leeway = 2) {
+                    let ticker = 0;
+                    let looper = true;
+                    parameters[1].forEach(phrase => {
+                        if (query.indexOf(phrase) >= 0) return looper = !ticker;
+                    })
+                    if (looper) parameters[0].forEach(phrase => {
+                        if (phrase instanceof Array) {
+                            phrase.forEach(phrase => {
+                                if (query.indexOf(phrase) >= 0) return ticker++;
+                            })
+                        } else if (query.indexOf(phrase) >= 0) ticker++;
+                    })
+                    if (ticker > parameters[0].length - leeway) return true; /*Actually its -2 but it starts at 0 so its -1*/
+                    return false;
+                }
+
+                let query = ` ${message.content.toLowerCase().replace(/[^a-zA-Z 0-9]+/g,"")} `;
+                config["queryParams"].forEach(Params => {
+                    if (queryScanMessage(query, Params[1], Params[2]) && !message.content.startsWith(prefix) /*&& !!!message.member.roles.cache.map.length*/ ) return message.delete() && message.reply(Params[3]);
                 })
-            } else if (query.indexOf(phrase) >= 0) ticker++;
-        })
-        if (ticker > parameters[0].length - leeway) return true; /*Actually its -2 but it starts at 0 so its -1*/
-        return false;
-    }
-
-    let query = ` ${message.content.toLowerCase().replace(/[^a-zA-Z 0-9]+/g,"")} `;
-    config["queryParams"].forEach(Params => {
-        if (queryScanMessage(query, Params[1], Params[2]) && !message.content.startsWith(prefix) /*&& !!!message.member.roles.cache.map.length*/ ) return message.delete() && message.reply(Params[3]);
-    })
 
 
-    // Command Handler
-    if (!message.content.startsWith(prefix)) return;
-    let commandfile = client.commands.get(cmd.slice(prefix.length)) || client.commands.get(client.aliases.get(cmd.slice(prefix.length)));
-    if (commandfile) commandfile.run(client, message, args);
-});
+                // Command Handler
+                if (!message.content.startsWith(prefix)) return;
+                let commandfile = client.commands.get(cmd.slice(prefix.length)) || client.commands.get(client.aliases.get(cmd.slice(prefix.length)));
+                if (commandfile) commandfile.run(client, message, args);
+            });
 
-client.login(auth.token);
+        client.login(auth.token);
