@@ -183,7 +183,7 @@ client.on('message', async message => {
     if (!message.member.hasPermission("CHANGE_NICKNAME")) {
 
 		// the following section is poorly optimized, i need someone with a brain to fix it
-        var elytraAnswerOne = new RegExp("(elytra|elytra.{0,2}light|elytra.{0,2}\+)") 
+        var elytraAnswerOne = new RegExp("(elytra|elytra.{0,2}light|elytra.{0,2}\\+|elytra.{0,2}fly)") 
         var elytraAnswerTwo = new RegExp("(does.{0,5}t)") ;
         var elytraAnswerThree = new RegExp("(work)");
         var elytraAnswerFour = new RegExp("(settings)");
