@@ -11,7 +11,7 @@ module.exports.run = async (client, message, args) => {
 module.exports.config = {
   name: "regex",
   aliases: [],
-  use: ";regex [String~Regex]",
+  use: "regex [String~Regex]",
   description: "Tests 4 regex",
   state : "gamma",
   page: 1
