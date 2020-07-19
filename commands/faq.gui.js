@@ -9,7 +9,7 @@ module.exports.config = {
   name: "gui",
   aliases: [],
   use: "gui",
-  description: "How to use the GUI on KAMI Blue",
+  description: "How to change the GUI size",
   state: "gamma",
   page: 2
 };
