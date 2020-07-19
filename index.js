@@ -79,7 +79,7 @@ client.colors = {
 client.config = config;
 
 client.on("ready", () => {
-    console.log("Based.");
+    console.log("Bot loaded!.");
     const activities_list = ["you skid KAMI", ";help", "help in the #help-en channel"]; // add more then add the type of them below
     const activities_type = ["WATCHING", "LISTENING", "STREAMING"]; // types are PLAYING WATCHING LISTENING and STREAMING
     setInterval(() => {
@@ -92,7 +92,7 @@ client.on("ready", () => {
         });
 
     }, 60000); // One minute
-    client.channels.cache.get("699982782515904603").send("Bot has started up! !!!111");
+    client.channels.cache.get("699982782515904603").send("Bot has started up! !!!");
 });
 
 fs.readdir("./commands/", (err, files) => {
@@ -183,7 +183,7 @@ client.on('message', async message => {
     if (!message.member.hasPermission("CHANGE_NICKNAME")) {
 
 		// the following section is poorly optimized, i need someone with a brain to fix it
-        var elytraAnswerOne = new RegExp("(elytra|elytra.{0,2}light|elytra.{0,2}\\+|elytra.{0,2}fly)") 
+        var elytraAnswerOne = new RegExp("(elytra|elytra.{0,2}light|elytra.{0,2}\\+|elytra.{0,2}fly)");
         var elytraAnswerTwo = new RegExp("(does.{0,5}t)") ;
         var elytraAnswerThree = new RegExp("(work)");
         var elytraAnswerFour = new RegExp("(settings)");
@@ -195,6 +195,9 @@ client.on('message', async message => {
 		
 		if (matches > 1) return message.channel.send("Make sure you're using default settings in the latest beta. Run the defaults button in ElytraFlight's settings if you updated KAMI Blue before.\n\nIf it still doesn't help, make sure you're not using NoFall or any other movement related mods from **other** clients, such as Sprint in Rage mode, as they make you go over the speed limit and rubberband.");
 	}
+	
+	var crashReg = new RegExp("(c(?!a).{0,2}sh)");
+	if (crashReg.test(message.content.toLowerCase())) message.channel.send("Find the `latest.log` file inside `~/.minecraft/logs` and paste the contents to https://pastebin.com/, and the send the link.");
 
     // Command Handler
     if (!message.content.startsWith(prefix)) return;
