@@ -126,7 +126,8 @@ client.on('message', async message => {
 
     if (!message.member.hasPermission("CHANGE_NICKNAME")) {
         var discordInvite = new RegExp("(d.{0,3}i.{0,3}s.{0,3}c.{0,3}o.{0,3}r.{0,3}d).{0,7}(gg|com.{0,3}invite)");
-        if ((message.content.toLowerCase().indexOf("hack") >= 0) || (message.content.toLowerCase().indexOf("cheat") >= 0)) {
+        var hacksRegex = new RegExp("(ch.{0,2}t|h.{0,2}k.{0,1})");
+        if (hacksRegex.test(message.content.toLowerCase())) {
             message.channel.send("Hacks / cheats are against Discord TOS (Rules 3 and 9)");
         } else if (discordInvite.test(message.content.toLowerCase())) {
             message.reply("lmfao stop advertising your discord server (Rule 5)");
