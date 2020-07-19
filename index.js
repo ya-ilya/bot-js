@@ -132,7 +132,7 @@ client.on('message', async message => {
             message.reply("lmfao stop advertising your discord server");
             return message.delete();
         } else if ((message.content.toLowerCase().indexOf("nig") >= 0) || (message.content.toLowerCase().indexOf("tranny") >= 0) || (message.content.toLowerCase().indexOf(" fag") >= 0)) { //add more slur detection later
-            message.reply("If you think slurs are a funny as a joke joke, then head to https://kamiblue.org/backdoored\n(Slurs are against Rule 1)");
+            message.reply("If you think slurs are a funny as a joke, then head to https://kamiblue.org/backdoored\n(Slurs are against Rule 1)");
             return message.delete()
         }
 
