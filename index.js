@@ -181,11 +181,20 @@ client.on('message', async message => {
     
     // Regex-Autofaq (bella is the one who knows regex here)
     if (!message.member.hasPermission("CHANGE_NICKNAME")) {
-        var elytraAnswer = new RegExp("(elytra|elytra.{0,2}light|elytra.{0,2}\+) (does.{0,5}t) (work) (settings)");
-        if (hacksRegex.exec(message.content.toLowerCase())) {
-            message.channel.send("Make sure you're using default settings in the latest beta. Run the defaults button in ElytraFlight's settings if you updated KAMI Blue before.\n\nIf it still doesn't help, make sure you're not using NoFall or any other movement related mods from **other** clients, such as Sprint in Rage mode, as they make you go over the speed limit and rubberband.");
-        }
-    }
+
+		// the following section is poorly optimized, i need someone with a brain to fix it
+        var elytraAnswerOne = new RegExp("(elytra|elytra.{0,2}light|elytra.{0,2}\+)") 
+        var elytraAnswerTwo = new RegExp("(does.{0,5}t)") ;
+        var elytraAnswerThree = new RegExp("(work)");
+        var elytraAnswerFour = new RegExp("(settings)");
+		var matches = 0;
+		if (elytraAnswerOne.test(message.content.toLowerCase())) matches++;
+		if (elytraAnswerTwo.test(message.content.toLowerCase())) matches++;
+		if (elytraAnswerThree.test(message.content.toLowerCase())) matches++;
+		if (elytraAnswerFour.test(message.content.toLowerCase())) matches++;
+		
+		if (matches > 1) return message.channel.send("Make sure you're using default settings in the latest beta. Run the defaults button in ElytraFlight's settings if you updated KAMI Blue before.\n\nIf it still doesn't help, make sure you're not using NoFall or any other movement related mods from **other** clients, such as Sprint in Rage mode, as they make you go over the speed limit and rubberband.");
+	}
 
     // Command Handler
     if (!message.content.startsWith(prefix)) return;
