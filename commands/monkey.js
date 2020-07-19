@@ -9,9 +9,9 @@ module.exports.run = async (client, message, args) => {
 } 
 
 module.exports.config = {
-  name: "farmerjoe",
-  aliases: [],
-  use: "farmerjoe",
+  name: "monkey",
+  aliases: ["m"],
+  use: "monkey",
   description: "funny monkey",
   state : "gamma",
   page: 1
