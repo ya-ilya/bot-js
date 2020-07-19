@@ -4,7 +4,7 @@ module.exports.run = async (client, message, args) => {
   
     if (message.guild.id !== "573954110454366214") return message.channel.send("no");
         var rl = message.guild.roles.cache.find(role => role.id === "573957771494686740");
-        if (message.member.roles.cache.find(rl)) {
+        if (message.member.roles.cache.find(role => role.id === "573957771494686740")) {
             message.member.roles.remove(rl);
             message.channel.send(`You are no longer following updates :(`);
         } else {
