@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const fs = require("graceful-fs");
 module.exports.run = async (client, message, args) => {
   
-    if (message.guild.id !== "625021277295345667") return message.channel.send(client.msg["roleme_unsupported"]);
+    if (message.guild.id !== "573954110454366214") return message.channel.send("no");
         var rl = message.guild.roles.cache.find(role => role.id === "573957771494686740");
         if (message.member.roles.cache.find(rl)) {
             message.member.roles.remove(rl);
@@ -16,9 +16,9 @@ module.exports.run = async (client, message, args) => {
 } 
 
 module.exports.config = {
-  name: "updaterole",
+  name: "updatesrole",
   aliases: ["updateme", "updatepings"],
-  use: "updaterole",
+  use: "updatesole",
   description: "Assign or unassign the updates role to yourself",
   state : "gamma",
   page: 1
