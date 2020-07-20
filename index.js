@@ -126,7 +126,7 @@ client.on('message', async message => {
 
     if (!message.member.hasPermission("CHANGE_NICKNAME")) {
         var discordInvite = new RegExp("(d.{0,3}.{0,3}s.{0,3}c.{0,3}.{0,3}r.{0,3}d).{0,7}(gg|com.{0,3}invite)");
-        var hacksRegex = new RegExp("(ch(?!es| ).{0,2}t|(h(?!in|un|an|ar).{0,2}k)");
+        var hacksRegex = new RegExp("(ch(?!es| ).{0,2}t|h(?!in|un|an|ar).{0,2}k)");
         if (hacksRegex.test(message.content.toLowerCase())) {
             message.channel.send("Hacks / cheats are against Discord TOS (Rules 3 and 9)");
         } else if (discordInvite.test(message.content.toLowerCase())) {
