@@ -11,7 +11,7 @@ module.exports.run = async (client, message, args) => {
   
     var local = ""
     local += Monkeys[Math.floor(Math.random() * Monkeys.length)]
-    var rand = getRandomInt(2)
+    var rand = getRandomInt(3)
     for (i = 0; i <= rand; i++) {
         local += Monkeys[Math.floor(Math.random() * Monkeys.length)]
     }
