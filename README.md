@@ -16,3 +16,6 @@ node index.js
 ## Thank you
 
 Javascript: for being so cool and awesome
+
+
+if anybody knows DiscordJS or NodeJS please help I cannot close all three trillion issues myself aaaaaaaa
