@@ -1,26 +1,26 @@
-const ms = require("minestat/JavaScript");
+const ms = require("minestats");
 const Discord = require("discord.js");
 const fs = require("graceful-fs");
 
 module.exports.run = async (client, message, args) => {
-    ms.init(args[0], 25565, function(result){
-        message.channel.send("One moment...");
-        if(ms.online){
-            message.channel.delete();
-            message.channel.send(`Server is running version ${ms.version} with ${ms.current_players} out of ${ms.max_players} players.`);
-            message.channel.send(`Message of the day: ${ms.motd}`);
-            message.channel.send(`Latency: ${ms.latency} ms.`)
-        } else {
-            message.channel.delete();
-            message.channel.send(`Server is offline!`);
-        }
-    });
+    try {
+        ServerStats(args[0]).then(info => {
+            let statusEmbed = new Discord.MessageEmbed()
+                .setTitle(`Minecraft server status of ${args[0]}: `)
+                .setDescription(info)
+                .setColor(client.colors.kamiblue)
+            message.channel.send(statusEmbed);
+        })
+    }catch(err){
+        message.channel.send("Failed to get the info of server! Is server online?");
+        console.error(err);
+    }
 }
 
 module.exports.config = {
     name: "serverstat",
     aliases: ["stat"],
-    use: "stat [server ip]",
+    use: "serverstat [server ip]",
     description: "Gets status of server",
     state: "gamma",
     page: 1
