@@ -117,7 +117,6 @@ fs.readdir("./commands/", (err, files) => {
 
 client.on('message', async message => {
     if (message.author.bot) return; // Prevent Botcepttion Loop (Now Required)
-    message.channel.send(message.author)
     let prefix = config.prefix;
     let messageArray = message.content.split(" ")
     let cmd = messageArray[0].toLowerCase();
