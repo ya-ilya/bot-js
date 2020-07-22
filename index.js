@@ -116,11 +116,15 @@ fs.readdir("./commands/", (err, files) => {
 });
 
 client.on('message', async message => {
-    if (message.author.bot) return; // Prevent Botcepttion Loop (Now Required)
-    let prefix = config.prefix;
     let messageArray = message.content.split(" ")
+    let prefix = config.prefix;
     let cmd = messageArray[0].toLowerCase();
     let args = messageArray.slice(1);
+    /* Command handler */
+
+    if (!message.content.startsWith(prefix)) return;
+    let commandFile = client.commands.get(cmd.slice(prefix.length)) || client.commands.get(client.aliases.get(cmd.slice(prefix.length)));
+    if (commandFile) commandFile.run(client, message, args);
 
     /*
          ___        _         ______
@@ -133,25 +137,30 @@ client.on('message', async message => {
                                           |_|
      "Automatically answers silly questions"
     */
-    if (!message.member.hasPermission("CHANGE_NICKNAME")) {
-        let discordInvite = new RegExp("(d.{0,3}.{0,3}s.{0,3}c.{0,3}.{0,3}r.{0,3}d).{0,7}(gg|com.{0,3}invite)");
-        let hacksRegex = new RegExp("(?<![a-z])(c+h+[e3]+[a@4]+t+|h+[@a4]+[ckx]+)([eo30]+r+|s+|i+n+g*?)*(?![a-z])", "i");
-        if (hacksRegex.test(message.content.toLowerCase().replace(/[^\w@430]/g, ""))) {
-            message.channel.send("Hacks / cheats are against Discord TOS (Rules 3 and 9)");
-        } else if (discordInvite.test(message.content.toLowerCase())) {
-            message.reply("lmfao stop advertising your discord server (Rule 5)");
-            return message.delete();
-        } else if ((message.content.toLowerCase().indexOf("nig") >= 0) || (message.content.toLowerCase().indexOf("tranny") >= 0) || (message.content.toLowerCase().indexOf(" fag") >= 0)) { //add more slur detection later
-            message.reply("Slurs are against Rule 1");
-            return message.delete()
-        }
-        //todo: warn
+    if (message.author.bot) return; // Prevent botception loop
 
-        // the following section is poorly optimized, i need someone with a brain to fix it
+    /* members with roles bypass the filter */
+    if (!message.member.hasPermission("CHANGE_NICKNAME")) {
+        const discordInviteRegex = new RegExp("(d.{0,3}.{0,3}s.{0,3}c.{0,3}.{0,3}r.{0,3}d).{0,7}(gg|com.{0,3}invite)", "i");
+        const hacksRegex = new RegExp("(?<![a-z])(c+h+[e3]+[a@4]+t+|h+[@a4]+[ckx]+)([eo30]+r+|s+|i+n+g*?)*(?![a-z])", "i");
+        const slursRegex = new RegExp("(nigg(?!a).{1,2}|tran(?![spfqc]).{1,2})", "i");
+
         const elytraAnswerOne = new RegExp("(elytra|elytra.{0,2}light|elytra.{0,2}\\+|elytra.{0,2}fly)");
         const elytraAnswerTwo = new RegExp("(does.{0,5}t)");
-        const elytraAnswerThree = new RegExp("(work)");
-        const elytraAnswerFour = new RegExp("(settings)");
+        const elytraAnswerThree = new RegExp("(work|how)");
+        const elytraAnswerFour = new RegExp("(settings|config|configure)");
+
+        /* test for hacksRegex, discordInviteRegex and slursRegex */
+        if (hacksRegex.test(message.content.toLowerCase().replace(/[^\w@430]/g, ""))) {
+            message.channel.send("Hacks / cheats are against Discord TOS (Rules 3 and 9)");
+        } else if (discordInviteRegex.test(message.content)) {
+            message.reply("lmfao stop advertising your discord server (Rule 5)");
+            return message.delete();
+        } else if (slursRegex.test(message.content)) {
+            message.reply("Slurs are against Rule 1b and 1c");
+            return message.delete() // TODO: warn
+        }
+
         let matches = 0;
         if (elytraAnswerOne.test(message.content.toLowerCase())) matches++;
         if (elytraAnswerTwo.test(message.content.toLowerCase())) matches++;
@@ -164,12 +173,6 @@ client.on('message', async message => {
         if (crashReg.test(message.content.toLowerCase())) message.channel.send("Find the `latest.log` file inside `~/.minecraft/logs` and paste the contents to https://pastebin.com/, and the send the link.");
 
     }
-
-
-    // Command Handler
-    if (!message.content.startsWith(prefix)) return;
-    let commandFile = client.commands.get(cmd.slice(prefix.length)) || client.commands.get(client.aliases.get(cmd.slice(prefix.length)));
-    if (commandFile) commandFile.run(client, message, args);
 });
 
 client.login(auth.token);
