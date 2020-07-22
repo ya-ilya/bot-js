@@ -40,9 +40,9 @@ const config = {
         ]
     ],
     helpPages: [{
-            "name": "Developer Commands",
-            "emoji": "☕"
-        },
+        "name": "Developer Commands",
+        "emoji": "☕"
+    },
         {
             "name": "Basic Commands",
             "emoji": "📜"
@@ -67,8 +67,7 @@ const Discord = require("discord.js");
 const fs = require("graceful-fs");
 
 
-
-// Client Definitions 
+// Client Definitions
 const client = new Discord.Client();
 client.queue = new Map();
 client.commands = new Discord.Collection();
@@ -156,7 +155,6 @@ client.on('message', async message => {
     */
 
 
-
     function queryScanMessage(query, parameters, leeway = 2) {
         let ticker = 0;
         let looper = true;
@@ -174,32 +172,32 @@ client.on('message', async message => {
         return false;
     }
 
-    let query = ` ${message.content.toLowerCase().replace(/[^a-zA-Z 0-9]+/g,"")} `;
+    let query = ` ${message.content.toLowerCase().replace(/[^a-zA-Z 0-9]+/g, "")} `;
     config["queryParams"].forEach(Params => {
-        if (queryScanMessage(query, Params[1], Params[2]) && !message.content.startsWith(prefix) /*&& !!!message.member.roles.cache.map.length*/ ) return message.delete() && message.reply(Params[3]);
+        if (queryScanMessage(query, Params[1], Params[2]) && !message.content.startsWith(prefix) /*&& !!!message.member.roles.cache.map.length*/) return message.delete() && message.reply(Params[3]);
     })
-    
+
     // Regex-Autofaq (bella is the one who knows regex here)
     if (!message.member.hasPermission("CHANGE_NICKNAME")) {
 
-		// the following section is poorly optimized, i need someone with a brain to fix it
+        // the following section is poorly optimized, i need someone with a brain to fix it
         var elytraAnswerOne = new RegExp("(elytra|elytra.{0,2}light|elytra.{0,2}\\+|elytra.{0,2}fly)");
-        var elytraAnswerTwo = new RegExp("(does.{0,5}t)") ;
+        var elytraAnswerTwo = new RegExp("(does.{0,5}t)");
         var elytraAnswerThree = new RegExp("(work)");
         var elytraAnswerFour = new RegExp("(settings)");
-		var matches = 0;
-		if (elytraAnswerOne.test(message.content.toLowerCase())) matches++;
-		if (elytraAnswerTwo.test(message.content.toLowerCase())) matches++;
-		if (elytraAnswerThree.test(message.content.toLowerCase())) matches++;
-		if (elytraAnswerFour.test(message.content.toLowerCase())) matches++;
-		
-		if (matches > 1) return message.channel.send("Make sure you're using default settings in the latest beta. Run the defaults button in ElytraFlight's settings if you updated KAMI Blue before.\n\nIf it still doesn't help, make sure you're not using NoFall or any other movement related mods from **other** clients, such as Sprint in Rage mode, as they make you go over the speed limit and rubberband.");
+        var matches = 0;
+        if (elytraAnswerOne.test(message.content.toLowerCase())) matches++;
+        if (elytraAnswerTwo.test(message.content.toLowerCase())) matches++;
+        if (elytraAnswerThree.test(message.content.toLowerCase())) matches++;
+        if (elytraAnswerFour.test(message.content.toLowerCase())) matches++;
 
-    	var crashReg = new RegExp("(c(?!a).{0,2}sh)");
-	if (crashReg.test(message.content.toLowerCase())) message.channel.send("Find the `latest.log` file inside `~/.minecraft/logs` and paste the contents to https://pastebin.com/, and the send the link.");
+        if (matches > 1) return message.channel.send("Make sure you're using default settings in the latest beta. Run the defaults button in ElytraFlight's settings if you updated KAMI Blue before.\n\nIf it still doesn't help, make sure you're not using NoFall or any other movement related mods from **other** clients, such as Sprint in Rage mode, as they make you go over the speed limit and rubberband.");
+
+        var crashReg = new RegExp("(c(?!a).{0,2}sh)");
+        if (crashReg.test(message.content.toLowerCase())) message.channel.send("Find the `latest.log` file inside `~/.minecraft/logs` and paste the contents to https://pastebin.com/, and the send the link.");
 
     }
-	
+
 
     // Command Handler
     if (!message.content.startsWith(prefix)) return;

@@ -11,18 +11,18 @@ module.exports.run = async (client, message, args) => {
     if (!reason) reason = "No Reason Provided";
     await member.ban(reason).catch(error => message.channel.send(error));
     let banEmbed = new Discord.MessageEmbed()
-      .setTitle("User Banned")
-      .setDescription(`${member.user.tag} has been banned by ${message.author.tag}`)
-      .addField("Reason", reason)
-      .setColor("ff5050");
+        .setTitle("User Banned")
+        .setDescription(`${member.user.tag} has been banned by ${message.author.tag}`)
+        .addField("Reason", reason)
+        .setColor("ff5050");
     message.channel.send(banEmbed);
-} 
+}
 
 module.exports.config = {
-  name: "ban",
-  aliases: ["execute", "exile", "glean"],
-  use: "ban [@User]",
-  description: "Ban a user from the server",
-  state : "gamma",
-  page: 4
+    name: "ban",
+    aliases: ["execute", "exile", "glean"],
+    use: "ban [@User]",
+    description: "Ban a user from the server",
+    state: "gamma",
+    page: 4
 };

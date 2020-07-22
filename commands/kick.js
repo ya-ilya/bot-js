@@ -12,18 +12,18 @@ module.exports.run = async (client, message, args) => {
     if (!reason) reason = "No Reason Provided";
     await member.kick(reason).catch(error => message.channel.send(error));
     let kickEmbed = new Discord.MessageEmbed()
-      .setTitle("User Kicked")
-      .setDescription(`${member.user.tag} has been kicked by ${message.author.tag}`)
-      .addField("Reason", reason)
-      .setColor("ff5050");
+        .setTitle("User Kicked")
+        .setDescription(`${member.user.tag} has been kicked by ${message.author.tag}`)
+        .addField("Reason", reason)
+        .setColor("ff5050");
     message.channel.send(kickEmbed);
-} 
+}
 
 module.exports.config = {
-  name: "kick",
-  aliases: [],
-  use: "kick [@User]",
-  description: "Kick a user from the server",
-  state : "gamma",
-  page: 4
+    name: "kick",
+    aliases: [],
+    use: "kick [@User]",
+    description: "Kick a user from the server",
+    state: "gamma",
+    page: 4
 };
