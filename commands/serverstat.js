@@ -16,7 +16,7 @@ module.exports.run = async (client, message, args) => {
                     .setColor(client.colors.kamiblue)
                 message.channel.send(statusEmbed);
             })
-            .catch(err => message.channel.send(err))
+            .catch(err => message.channel.send("Error: server offline or bad IP"))
 
     }catch(err){
         message.channel.send("Failed to get the info of server!");
