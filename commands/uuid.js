@@ -23,7 +23,7 @@ module.exports.run = async (client, message, args) => {
                         .setColor(client.colors.kamiblue);
                     message.channel.send(uuidEmbed);
                 })
-                .catch(err => console.error(err))
+                .catch(err => message.channel.send("Error: invalid username!"))
         } catch (err) {
             message.channel.send("Failed to get the uuid of player!");
             console.error(err);
