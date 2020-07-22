@@ -82,7 +82,7 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.config = {
     name: "rules",
-    aliases: ["rule"],
+    aliases: ["rule", "r"],
     use: "rules [rule]",
     description: "Get rule",
     state: "gamma",
