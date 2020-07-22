@@ -141,9 +141,9 @@ client.on('message', async message => {
 
     /* members with roles bypass the filter */
     if (!message.member.hasPermission("CHANGE_NICKNAME")) {
-        const discordInviteRegex = new RegExp("(d.{0,3}.{0,3}s.{0,3}c.{0,3}.{0,3}r.{0,3}d).{0,7}(gg|com.{0,3}invite)", "i");
-        const hacksRegex = new RegExp("(?<![a-z])(c+h+[e3]+[a@4]+t+|h+[@a4]+[ckx]+)([eo30]+r+|s+|i+n+g*?)*(?![a-z])", "i");
-        const slursRegex = new RegExp("(nigg(?!a).{1,2}|tran(?![spfqc]).{1,2})", "i");
+        const discordInviteRegex = new RegExp("(d.{0,3}.{0,3}s.{0,3}c.{0,3}.{0,3}r.{0,3}d).{0,7}(gg|com.{0,3}invite)");
+        const hacksRegex = new RegExp("(?<![a-z])(c+h+[e3]+[a@4]+t+|h+[@a4]+[ckx]+)([eo30]+r+|s+|i+n+g*?)*(?![a-z])");
+        const slursRegex = new RegExp("(nigg(?!a).{1,2}|tran(?![spfqc]).{1,2})");
 
         const elytraAnswerOne = new RegExp("(elytra|elytra.{0,2}light|elytra.{0,2}\\+|elytra.{0,2}fly)");
         const elytraAnswerTwo = new RegExp("(does.{0,5}t)");
@@ -153,10 +153,10 @@ client.on('message', async message => {
         /* test for hacksRegex, discordInviteRegex and slursRegex */
         if (hacksRegex.test(message.content.toLowerCase().replace(/[^\w@430]/g, ""))) {
             message.channel.send("Hacks / cheats are against Discord TOS (Rules 3 and 9)");
-        } else if (discordInviteRegex.test(message.content)) {
+        } else if (discordInviteRegex.test(message.content.toLowerCase())) {
             message.reply("lmfao stop advertising your discord server (Rule 5)");
             return message.delete();
-        } else if (slursRegex.test(message.content)) {
+        } else if (slursRegex.test(message.content.toLowerCase())) {
             message.reply("Slurs are against Rule 1b and 1c");
             return message.delete() // TODO: warn
         }
