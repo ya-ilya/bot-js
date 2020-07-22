@@ -18,7 +18,7 @@ module.exports.run = async (client, message, args) => {
                     part5 = result.id.slice(20, 32);
                     let uuidEmbed = new Discord.MessageEmbed()
                         .setTitle('UUID of player ' + result.name)
-                        .setThumbnail(`https://crafatar.com/renders/body/${result.id}`)
+                        .setThumbnail(`https://crafatar.com/renders/body/${result.id}?overlay`)
                         .setDescription(part1 + '-' + part2 + '-' + part3 + '-' + part4 + '-' + part5)
                         .setColor(client.colors.kamiblue);
                     message.channel.send(uuidEmbed);
