@@ -120,11 +120,13 @@ client.on('message', async message => {
     let prefix = config.prefix;
     let cmd = messageArray[0].toLowerCase();
     let args = messageArray.slice(1);
+    
     /* Command handler */
-
-    if (!message.content.startsWith(prefix)) return;
-    let commandFile = client.commands.get(cmd.slice(prefix.length)) || client.commands.get(client.aliases.get(cmd.slice(prefix.length)));
-    if (commandFile) commandFile.run(client, message, args);
+    if (message.content.startsWith(prefix)) {
+        let commandFile = client.commands.get(cmd.slice(prefix.length)) || client.commands.get(client.aliases.get(cmd.slice(prefix.length)));
+        if (commandFile) commandFile.run(client, message, args);
+        return;
+    }
 
     /*
          ___        _         ______
