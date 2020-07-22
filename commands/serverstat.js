@@ -16,7 +16,7 @@ module.exports.run = async (client, message, args) => {
                     .setColor(client.colors.kamiblue)
                 message.channel.send(statusEmbed);
             })
-            .catch(err => channel.message.send(err))
+            .catch(err => message.channel.send(err))
 
     }catch(err){
         message.channel.send("Failed to get the info of server!");
