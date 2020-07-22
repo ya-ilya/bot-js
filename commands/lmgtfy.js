@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const fs = require("graceful-fs");
 
 module.exports.run = async (client, message, args) => {
-    if (args[0] === "") return;
+    message.channel.send("\"" + args[0] + "\"")
 
     let lmgtfyEmbed = new Discord.MessageEmbed()
         .setTitle("Here you go~!")
