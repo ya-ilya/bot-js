@@ -16,7 +16,7 @@ module.exports.run = async (client, message, args) => {
                     .setColor(client.colors.kamiblue)
                 message.channel.send(statusEmbed);
             })
-            .catch(err => console.error(err))
+            .catch(err => channel.message.send(err))
 
     }catch(err){
         message.channel.send("Failed to get the info of server!");
@@ -26,7 +26,7 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.config = {
     name: "serverstat",
-    aliases: ["stat"],
+    aliases: ["stat", "stats"],
     use: "serverstat [server ip]",
     description: "Gets status of server",
     state: "gamma",
