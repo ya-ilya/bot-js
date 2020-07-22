@@ -2,8 +2,7 @@ const Discord = require("discord.js");
 const fs = require("graceful-fs");
 
 module.exports.run = async (client, message, args) => {
-    message.channel.send(args[0])
-    if (args[0] == "") {
+    if (args[0] === "") {
         message.channel.send("Please enter a question query!");
         return;
     }
