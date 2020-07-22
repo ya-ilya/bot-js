@@ -78,7 +78,7 @@ client.colors = {
 client.config = config;
 
 client.on("ready", () => {
-    console.log("Bot loaded!.");
+    console.log("Bot loaded!");
     const activities_list = ["you skid KAMI", ";help", "help in the #help-en channel"]; // add more then add the type of them below
     const activities_type = ["WATCHING", "LISTENING", "STREAMING"]; // types are PLAYING WATCHING LISTENING and STREAMING
     setInterval(() => {
@@ -91,15 +91,15 @@ client.on("ready", () => {
         });
 
     }, 60000); // One minute
-    client.channels.cache.get("699982782515904603").send("Bot has started up! !!!");
+    client.channels.cache.get("699982782515904603").send("Bot has started up!!");
 });
 
 fs.readdir("./commands/", (err, files) => {
-    let jsfile = files.filter(f => f.split(".").pop() === "js");
-    if (jsfile.length <= 0)
+    let jsFiles = files.filter(f => f.split(".").pop() === "js");
+    if (jsFiles.length <= 0)
         return console.log(" \"./commands\" has no commandFiles. Are they in the right directory?");
-    jsfile.forEach((f, i) => {
-        //it will log all the file names with extension .js
+    jsFiles.forEach((f, i) => {
+        // it will log all the file names with extension .js
         let pull = require(`./commands/${f}`);
         console.log(`	- Searching ${f} \x1b[36m [Pending] \x1b[0m`); // Should be in colour
         if (pull.config) {
@@ -117,12 +117,23 @@ fs.readdir("./commands/", (err, files) => {
 
 client.on('message', async message => {
     if (message.author.bot) return; // Prevent Botcepttion Loop (Now Required)
+    message.channel.send(message.author)
     let prefix = config.prefix;
     let messageArray = message.content.split(" ")
     let cmd = messageArray[0].toLowerCase();
     let args = messageArray.slice(1);
 
-
+    /*
+         ___        _         ______
+       / _ \      | |        |  ___|
+      / /_\ \_   _| |_ ___   | |_ __ _  __ _
+      |  _  | | | | __/ _ \  |  _/ _` |/ _` |
+      | | | | |_| | || (_) | | || (_| | (_| |
+      \_| |_/\__,_|\__\___/  \_| \__,_|\__, |
+                                          | |
+                                          |_|
+     "Automatically answers silly questions"
+    */
     if (!message.member.hasPermission("CHANGE_NICKNAME")) {
         let discordInvite = new RegExp("(d.{0,3}.{0,3}s.{0,3}c.{0,3}.{0,3}r.{0,3}d).{0,7}(gg|com.{0,3}invite)");
         let hacksRegex = new RegExp("(?<![a-z])(c+h+[e3]+[a@4]+t+|h+[@a4]+[ckx]+)([eo30]+r+|s+|i+n+g*?)*(?![a-z])", "i");
@@ -135,57 +146,14 @@ client.on('message', async message => {
             message.reply("Slurs are against Rule 1");
             return message.delete()
         }
-
         //todo: warn
-    }
-
-    if (message.content.toLowerCase().indexOf("1 sec") >= 0) message.channel.send("It has been one second.");
-
-
-    /*
-         ___        _         ______          
-       / _ \      | |        |  ___|         
-      / /_\ \_   _| |_ ___   | |_ __ _  __ _ 
-      |  _  | | | | __/ _ \  |  _/ _` |/ _` |
-      | | | | |_| | || (_) | | || (_| | (_| |
-      \_| |_/\__,_|\__\___/  \_| \__,_|\__, |
-                                          | |
-                                          |_|
-     "Automatically answers silly questions"
-    */
-
-
-    function queryScanMessage(query, parameters, leeway = 2) {
-        let ticker = 0;
-        let looper = true;
-        parameters[1].forEach(phrase => {
-            if (query.indexOf(phrase) >= 0) return looper = !ticker;
-        })
-        if (looper) parameters[0].forEach(phrase => {
-            if (phrase instanceof Array) {
-                phrase.forEach(phrase => {
-                    if (query.indexOf(phrase) >= 0) return ticker++;
-                })
-            } else if (query.indexOf(phrase) >= 0) ticker++;
-        })
-        if (ticker > parameters[0].length - leeway) return true; /*Actually its -2 but it starts at 0 so its -1*/
-        return false;
-    }
-
-    let query = ` ${message.content.toLowerCase().replace(/[^a-zA-Z 0-9]+/g, "")} `;
-    config["queryParams"].forEach(Params => {
-        if (queryScanMessage(query, Params[1], Params[2]) && !message.content.startsWith(prefix) /*&& !!!message.member.roles.cache.map.length*/) return message.delete() && message.reply(Params[3]);
-    })
-
-    // Regex-Autofaq (bella is the one who knows regex here)
-    if (!message.member.hasPermission("CHANGE_NICKNAME")) {
 
         // the following section is poorly optimized, i need someone with a brain to fix it
-        var elytraAnswerOne = new RegExp("(elytra|elytra.{0,2}light|elytra.{0,2}\\+|elytra.{0,2}fly)");
-        var elytraAnswerTwo = new RegExp("(does.{0,5}t)");
-        var elytraAnswerThree = new RegExp("(work)");
-        var elytraAnswerFour = new RegExp("(settings)");
-        var matches = 0;
+        const elytraAnswerOne = new RegExp("(elytra|elytra.{0,2}light|elytra.{0,2}\\+|elytra.{0,2}fly)");
+        const elytraAnswerTwo = new RegExp("(does.{0,5}t)");
+        const elytraAnswerThree = new RegExp("(work)");
+        const elytraAnswerFour = new RegExp("(settings)");
+        let matches = 0;
         if (elytraAnswerOne.test(message.content.toLowerCase())) matches++;
         if (elytraAnswerTwo.test(message.content.toLowerCase())) matches++;
         if (elytraAnswerThree.test(message.content.toLowerCase())) matches++;
@@ -193,7 +161,7 @@ client.on('message', async message => {
 
         if (matches > 1) return message.channel.send("Make sure you're using default settings in the latest beta. Run the defaults button in ElytraFlight's settings if you updated KAMI Blue before.\n\nIf it still doesn't help, make sure you're not using NoFall or any other movement related mods from **other** clients, such as Sprint in Rage mode, as they make you go over the speed limit and rubberband.");
 
-        var crashReg = new RegExp("(c(?!a).{0,2}sh)");
+        const crashReg = new RegExp("(c(?!a).{0,2}sh)");
         if (crashReg.test(message.content.toLowerCase())) message.channel.send("Find the `latest.log` file inside `~/.minecraft/logs` and paste the contents to https://pastebin.com/, and the send the link.");
 
     }
@@ -201,8 +169,8 @@ client.on('message', async message => {
 
     // Command Handler
     if (!message.content.startsWith(prefix)) return;
-    let commandfile = client.commands.get(cmd.slice(prefix.length)) || client.commands.get(client.aliases.get(cmd.slice(prefix.length)));
-    if (commandfile) commandfile.run(client, message, args);
+    let commandFile = client.commands.get(cmd.slice(prefix.length)) || client.commands.get(client.aliases.get(cmd.slice(prefix.length)));
+    if (commandFile) commandFile.run(client, message, args);
 });
 
 client.login(auth.token);
