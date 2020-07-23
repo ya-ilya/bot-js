@@ -13,31 +13,8 @@ const config = {
             ], // first index is positives next is negatives
             2, // How much does not have to be in the query
             "To open the KAMI Blue Gui, you should press the `Y` key on your keyboard.\nTo find out more, please read: https://kamiblue.org/faq"
-        ], // What does it respond when the message gets deleted
-
-        ["Is KAMI Blue come out for 1.16?",
-            [
-                [
-                    [" 115", " 116"],
-                    [" update ", " port "],
-                    [" when ", " will ", " is "],
-                    [" out ", " for ", " there "],
-                    [" kami ", "version"]
-                ],
-                [" vasya ", " you ", " retard ", " faq ", "```", " monkey ", " fabric ", " no ", " impossible "]
-            ],
-            1,
-            "No, KAMI Blue will not be coming out for newer versions of Minecraft. It will stay on version `1.12.2` because it relies on version specific code. The developers, are instead working on a new client called Vasya.\nTo find out more, please read:https://kamiblue.org/faq\nVasya Website: https://vasya.dominikaaaa.org/"
-        ],
-
-        ["How do I install KAMI Blue?",
-            [
-                [" how ", " do ", " i ", " install " [" this ", " kami "]],
-                [" you ", " retard ", " faq ", "```", " monkey ", " javascript ", " gui ", " menu ", " hacks "]
-            ],
-            0,
-            "Download KAMI Blue from <#634549110145286156> or the website at https://kamiblue.org/download, then open the file. This should open an installer where you can choose which version you want.\nTo find out more, please read the <More Info> at:https://kamiblue.org/download"
         ]
+
     ],
     helpPages: [{
         "name": "Developer Commands",
@@ -73,7 +50,10 @@ client.queue = new Map();
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 client.colors = {
-    kamiblue: "9b90ff" // mfw magenta
+    kamiblue: "9b90ff", // mfw magenta
+    red: "de413c",
+    green: "3cde5a",
+    yellow: "deb63c"
 }
 client.config = config;
 
@@ -120,12 +100,12 @@ client.on('message', async message => {
     let prefix = config.prefix;
     let cmd = messageArray[0].toLowerCase();
     let args = messageArray.slice(1);
-    
+
     /* Command handler */
     if (message.content.startsWith(prefix)) {
         let commandFile = client.commands.get(cmd.slice(prefix.length)) || client.commands.get(client.aliases.get(cmd.slice(prefix.length)));
         if (commandFile) commandFile.run(client, message, args);
-        return;
+        // return; removed because people can theoretically bypass filters by putting ; in front
     }
 
     /*
@@ -143,37 +123,65 @@ client.on('message', async message => {
 
     /* members with roles bypass the filter */
     if (!message.member.hasPermission("CHANGE_NICKNAME")) {
+        /* bad messages regexes */
         const discordInviteRegex = new RegExp("(d.{0,3}.{0,3}s.{0,3}c.{0,3}.{0,3}r.{0,3}d).{0,7}(gg|com.{0,3}invite)");
         const hacksRegex = new RegExp("(?<![a-z])(c+h+[e3]+[a@4]+t+|h+[@a4]+[ckx]+)([eo30]+r+|s+|i+n+g*?)*(?![a-z])");
         const slursRegex = new RegExp("(nigg(?!a).{1,2}|tran(?![spfqc]).{1,2})");
 
-        const elytraAnswerOne = new RegExp("(elytra|elytra.{0,2}light|elytra.{0,2}\\+|elytra.{0,2}fly)");
-        const elytraAnswerTwo = new RegExp("(does.{0,5}t)");
-        const elytraAnswerThree = new RegExp("(work|how)");
-        const elytraAnswerFour = new RegExp("(settings|config|configure)");
+        /* help regexes */
+        const elytraRegex1 = new RegExp("(elytra|elytra.{0,2}light|elytra.{0,2}\\+|elytra.{0,2}fly)");
+        const elytraRegex2 = new RegExp("(settings|config|configure)");
 
-        /* test for hacksRegex, discordInviteRegex and slursRegex */
+        const doesNotRegex = new RegExp("(does.{0,5}t)");
+        const howWorkRegex = new RegExp("(work|how|how to)");
+        const crashRegex = new RegExp("(c(?!a).{0,2}sh)");
+        const installRegex = new RegExp("(install|open|download)")
+
+        const versionRegex1 = new RegExp("(1.?(14|15|16))") /* (1.{0,1}(14|15|16)) */
+        const versionRegex2 = new RegExp("(update|port|version)")
+
+        /* hacks / cheats regex */
         if (hacksRegex.test(message.content.toLowerCase().replace(/[^\w@430]/g, ""))) {
             message.channel.send("Hacks / cheats are against Discord TOS (Rules 3 and 9)");
-        } else if (discordInviteRegex.test(message.content.toLowerCase())) {
+        }
+
+        /* discord invite link regex */
+        if (discordInviteRegex.test(message.content.toLowerCase())) {
             message.reply("lmfao stop advertising your discord server (Rule 5)");
             return message.delete();
-        } else if (slursRegex.test(message.content.toLowerCase())) {
+        }
+
+        /* slurs regex */
+        if (slursRegex.test(message.content.toLowerCase())) {
             message.reply("Slurs are against Rule 1b and 1c");
             return message.delete() // TODO: warn
         }
 
-        let matches = 0;
-        if (elytraAnswerOne.test(message.content.toLowerCase())) matches++;
-        if (elytraAnswerTwo.test(message.content.toLowerCase())) matches++;
-        if (elytraAnswerThree.test(message.content.toLowerCase())) matches++;
-        if (elytraAnswerFour.test(message.content.toLowerCase())) matches++;
+        /* elytra help regex */
+        let elytraRegexMatches = 0;
+        if (elytraRegex1.test(message.content.toLowerCase())) elytraRegexMatches++;
+        if (doesNotRegex.test(message.content.toLowerCase())) elytraRegexMatches++;
+        if (howWorkRegex.test(message.content.toLowerCase())) elytraRegexMatches++;
+        if (elytraRegex2.test(message.content.toLowerCase())) elytraRegexMatches++;
 
-        if (matches > 1) return message.channel.send("Make sure you're using default settings in the latest beta. Run the defaults button in ElytraFlight's settings if you updated KAMI Blue before.\n\nIf it still doesn't help, make sure you're not using NoFall or any other movement related mods from **other** clients, such as Sprint in Rage mode, as they make you go over the speed limit and rubberband.");
+        if (elytraRegexMatches > 1) {
+            return message.channel.send("Make sure you're using default settings in the latest beta. Run the defaults button in ElytraFlight's settings if you updated KAMI Blue before.\n\nIf it still doesn't help, make sure you're not using NoFall or any other movement related mods from **other** clients, such as Sprint in Rage mode, as they make you go over the speed limit and rubberband.");
+        }
 
-        const crashReg = new RegExp("(c(?!a).{0,2}sh)");
-        if (crashReg.test(message.content.toLowerCase())) message.channel.send("Find the `latest.log` file inside `~/.minecraft/logs` and paste the contents to https://pastebin.com/, and the send the link.");
+        /* game crash regex */
+        if (crashRegex.test(message.content.toLowerCase())) {
+            message.channel.send("Find the `latest.log` file inside `~/.minecraft/logs` and paste the contents to https://pastebin.com/, and the send the link.");
+        }
 
+        /* new version regex */
+        if (versionRegex1.test(message.content.toLowerCase()) && versionRegex2.test(message.content.toLowerCase())) {
+            message.channel.send("No, KAMI Blue will not be coming out for newer versions of Minecraft. It will stay on version `1.12.2` because it relies on version specific code. The developers are instead working on a new client called Vasya.\nVasya Website: https://vasya.dominikaaaa.org/")
+        }
+
+        /* how to install regex */
+        if (doesNotRegex.test(message.content.toLowerCase()) && installRegex.test(message.content.toLowerCase())) {
+            message.channel.send("Download KAMI Blue from <#634549110145286156> or the website at https://kamiblue.org/download, then open the file. This should open an installer where you can choose which version you want.\nTo find out more, please read the <More Info> at:https://kamiblue.org/download")
+        }
     }
 });
 
