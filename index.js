@@ -43,7 +43,6 @@ const config = {
 const Discord = require("discord.js");
 const fs = require("graceful-fs");
 
-
 // Client Definitions
 const client = new Discord.Client();
 client.queue = new Map();
@@ -105,22 +104,50 @@ client.on('message', async message => {
     if (message.content.startsWith(prefix)) {
         let commandFile = client.commands.get(cmd.slice(prefix.length)) || client.commands.get(client.aliases.get(cmd.slice(prefix.length)));
         if (commandFile) commandFile.run(client, message, args);
-        // return; removed because people can theoretically bypass filters by putting ; in front
     }
 
-    /*
-         ___        _         ______
-       / _ \      | |        |  ___|
-      / /_\ \_   _| |_ ___   | |_ __ _  __ _
-      |  _  | | | | __/ _ \  |  _/ _` |/ _` |
-      | | | | |_| | || (_) | | || (_| | (_| |
-      \_| |_/\__,_|\__\___/  \_| \__,_|\__, |
-                                          | |
-                                          |_|
-     "Automatically answers silly questions"
-    */
     if (message.author.bot) return; // Prevent botception loop
+    autoResponder(message);
+});
 
+// starboard
+client.on('messageReactionAdd', async (reaction, user) => {
+    if (reaction.partial) {
+        try {
+            await reaction.fetch();
+        } catch (err) {
+            console.error('Something went wrong when fetching the message: ', err);
+            return;
+        }
+    }
+    
+    if(reaction.emoji.toString() === "⭐" && reaction.count >= 2){
+        let starEmbed = new Discord.MessageEmbed()
+            .setTitle(`Star message: `)
+            .setDescription(reaction.message.content)
+            .setColor(client.colors.yellow)
+            .setTimestamp();
+        client.channels.cache.get('735680230148276286').send(starEmbed);
+    }
+});
+
+/* when message is edited */
+client.on('messageUpdate', async message => {
+    if (message.author.bot) return;
+    autoResponder(message);
+});
+
+/*
+     ___        _         ______
+   / _ \      | |        |  ___|
+  / /_\ \_   _| |_ ___   | |_ __ _  __ _
+  |  _  | | | | __/ _ \  |  _/ _` |/ _` |
+  | | | | |_| | || (_) | | || (_| | (_| |
+  \_| |_/\__,_|\__\___/  \_| \__,_|\__, |
+                                      | |
+                                      |_|
+*/
+function autoResponder(message) {
     /* members with roles bypass the filter */
     if (!message.member.hasPermission("CHANGE_NICKNAME")) {
         /* bad messages regexes */
@@ -183,27 +210,6 @@ client.on('message', async message => {
             message.channel.send("Download KAMI Blue from <#634549110145286156> or the website at https://kamiblue.org/download, then open the file. This should open an installer where you can choose which version you want.\nTo find out more, please read the <More Info> at:https://kamiblue.org/download")
         }
     }
-});
-
-// starboard
-client.on('messageReactionAdd', async (reaction, user) => {
-    if (reaction.partial) {
-        try {
-            await reaction.fetch();
-        } catch (err) {
-            console.error('Something went wrong when fetching the message: ', err);
-            return;
-        }
-    }
-    
-    if(reaction.emoji.toString() === "⭐" && reaction.count >= 2){
-        let starEmbed = new Discord.MessageEmbed()
-            .setTitle(`Star message: `)
-            .setDescription(reaction.message.content)
-            .setColor(client.colors.yellow)
-            .setTimestamp();
-        client.channels.cache.get('735680230148276286').send(starEmbed);
-    }
-});
+}
 
 client.login(auth.token);
