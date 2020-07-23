@@ -152,6 +152,7 @@ function autoResponder(message) {
         const crashRegex = new RegExp("(c(?!a).{0,2}sh)");
         const installRegex = new RegExp("(install|open|download)")
         const guiRegex = new RegExp("(gui|menu|hud|click.?gui)")
+        const forgeRegex = new RegExp("(f.{1,2}ge)")
 
         const versionRegex1 = new RegExp("(1.?(14|15|16))") /* (1.{0,1}(14|15|16)) */
         const versionRegex2 = new RegExp("(update|port|version)")
@@ -194,9 +195,13 @@ function autoResponder(message) {
             message.channel.send("No, KAMI Blue will not be coming out for newer versions of Minecraft. It will stay on version `1.12.2` because it relies on version specific code. The developers are instead working on a new client called Vasya.\nVasya Website: https://vasya.dominikaaaa.org/")
         }
 
-        /* how to install regex */
+        /* how to install kami blue and forge regex */
         if (howWorkRegex.test(message.content.toLowerCase()) && installRegex.test(message.content.toLowerCase())) {
-            message.channel.send("Download KAMI Blue from <#634549110145286156> or the website at https://kamiblue.org/download, then open the file. This should open an installer where you can choose which version you want.\nTo find out more, please read the <More Info> at:https://kamiblue.org/download")
+            if (forgeRegex.test(message.content.toLowerCase())) {
+                message.channel.send("Download Forge from this link (<\https://files.minecraftforge.net/maven/net/minecraftforge/forge/index_1.12.2.html>)\nand select Installer. Open the file that it downloads and follow the instructions it gives you.")
+            } else {
+                message.channel.send("Download KAMI Blue from <#634549110145286156> or the website at https://kamiblue.org/download, then open the file. This should open an installer where you can choose which version you want.\nTo find out more, please read the <More Info> at:https://kamiblue.org/download")
+            }
         }
 
         /* how to open gui regex */
