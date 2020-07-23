@@ -151,6 +151,7 @@ function autoResponder(message) {
         const howWorkRegex = new RegExp("(work|how|how to)");
         const crashRegex = new RegExp("(c(?!a).{0,2}sh)");
         const installRegex = new RegExp("(install|open|download)")
+        const guiRegex = new RegExp("(gui|menu|hud|click.?gui)")
 
         const versionRegex1 = new RegExp("(1.?(14|15|16))") /* (1.{0,1}(14|15|16)) */
         const versionRegex2 = new RegExp("(update|port|version)")
@@ -196,6 +197,11 @@ function autoResponder(message) {
         /* how to install regex */
         if (howWorkRegex.test(message.content.toLowerCase()) && installRegex.test(message.content.toLowerCase())) {
             message.channel.send("Download KAMI Blue from <#634549110145286156> or the website at https://kamiblue.org/download, then open the file. This should open an installer where you can choose which version you want.\nTo find out more, please read the <More Info> at:https://kamiblue.org/download")
+        }
+
+        /* how to open gui regex */
+        if (howWorkRegex.test(message.content.toLowerCase()) && guiRegex.test(message.content.toLowerCase())) {
+            message.channel.send("Use `Y` to open the GUI. Use `;bind clickgui <\key>` to change it.\nRead more at https://kamiblue.org/faq")
         }
     }
 }
