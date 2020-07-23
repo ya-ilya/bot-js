@@ -126,7 +126,7 @@ client.on('message', async message => {
         /* bad messages regexes */
         const discordInviteRegex = new RegExp("(d.{0,3}.{0,3}s.{0,3}c.{0,3}.{0,3}r.{0,3}d).{0,7}(gg|com.{0,3}invite)");
         const hacksRegex = new RegExp("(?<![a-z])(c+h+[e3]+[a@4]+t+|h+[@a4]+[ckx]+)([eo30]+r+|s+|i+n+g*?)*(?![a-z])");
-        const slursRegex = new RegExp("(nigg(?!a).{1,2}|tran(?![spfqc]).{1,2})");
+        const slursRegex = new RegExp("(nigg(?!a).{1,2}|tran(?![spfqc]).{1,2}|fag.{1,2}t)");
 
         /* help regexes */
         const elytraRegex1 = new RegExp("(elytra|elytra.{0,2}light|elytra.{0,2}\\+|elytra.{0,2}fly)");
@@ -179,13 +179,13 @@ client.on('message', async message => {
         }
 
         /* how to install regex */
-        if (doesNotRegex.test(message.content.toLowerCase()) && installRegex.test(message.content.toLowerCase())) {
+        if (howWorkRegex.test(message.content.toLowerCase()) && installRegex.test(message.content.toLowerCase())) {
             message.channel.send("Download KAMI Blue from <#634549110145286156> or the website at https://kamiblue.org/download, then open the file. This should open an installer where you can choose which version you want.\nTo find out more, please read the <More Info> at:https://kamiblue.org/download")
         }
     }
 });
 
-//starboard 
+// starboard
 client.on('messageReactionAdd', async (reaction, user) => {
     if (reaction.partial) {
         try {
