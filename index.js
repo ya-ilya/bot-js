@@ -3,23 +3,11 @@ const auth = require("./auth.json");
 
 const config = {
     prefix: ";",
-    queryParams: [
-        ["How do I open the GUI menu?", // Question (Not used by code)
-            [
-                [
-                    [" gui ", " menu "], " how ", " do ", " i ", " open "
-                ],
-                [" y ", " you ", " retard ", " faq ", "```", " monkey ", " javascript ", " install ", " get ", " download "]
-            ], // first index is positives next is negatives
-            2, // How much does not have to be in the query
-            "To open the KAMI Blue Gui, you should press the `Y` key on your keyboard.\nTo find out more, please read: https://kamiblue.org/faq"
-        ]
-
-    ],
-    helpPages: [{
-        "name": "Developer Commands",
-        "emoji": "☕"
-    },
+    helpPages: [
+        {
+            "name": "Developer Commands",
+            "emoji": "☕"
+        },
         {
             "name": "Basic Commands",
             "emoji": "📜"
@@ -120,8 +108,8 @@ client.on('messageReactionAdd', async (reaction, user) => {
             return;
         }
     }
-    
-    if(reaction.emoji.toString() === "⭐" && reaction.count >= 2){
+
+    if (reaction.emoji.toString() === "⭐" && reaction.count >= 2) {
         let starEmbed = new Discord.MessageEmbed()
             .setTitle(`Star message: `)
             .setDescription(reaction.message.content)
