@@ -51,7 +51,7 @@ module.exports.run = async (client, message, args) => {
     if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("You do not have snapshot cringe.");
 
     let cringe = [];
-    count = args[0];
+    count = args[0]+1;
 
 
     message.channel.messages.fetch({
@@ -70,7 +70,7 @@ module.exports.run = async (client, message, args) => {
                 },
                 "content": fetchedMessage.content
             })
-            if (looper == count - 1) return snapshot(cringe.shift().reverse());
+            if (looper == count - 1) return snapshot(cringe.slice(1).reverse());
             looper++
         })
     })
