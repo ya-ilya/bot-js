@@ -71,7 +71,12 @@ client.on("ready", () => {
         });
 
     }, 60000); // One minute
-    client.channels.cache.get("699982782515904603").send("Bot has started up!!");
+    try {
+        client.channels.cache.get("699982782515904603").send("Bot has started up!!");
+    } catch (error) {
+        (`${error}\nThis is a developmental version of the bot; as such some commands more integrated with the KAMI Blue Discord will **not** function as intended.`)
+    }
+    
 });
 
 fs.readdir("./commands/", (err, files) => {

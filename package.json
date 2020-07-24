@@ -21,7 +21,8 @@
     "opusscript": "^0.0.7",
     "yt-search": "^2.0.2",
     "ytdl-core": "^3.1.2",
-    "ytpl": "^0.1.22"
+    "ytpl": "^0.1.22",
+    "canvas": "2.6.1"
   },
   "repository": {
     "url": "https://github.com/humboldt123/notdoneyet"
