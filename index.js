@@ -117,7 +117,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
                 pinned = true;
                 pinnedMessage = reaction.message.content;
                 let starEmbed = new Discord.MessageEmbed()
-                    .setTitle("Star Message :")
+                    .setTitle("[link]")
                     .setURL(reaction.message.url.toString())
                     .setDescription(reaction.message.content)
                     .setFooter(reaction.message.author.username, reaction.message.author.avatarURL())
