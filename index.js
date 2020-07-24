@@ -117,7 +117,8 @@ client.on('messageReactionAdd', async (reaction, user) => {
                 pinned = true;
                 pinnedMessage = reaction.message.content;
                 let starEmbed = new Discord.MessageEmbed()
-                    .setTitle("[link]")
+                    .setAuthor("カミブルー！", "https://cdn.discordapp.com/avatars/638403216278683661/1e8bed04cb18e1cb1239e208a01893a1.png", "https://kamiblue.org")
+                    .setTitle("Jump to message")
                     .setURL(reaction.message.url.toString())
                     .setDescription(reaction.message.content)
                     .setFooter(reaction.message.author.username, reaction.message.author.avatarURL())
