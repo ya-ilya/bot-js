@@ -70,7 +70,7 @@ module.exports.run = async (client, message, args) => {
                 },
                 "content": fetchedMessage.content
             })
-            if (looper == count - 1) return snapshot(cringe);
+            if (looper == count - 1) return snapshot(cringe.reverse());
             looper++
         })
     })
