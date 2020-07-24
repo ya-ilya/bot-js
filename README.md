@@ -14,7 +14,11 @@ npm i
 node index.js
 ```
 
-Requirements: `node` >=12
+Requirements: 
+```
+node >=12
+sudo apt-get install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
+```
 
 `auth.json` example:
 ```json
