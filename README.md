@@ -13,9 +13,18 @@ cd kamiBlueBot
 npm i
 node index.js
 ```
+
+Requirements: `node` >=12
+
+`auth.json` example:
+```json
+{
+  "token": "tokenhere"
+}
+```
+
 ## Thank you
 
 Javascript: for being so cool and awesome
-
 
 if anybody knows DiscordJS or NodeJS please help I cannot close all three trillion issues myself aaaaaaaa
