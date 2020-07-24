@@ -4,8 +4,6 @@ const Canvas = require('canvas');
 
 module.exports.run = async (client, message, args) => {
 
-
-
     /**
         @param {Array} [promisedMessages]
     */
@@ -51,7 +49,7 @@ module.exports.run = async (client, message, args) => {
     if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("You do not have snapshot cringe.");
 
     let cringe = [];
-    count = args[0]+1;
+    count = parseInt(args[0])+1;
 
 
     message.channel.messages.fetch({
