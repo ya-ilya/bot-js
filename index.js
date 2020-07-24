@@ -3,23 +3,11 @@ const auth = require("./auth.json");
 
 const config = {
     prefix: ";",
-    queryParams: [
-        ["How do I open the GUI menu?", // Question (Not used by code)
-            [
-                [
-                    [" gui ", " menu "], " how ", " do ", " i ", " open "
-                ],
-                [" y ", " you ", " retard ", " faq ", "```", " monkey ", " javascript ", " install ", " get ", " download "]
-            ], // first index is positives next is negatives
-            2, // How much does not have to be in the query
-            "To open the KAMI Blue Gui, you should press the `Y` key on your keyboard.\nTo find out more, please read: https://kamiblue.org/faq"
-        ]
-
-    ],
-    helpPages: [{
-        "name": "Developer Commands",
-        "emoji": "☕"
-    },
+    helpPages: [
+        {
+            "name": "Developer Commands",
+            "emoji": "☕"
+        },
         {
             "name": "Basic Commands",
             "emoji": "📜"
@@ -42,7 +30,6 @@ const config = {
 // Import Modules (for this file)
 const Discord = require("discord.js");
 const fs = require("graceful-fs");
-
 
 // Client Definitions
 const client = new Discord.Client();
@@ -110,28 +97,60 @@ client.on('message', async message => {
     if (message.content.startsWith(prefix)) {
         let commandFile = client.commands.get(cmd.slice(prefix.length)) || client.commands.get(client.aliases.get(cmd.slice(prefix.length)));
         if (commandFile) commandFile.run(client, message, args);
-        // return; removed because people can theoretically bypass filters by putting ; in front
     }
 
-    /*
-         ___        _         ______
-       / _ \      | |        |  ___|
-      / /_\ \_   _| |_ ___   | |_ __ _  __ _
-      |  _  | | | | __/ _ \  |  _/ _` |/ _` |
-      | | | | |_| | || (_) | | || (_| | (_| |
-      \_| |_/\__,_|\__\___/  \_| \__,_|\__, |
-                                          | |
-                                          |_|
-     "Automatically answers silly questions"
-    */
     if (message.author.bot) return; // Prevent botception loop
+    autoResponder(message);
+});
 
+//starboard 
+client.on('messageReactionAdd', async (reaction, user) => {
+    if(reaction.emoji.toString() === "⭐") {
+        await reaction.users.remove('479654048187023375') //rule 6
+    }
+    if (reaction.partial) {
+        try {
+            await reaction.fetch();
+        } catch (err) {
+            console.error('Something went wrong when fetching the message: ', err);
+            return;
+        }
+    }
+    if(reaction.emoji.toString() === "⭐" && reaction.count >= 3){
+        let starEmbed = new Discord.MessageEmbed()
+            .setTitle(`Star Message from ${reaction.message.author.username}:`)
+            .setDescription(reaction.message.content)
+            .setThumbnail(reaction.message.author.avatarURL())
+            .setColor(client.colors.yellow)
+            .setTimestamp();
+
+        client.channels.cache.get('735680230148276286').send(starEmbed);
+    }
+});
+
+/* when message is edited */
+client.on('messageUpdate', async message => {
+    if (message.author.bot) return;
+    autoResponder(message);
+});
+
+/*
+     ___        _         ______
+   / _ \      | |        |  ___|
+  / /_\ \_   _| |_ ___   | |_ __ _  __ _
+  |  _  | | | | __/ _ \  |  _/ _` |/ _` |
+  | | | | |_| | || (_) | | || (_| | (_| |
+  \_| |_/\__,_|\__\___/  \_| \__,_|\__, |
+                                      | |
+                                      |_|
+*/
+function autoResponder(message) {
     /* members with roles bypass the filter */
     if (!message.member.hasPermission("CHANGE_NICKNAME")) {
         /* bad messages regexes */
         const discordInviteRegex = new RegExp("(d.{0,3}.{0,3}s.{0,3}c.{0,3}.{0,3}r.{0,3}d).{0,7}(gg|com.{0,3}invite)");
         const hacksRegex = new RegExp("(?<![a-z])(c+h+[e3]+[a@4]+t+|h+[@a4]+[ckx]+)([eo30]+r+|s+|i+n+g*?)*(?![a-z])");
-        const slursRegex = new RegExp("(nigg(?!a).{1,2}|tran(?![spfqc]).{1,2})");
+        const slursRegex = new RegExp("(nigg(?!a).{1,2}|tran(?![spfqc]).{1,2}|fag.{1,2}t)");
 
         /* help regexes */
         const elytraRegex1 = new RegExp("(elytra|elytra.{0,2}light|elytra.{0,2}\\+|elytra.{0,2}fly)");
@@ -141,6 +160,8 @@ client.on('message', async message => {
         const howWorkRegex = new RegExp("(work|how|how to)");
         const crashRegex = new RegExp("(c(?!a).{0,2}sh)");
         const installRegex = new RegExp("(install|open|download)")
+        const guiRegex = new RegExp("(gui|menu|hud|click.?gui)")
+        const forgeRegex = new RegExp("(f.{1,2}ge)")
 
         const versionRegex1 = new RegExp("(1.?(14|15|16))") /* (1.{0,1}(14|15|16)) */
         const versionRegex2 = new RegExp("(update|port|version)")
@@ -183,33 +204,20 @@ client.on('message', async message => {
             message.channel.send("No, KAMI Blue will not be coming out for newer versions of Minecraft. It will stay on version `1.12.2` because it relies on version specific code. The developers are instead working on a new client called Vasya.\nVasya Website: https://vasya.dominikaaaa.org/")
         }
 
-        /* how to install regex */
-        if (doesNotRegex.test(message.content.toLowerCase()) && installRegex.test(message.content.toLowerCase())) {
-            message.channel.send("Download KAMI Blue from <#634549110145286156> or the website at https://kamiblue.org/download, then open the file. This should open an installer where you can choose which version you want.\nTo find out more, please read the <More Info> at:https://kamiblue.org/download")
+        /* how to install kami blue and forge regex */
+        if (howWorkRegex.test(message.content.toLowerCase()) && installRegex.test(message.content.toLowerCase())) {
+            if (forgeRegex.test(message.content.toLowerCase())) {
+                message.channel.send("Download Forge from this link (<\https://files.minecraftforge.net/maven/net/minecraftforge/forge/index_1.12.2.html>)\nand select Installer. Open the file that it downloads and follow the instructions it gives you.")
+            } else {
+                message.channel.send("KAMI Blue is a 1.12.2 Forge mod.\nDownload KAMI Blue from <#634549110145286156> or the website at https://kamiblue.org/download, then open the file. This should open an installer where you can choose which version you want.\nTo find out more, please read the <More Info> at: https://kamiblue.org/download")
+            }
+        }
+
+        /* how to open gui regex */
+        if (howWorkRegex.test(message.content.toLowerCase()) && guiRegex.test(message.content.toLowerCase())) {
+            message.channel.send("Use `Y` to open the GUI. Use `;bind clickgui <\key>` to change it.\nRead more at https://kamiblue.org/faq")
         }
     }
-});
-
-client.on('messageReactionAdd', (reaction, user) => {
-    let starboard;
-    let voteList = [];
-    let message = reaction.message;
-    let emoji = reaction.emoji;
-
-    if (emoji.name === '✅') {
-        message.guild.fetchMember(user.id).then(member => {
-            voteList.push(user.id)
-            if(voteList.includes(user.id)){
-                //Do Nothing??
-            } else {
-                starboard++
-            }
-        });
-    }
-
-    if(starboard >= 2){
-        client.channels.get('735680230148276286').send(msg);
-    }
-});
+}
 
 client.login(auth.token);
