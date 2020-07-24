@@ -29,7 +29,7 @@ module.exports.run = async (client, message, args) => {
 
             ctx.font = `25px Whitney\\-Medium`;
             ctx.fillStyle = '#ffffff';
-            ctx.fillText(fetchedMessage.author.name, 100, (messages.indexOf(fetchedMessage) * 100) + 40);
+            ctx.fillText((fetchedMessage.author.name).replace("カミブルー！", "KAMI Blue"), 100, (messages.indexOf(fetchedMessage) * 100) + 40);
 
             ctx.font = `25px Whitney\\-Medium`;
             ctx.fillStyle = '#ffffff';
