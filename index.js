@@ -152,7 +152,7 @@ function autoResponder(message) {
         /* bad messages regexes */
         const discordInviteRegex = new RegExp("(d.{0,3}.{0,3}s.{0,3}c.{0,3}.{0,3}r.{0,3}d).{0,7}(gg|com.{0,3}invite)");
         const hacksRegex = new RegExp("(?<![a-z])(c+h+[e3]+[a@4]+t+|h+[@a4]+[ckx]+)([eo30]+r+|s+|i+n+g*?)*(?![a-z])");
-        const slursRegex = new RegExp("(nigg(?!a).{1,2}|tran(?![spfqc]).{1,2}|fag.{1,2}t)");
+        const slursRegex = new RegExp("(nigg(?!a).{1,2}|tran(?![spfqcg]).{1,2}|fag.{1,2}t)");
 
         /* help regexes */
         const elytraRegex1 = new RegExp("(elytra|elytra.{0,2}light|elytra.{0,2}\\+|elytra.{0,2}fly)");
