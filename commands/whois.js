@@ -55,10 +55,6 @@ module.exports.run = async (client, message, args) => {
   let statusBlock = []; 
   let thumbnail= user.avatarURL({dynamic:true});
 
-
-
-
-
   if (user.presence.activities) { 
     for (const activityIndex in user.presence.activities) {
       const activity = user.presence.activities[activityIndex];
@@ -110,9 +106,9 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.config = {
-	name: "userinfo",
-	aliases: ["info", "about", "whois"],
-	use: "userinfo [@User]",
+	name: "whois",
+	aliases: ["info", "about", "userinfo"],
+	use: "whois [@User]",
 	description: "Find out more about a user",
 	state: "gamma",
 	page: 1
