@@ -22,7 +22,7 @@ module.exports.run = async (client, message, args) => {
 
     let user
     if (!args[0]) {
-        user = client.user.cache.get(message.author.id);
+        user = client.users.cache.get(message.author.id);
     } else {
         user = client.users.cache.get(args[0].replace(/[@!<>]/g, ""));
     }
