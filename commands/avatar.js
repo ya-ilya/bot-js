@@ -4,8 +4,8 @@ const fs = require("graceful-fs");
 module.exports.run = async (client, message, args) => {
     let embed = new Discord.MessageEmbed()
         .setTitle(message.author.username)
-        .setImage(message.author.avatar)
-    message.channel.send(message.author.avatar)
+        .setImage(client.users.cache.get(message.author.id).avatarURL({dynamic: true}))
+    message.channel.send(embed)
 }
 
 module.exports.config = {
