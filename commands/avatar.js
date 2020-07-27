@@ -2,9 +2,17 @@ const Discord = require("discord.js");
 const fs = require("graceful-fs");
 
 module.exports.run = async (client, message, args) => {
-    let embed = new Discord.MessageEmbed()
+    let user
+    if (!args[0]) {
+        user = client.users.cache.get(message.author.id);
+    } else {
+        user = client.users.cache.get(args[0].replace(/[@!<>]/g, ""));
+    }
+    if (!user) return message.channel.send("Please mention a valid user.");
+
+    const embed = new Discord.MessageEmbed()
         .setTitle(message.author.username)
-        .setImage(client.users.cache.get(message.author.id).avatarURL({dynamic: true}))
+        .setImage(user.avatarURL({dynamic: true}))
     message.channel.send(embed)
 }
 
