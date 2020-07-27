@@ -127,9 +127,9 @@ client.on('messageReactionAdd', async (reaction, user) => {
 });
 
 /* when message is edited */
-client.on('messageUpdate', async message => {
+client.on('messageUpdate', (oldMessage, newMessage) => {
     if (message.author.bot) return;
-    autoResponder(message);
+    autoResponder(newMessage);
 });
 
 /*
