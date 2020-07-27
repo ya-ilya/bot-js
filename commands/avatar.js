@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     let embed = new Discord.MessageEmbed()
         .setTitle(message.author.username)
         .setImage(message.author.avatar)
-    message.channel.send(embed)
+    message.channel.send(message.author.avatar)
 }
 
 module.exports.config = {
