@@ -9,6 +9,7 @@ module.exports.run = async (client, message, args) => {
             .then(response => response.json())
             .then(data => {
                 result = JSON.parse(JSON.stringify(data));
+                console.log(result)
                 let statusEmbed = new Discord.MessageEmbed()
                     .setTitle(`Server Status of ${result.hostname}: `)
                     .setDescription(`IP of Target Server: ${result.ip}\nMessage of the Day: ${result.motd.clean[0]} ${result.motd.clean[1]}\nOnline Players: ${result.players.online}\nMax Players: ${result.players.max}\nVersion: ${result.version}`)
