@@ -147,7 +147,7 @@ function autoResponder(message) {
     if (!message.member.hasPermission("CHANGE_NICKNAME")) {
         /* bad messages regexes */
         const discordInviteRegex = new RegExp("(d.{0,3}.{0,3}s.{0,3}c.{0,3}.{0,3}r.{0,3}d).{0,7}(gg|com.{0,3}invite)");
-        const hacksRegex = new RegExp("(?<![a-z]).*([@a4]+[ckx]+|c+h+[e3]+[a@4]+t|h+[@a4]+[ckx]+)([eo30]+|d+|r+|s+|i+n+g*?)*(?![a-z])");
+        const hacksRegex = new RegExp("(hack|hacks|cheat|cheats|hacking|salhack)");
         const slursRegex = new RegExp("(nigg(?!a).{1,2}|tran(?![spfqcg]).{1,2}|fag.{1,2}t)");
 
         /* help regexes */
@@ -183,12 +183,13 @@ function autoResponder(message) {
 
         /* elytra help regex */
         let elytraRegexMatches = 0;
-        if (elytraRegex1.test(message.content.toLowerCase())) elytraRegexMatches++;
+        let elytraMatch = false;
+        if (elytraRegex1.test(message.content.toLowerCase())) { elytraMatch = true; elytraRegexMatches++; }
         if (doesNotRegex.test(message.content.toLowerCase())) elytraRegexMatches++;
         if (howWorkRegex.test(message.content.toLowerCase())) elytraRegexMatches++;
         if (elytraRegex2.test(message.content.toLowerCase())) elytraRegexMatches++;
 
-        if (elytraRegexMatches > 1) {
+        if (elytraRegexMatches > 1 && elytraMatch) {
             return message.channel.send("Make sure you're using default settings in the latest beta. Run the defaults button in ElytraFlight's settings if you updated KAMI Blue before.\n\nIf it still doesn't help, make sure you're not using NoFall or any other movement related mods from **other** clients, such as Sprint in Rage mode, as they make you go over the speed limit and rubberband.");
         }
 
