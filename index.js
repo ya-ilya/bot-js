@@ -164,7 +164,7 @@ function autoResponder(message) {
         const versionRegex1 = new RegExp("(1.?(14|15|16))") /* (1.{0,1}(14|15|16)) */
         const versionRegex2 = new RegExp("(update|port|version)")
 
-        let cleanedMessage = message.content.toLowerCase().split(" ").join(''); // ignore spaces
+        let cleanedMessage = message.content.toLowerCase();
         /* hacks / cheats regex */
         if (hacksRegex.test(cleanedMessage.replace(/[^\w@430]/g, ""))) {
             message.channel.send("Hacks / cheats are against Discord TOS (Rules 3 and 9)");
