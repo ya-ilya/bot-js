@@ -164,19 +164,20 @@ function autoResponder(message) {
         const versionRegex1 = new RegExp("(1.?(14|15|16))") /* (1.{0,1}(14|15|16)) */
         const versionRegex2 = new RegExp("(update|port|version)")
 
+        let cleanedMessage = message.content.toLowerCase().split(" ").join(''); // ignore spaces
         /* hacks / cheats regex */
-        if (hacksRegex.test(message.content.toLowerCase().replace(/[^\w@430]/g, ""))) {
+        if (hacksRegex.test(cleanedMessage.replace(/[^\w@430]/g, ""))) {
             message.channel.send("Hacks / cheats are against Discord TOS (Rules 3 and 9)");
         }
 
         /* discord invite link regex */
-        if (discordInviteRegex.test(message.content.toLowerCase())) {
+        if (discordInviteRegex.test(cleanedMessage)) {
             message.reply("lmfao stop advertising your discord server (Rule 5)");
             return message.delete();
         }
 
         /* slurs regex */
-        if (slursRegex.test(message.content.toLowerCase())) {
+        if (slursRegex.test(cleanedMessage)) {
             message.reply("Slurs are against Rule 1b and 1c");
             return message.delete() // TODO: warn
         }
@@ -184,28 +185,28 @@ function autoResponder(message) {
         /* elytra help regex */
         let elytraRegexMatches = 0;
         let elytraMatch = false;
-        if (elytraRegex1.test(message.content.toLowerCase())) { elytraMatch = true; elytraRegexMatches++; }
-        if (doesNotRegex.test(message.content.toLowerCase())) elytraRegexMatches++;
-        if (howWorkRegex.test(message.content.toLowerCase())) elytraRegexMatches++;
-        if (elytraRegex2.test(message.content.toLowerCase())) elytraRegexMatches++;
+        if (elytraRegex1.test(cleanedMessage)) { elytraMatch = true; elytraRegexMatches++; }
+        if (doesNotRegex.test(cleanedMessage)) elytraRegexMatches++;
+        if (howWorkRegex.test(cleanedMessage)) elytraRegexMatches++;
+        if (elytraRegex2.test(cleanedMessage)) elytraRegexMatches++;
 
         if (elytraRegexMatches > 1 && elytraMatch) {
             return message.channel.send("Make sure you're using default settings in the latest beta. Run the defaults button in ElytraFlight's settings if you updated KAMI Blue before.\n\nIf it still doesn't help, make sure you're not using NoFall or any other movement related mods from **other** clients, such as Sprint in Rage mode, as they make you go over the speed limit and rubberband.");
         }
 
         /* game crash regex */
-        if (crashRegex.test(message.content.toLowerCase())) {
+        if (crashRegex.test(cleanedMessage)) {
             message.channel.send("Find the `latest.log` file inside `~/.minecraft/logs` and paste the contents to https://pastebin.com/, and the send the link.");
         }
 
         /* new version regex */
-        if (versionRegex1.test(message.content.toLowerCase()) && versionRegex2.test(message.content.toLowerCase())) {
+        if (versionRegex1.test(cleanedMessage) && versionRegex2.test(cleanedMessage)) {
             message.channel.send("No, KAMI Blue will not be coming out for newer versions of Minecraft. It will stay on version `1.12.2` because it relies on version specific code. The developers are instead working on a new client called Vasya.\nVasya Website: https://vasya.dominikaaaa.org/")
         }
 
         /* how to install kami blue and forge regex */
-        if (howWorkRegex.test(message.content.toLowerCase()) && installRegex.test(message.content.toLowerCase())) {
-            if (forgeRegex.test(message.content.toLowerCase())) {
+        if (howWorkRegex.test(cleanedMessage) && installRegex.test(cleanedMessage)) {
+            if (forgeRegex.test(cleanedMessage)) {
                 message.channel.send("Download Forge from this link (<\https://files.minecraftforge.net/maven/net/minecraftforge/forge/index_1.12.2.html>)\nand select Installer. Open the file that it downloads and follow the instructions it gives you.")
             } else {
                 message.channel.send("KAMI Blue is a 1.12.2 Forge mod.\nDownload KAMI Blue from <#634549110145286156> or the website at https://kamiblue.org/download, then open the file. This should open an installer where you can choose which version you want.\nTo find out more, please read the <More Info> at: https://kamiblue.org/download")
@@ -213,7 +214,7 @@ function autoResponder(message) {
         }
 
         /* how to open gui regex */
-        if (howWorkRegex.test(message.content.toLowerCase()) && guiRegex.test(message.content.toLowerCase())) {
+        if (howWorkRegex.test(cleanedMessage) && guiRegex.test(cleanedMessage)) {
             message.channel.send("Use `Y` to open the GUI. Use `;bind clickgui <\key>` to change it.\nRead more at https://kamiblue.org/faq")
         }
     }
