@@ -1,5 +1,6 @@
 // Import AuthFile
 const auth = require("./auth.json");
+const Enmap = require("enmap");
 
 const config = {
     prefix: ";",
@@ -103,8 +104,11 @@ client.on('message', async message => {
     autoResponder(message);
 });
 
-//starboard
-//( ͡° ͜ʖ ͡°)
+/**
+ * @module starboard
+ * @author sourTaste000
+ * ( ͡° ͜ʖ ͡°)
+ */
 let pinnedMessages = [];
 let i = 0;
 
@@ -113,7 +117,8 @@ client.on('messageReactionAdd', async (reaction, user) => {
             client.channels.cache.get('579741237377236992').send(`${user.username} voted for starboard`);
             if (reaction.count === 3) {
                 pinnedMessages[i] = reaction.message.content;
-                let starEmbed = new Discord.MessageEmbed()
+                const image = reaction.message.attachments.size > 0 ? reaction.message.attachments.array()[0].url : ''; //very pog lol
+                const starEmbed = new Discord.MessageEmbed()
                     .setAuthor("カミブルー！", "https://cdn.discordapp.com/avatars/638403216278683661/1e8bed04cb18e1cb1239e208a01893a1.png", "https://kamiblue.org")
                     .setDescription(reaction.message.content)
                     .addField("[link]", reaction.message.url, true)
@@ -121,10 +126,41 @@ client.on('messageReactionAdd', async (reaction, user) => {
                     .setColor(client.colors.yellow)
                     .setTimestamp();
                 client.channels.cache.get('735680230148276286').send(starEmbed);
+                client.channels.cache.get('735680230148276286').send(image);
                 i++
             }
     }
 });
+
+/**
+ * @module uwuCounter
+ * @author sourTaste000
+ */
+const uwuCounter = new Enmap({name: "uwuCounter"});
+
+client.on("ready", async () => {
+    await uwuCounter.defer;
+    console.log(`${uwuCounter.size} keys loaded`);
+})
+
+client.on('message', async message => {
+    if(message.content.toLowerCase().includes(";createmap")){
+        if (message.author.bot) return;
+        message.channel.send("ok")
+        uwuCounter.ensure(`${message.guild.id}-${message.author.id}`, {user: message.author.id, uwuTimes: 1});
+    }
+
+    if(message.content.toLowerCase().includes("uwu") || message.content.toLowerCase().includes("owo")){
+        if (message.author.bot) return;
+        uwuCounter.inc(`${message.guild.id}-${message.author.id}`, "uwuTimes")
+    }
+
+    if(message.content.toLowerCase().includes(";counter")){
+        message.channel.send(`You said uwu ${uwuCounter.get(`${message.guild.id}-${message.author.id}`, "uwuTimes")} times!`);
+    }
+});
+
+
 
 /* when message is edited */
 client.on('messageUpdate', (oldMessage, newMessage) => {
