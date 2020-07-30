@@ -9,8 +9,11 @@ module.exports.run = async (client, message, args) => {
         user = client.users.cache.get(args[0].replace(/[@!<>]/g, ""));
     }
     if (!user) return message.channel.send("Please mention a valid user.");
-
+    try {
     message.channel.send(`${user.username} has said uwu ${client.uwuCounter.get(`${user.id}`, "uwuTimes")} times!`);
+    } catch (idgaf) {
+        message.channel.send("that user hasnt said uwu :((((")
+    }
 }
 
 module.exports.config = {
