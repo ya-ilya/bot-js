@@ -2,6 +2,7 @@
 const auth = require("./auth.json");
 const Enmap = require("enmap");
 
+
 const config = {
     prefix: ";",
     helpPages: [
@@ -44,9 +45,12 @@ client.colors = {
     yellow: "deb63c"
 }
 client.config = config;
+client.uwuCounter = new Enmap({name: "uwuCounter"});
 
 client.on("ready", () => {
     console.log("Bot loaded!");
+    client.uwuCounter.defer;
+    console.log(`${client.uwuCounter.size} uwukeys loaded`);
     const activities_list = ["you skid KAMI", ";help", "help in the #help-en channel"]; // add more then add the type of them below
     const activities_type = ["WATCHING", "LISTENING", "STREAMING"]; // types are PLAYING WATCHING LISTENING and STREAMING
     setInterval(() => {
@@ -65,6 +69,28 @@ client.on("ready", () => {
         (`${error}\nThis is a developmental version of the bot; as such some commands more integrated with the KAMI Blue Discord will **not** function as intended.`)
     }
     
+});
+
+
+/**
+ * @module uwuCounter
+ * @author sourTaste000
+ * Fixed by Humboldt123
+ */
+
+
+// uwu-counter.js
+client.on('message', async message => {
+    if(message.content.toLowerCase().includes("uwu") || message.content.toLowerCase().includes("owo")){
+        if (message.author.bot) return;
+        try{
+            client.uwuCounter.get(`${message.author.id}`, "uwuTimes")
+            client.uwuCounter.inc(`${message.author.id}`, "uwuTimes")
+        }catch(err){
+            client.uwuCounter.ensure(`${message.author.id}`, {user: message.author.id, uwuTimes: 1});
+        }
+       
+    }
 });
 
 fs.readdir("./commands/", (err, files) => {
@@ -132,32 +158,6 @@ client.on('messageReactionAdd', async (reaction, user) => {
     }
 });
 
-/**
- * @module uwuCounter
- * @author sourTaste000
- */
-const uwuCounter = new Enmap({name: "uwuCounter"});
-
-client.on("ready", async () => {
-    await uwuCounter.defer;
-    console.log(`${uwuCounter.size} keys loaded`);
-})
-
-client.on('message', async message => {
-    if(message.content.toLowerCase().includes("uwu") || message.content.toLowerCase().includes("owo")){
-        if (message.author.bot) return;
-        try{
-            uwuCounter.get(`${message.guild.id}-${message.author.id}`, "uwuTimes")
-            uwuCounter.inc(`${message.guild.id}-${message.author.id} -1`, "uwuTimes")
-        }catch(err){
-            uwuCounter.ensure(`${message.guild.id}-${message.author.id}`, {user: message.author.id, uwuTimes: 1});
-        }
-       
-    }
-    if(message.content.toLowerCase().includes(";counter")){
-        message.channel.send(`You said uwu ${uwuCounter.get(`${message.guild.id}-${message.author.id}`, "uwuTimes")} times!`);
-    }
-});
 
 
 
