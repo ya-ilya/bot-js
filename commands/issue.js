@@ -16,19 +16,23 @@ module.exports.run = async (client, message, args) => {
             .then(data => {
                 result = JSON.parse(JSON.stringify(data));
                 try {
+                    let milestone = result.milestone || {"title":"No Milestone"};
+                    let assignee = result.assignee || {"login":"None"};
+                    let labels = result.labels || [{"name":"None"}] // Such a fucking hack but it looks fancy
                     let issueEmbed = new Discord.MessageEmbed()
                         .setAuthor("カミブルー！", "https://cdn.discordapp.com/avatars/638403216278683661/1e8bed04cb18e1cb1239e208a01893a1.png", "https://kamiblue.org")
                         .setTitle(result.title)
                         .setURL(result.html_url)
                         .setThumbnail(result.user.avatar_url)
                         .setDescription(result.body)
-                        .addField("Labels", result.labels[0].name || "No Label") // A value that might be null then a logical or if it is
-                        .addField("Assignee", result.assignee.login || "None") // No need to use the old solution :/
-                        .addField("Milestone", result.milestone.title || "No Milestone")
+                        .addField("Labels", labels[0].name)
+                        .addField("Assignee", assignee.login)
+                        .addField("Milestone", milestone.title)
                         .setColor(client.colors.kamiblue)
 
                     message.channel.send(issueEmbed)
-                }catch (e) {
+                } catch (e) {
+                    console.log(e);
                     message.channel.send("Bad issue number or repository!");
                 }
             })
