@@ -20,13 +20,15 @@ node >=12
 
 //on Linux
 sudo apt-get install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
+sudo apt-get install ffmpeg
 
 //on Windows
 npm i -g --add-python-to-path --vs2015 --production windows-build-tools
+(manually install ffpmeg)
 
 //on MacOS
 xcode-select --install
-
+(idk how u install ffmpeg here)
 npm i better-sqlite3
 ```
 
