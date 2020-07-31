@@ -190,7 +190,7 @@ function autoResponder(message) {
         const elytraRegex2 = new RegExp("(settings|config|configure)");
 
         const doesNotRegex = new RegExp("(does.{0,5}t)");
-        const howWorkRegex = new RegExp("(work|how|how to)");
+        const howWorkRegex = new RegExp("(what|work|how|how to)");
         const crashRegex = new RegExp("(c(?!a).{0,2}sh)");
         const installRegex = new RegExp("(install|open|download)")
         const guiRegex = new RegExp("(gui|menu|hud|click.?gui)")
@@ -250,7 +250,7 @@ function autoResponder(message) {
 
         /* how to open gui regex */
         if (howWorkRegex.test(cleanedMessage) && guiRegex.test(cleanedMessage)) {
-            message.channel.send("Use `Y` to open the GUI. Use `;bind clickgui <\key>` to change it.\nRead more at https://kamiblue.org/faq")
+            message.channel.send("Use `Y` to open the GUI. Use `;bind clickgui rshift` to change it.\nRead more at https://kamiblue.org/faq")
         }
     }
 }
