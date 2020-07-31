@@ -18,7 +18,7 @@ module.exports.run = async (client, message, args) => {
 module.exports.config = {
     name: "updatesrole",
     aliases: ["updateme", "updatepings"],
-    use: "updatesole",
+    use: "updatesrole",
     description: "Assign or unassign the updates role to yourself",
     state: "gamma",
     page: 1
