@@ -12,7 +12,7 @@ module.exports.run = async (client, message, args) => {
 
     const embed = new Discord.MessageEmbed()
         .setTitle(user.username)
-        .setImage(user.avatarURL({dynamic: true}))
+        .setImage(user.avatarURL({dynamic: true, size: 512}))
     message.channel.send(embed)
 }
 
