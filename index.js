@@ -25,8 +25,13 @@ const config = {
         {
             "name": "Moderation & Utility Commands",
             "emoji": "🔧"
+        },
+        {
+            "name": "Music Commands",
+            "emoji": "🎵"
         }
-    ]
+    ],
+    "dj_role": "🎵 Javascript Music"
 }
 
 // Import Modules (for this file)
