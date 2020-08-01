@@ -24,6 +24,9 @@ module.exports.run = async (client, message, args) => {
         case "1d":
             message.channel.send(rules["1"].e);
             break;
+        case "1e":
+            message.channel.send(rules["1"].f);
+            break;
         case "2":
             message.channel.send(rules["2"]);
             break;
