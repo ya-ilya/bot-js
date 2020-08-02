@@ -3,7 +3,7 @@ const fs = require("graceful-fs");
 
 module.exports.run = async (client, message, args) => {
 
-    message.channel.send(`pog`);
+    message.channel.send(`Pog <:catsunglasses:704106255492579438>`);
 
 }
 
