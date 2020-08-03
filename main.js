@@ -188,7 +188,7 @@ function autoResponder(message) {
         /* bad messages regexes */
         const discordInviteRegex = new RegExp("(d.{0,3}.{0,3}s.{0,3}c.{0,3}.{0,3}r.{0,3}d).{0,7}(gg|com.{0,3}invite)");
         const hacksRegex = new RegExp("(hack|hacks|cheat|cheats|hacking|salhack)");
-        const slursRegex = new RegExp("(nigg(?!a).{1,2}|tran(?![spfqcg]).{1,2}|fag.{1,2}t|r.{1,2}tar.{1})");
+        const slursRegex = new RegExp("(nigg(?!a).{1,2}|tran(?![spfqcg]).{1,2}|fag.{1,2}t|r(?!s).{1,2}tar.{1})");
 
         /* help regexes */
         const elytraRegex1 = new RegExp("(elytra|elytra.{0,2}light|elytra.{0,2}\\+|elytra.{0,2}fly)");
