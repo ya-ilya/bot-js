@@ -52,7 +52,9 @@ module.exports.run = async (client, message, args) => {
     else if (user.presence.status === "idle") status = (`Idle <:idle:736408162051162162>`);
     else if (user.presence.status === "dnd") status = (`Do Not Disturb <:dnd:736408161573142571>`);
     else if (user.presence.status === "offline") status = (`Offline <:offline:736408161698840660>`);
-    else status = (`Offline <:offline:736408161698840660>`);
+        else { 
+        status = (`Offline <:offline:736408161698840660>`);
+    }
     if (user.presence.activities[0] && user.presence.activities[0].type === "STREAMING") status = `Streaming <:streaming:736408161849835541>`;
 
     let statusBlock = [];
