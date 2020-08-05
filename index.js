@@ -13,12 +13,17 @@ fs.stat(logfile, function(err, stat) {
     }
 });
 
-const Main = exec("node main.js");
-Main.stdout.on('data', (data) => {
-    console.log(data);
-    fs.appendFile(logfile, data, function a(b) {});
-});
-Main.stderr.on('data', (data) => {
-    console.log(data);
-    fs.appendFile(logfile, "Error: " + data, function a(b) {});
-});
+try {
+    const Main = exec("node main.js");
+    Main.stdout.on('data', (data) => {
+        console.log(data);
+        fs.appendFile(logfile, data, function a(b) {});
+    });
+    Main.stderr.on('data', (data) => {
+        console.log(data);
+        fs.appendFile(logfile, "Error: " + data, function a(b) {});
+    });
+} catch (error) {
+    console.log("WHOOPS!")
+    // error handling here
+}
