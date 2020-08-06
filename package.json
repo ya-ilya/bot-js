@@ -17,7 +17,6 @@
     "cat-facts": "^1.0.2",
     "child-process": "1.0.2",
     "discord.js": "discordjs/discord.js",
-    "enmap": "^5.4.1",
     "graceful-fs": "^4.2.4",
     "ms": "^2.1.2",
     "node-fetch": "^2.6.0",
