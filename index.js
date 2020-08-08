@@ -1,6 +1,6 @@
 const exec = require('child_process').exec;
 fs = require('fs');
-logdir = "logs/"
+logdir = "logs/";
 let logfile = logdir + "latest.log";
 
 fs.stat(logfile, function(err, stat) {
@@ -9,7 +9,7 @@ fs.stat(logfile, function(err, stat) {
             if (err) console.log('ERROR: ' + err);
         });
     } else if (err.code === 'ENOENT') {
-        fs.writeFile(logfile, "", function a(b) {})
+        fs.writeFile(logfile, "", function a(b) {});
     }
 });
 
