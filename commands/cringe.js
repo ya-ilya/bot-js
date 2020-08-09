@@ -39,7 +39,7 @@ module.exports.run = async (client, message, args) => {
 
                 }
 
-                looper++
+                looper++;
 
             })
 
