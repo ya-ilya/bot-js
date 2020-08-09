@@ -171,7 +171,7 @@ function autoResponder(message) {
         const doesNotRegex = new RegExp("(does.{0,5}t)");
         const howWorkRegex = new RegExp("(what|work|how|how to)");
         const crashRegex = new RegExp("(c(?!a).{0,2}sh)");
-        const installRegex = new RegExp("(install|open|download)")
+        const installRegex = new RegExp("(install|download)")
         const guiRegex = new RegExp("(gui|menu|hud|click.?gui)")
         const forgeRegex = new RegExp("(f.{1,2}ge)")
 
