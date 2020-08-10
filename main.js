@@ -258,7 +258,7 @@ function autoResponder(message) {
 }
 
 function extractPastebinLinks(link) {
-    return /(pastebin.com\/.+[A-z0-9])/g.exec(link)[1];
+    return /(pastebin.com\/(?![^A-z0-9]).{8})/g.exec(link)[1];
 }
 
 client.login(auth.token);
