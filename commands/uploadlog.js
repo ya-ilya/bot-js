@@ -10,6 +10,7 @@ module.exports.run = async (client, message, args) => {
         file = file.replace(".txt", "").replace("latest.log", "");
         if (file) files.push(file);
       });
+    console.log(files.sort().reverse()[0])
     const myShellScript = (`sh uploadLog.sh ${files.sort().reverse()[0]}.txt`);
     myShellScript.stdout.on('data', (data) => {
         console.log(data);
