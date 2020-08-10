@@ -8,7 +8,7 @@ module.exports.run = async (client, message, args) => {
     const myShellScript = exec('sh uploadLog.sh /home/mika/bot/');
     myShellScript.stdout.on('data', (data) => {
         console.log(data);
-        message.channel.send(data)
+        message.channel.send(data.substring(0, data.length - 1))
     });
 
     myShellScript.stderr.on('data', (data) => {
