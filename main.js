@@ -258,7 +258,7 @@ function autoResponder(message) {
 }
 
 function extractPastebinLinks(link) {
-    return /pastebin.com\//g.exec(link)[1];
+    return /pastebin.com\//g.exec(link)[0];
 }
 
 client.login(auth.token);
