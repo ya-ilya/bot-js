@@ -4,11 +4,11 @@ const exec = require('child_process').exec;
 
 module.exports.run = async (client, message, args) => {
     if (!(message.author.id === "563138570953687061") && !(message.author.id === "297096161842429963")) return;
-    message.reply("Updating...")
-    const myShellScript = exec('sh update.sh /home/mika/bot/');
+    message.reply("Uploading...")
+    const myShellScript = exec('sh uploadLog.sh /home/mika/bot/');
     myShellScript.stdout.on('data', (data) => {
         console.log(data);
-        // do whatever you want here with data
+        message.channel.send(data)
     });
 
     myShellScript.stderr.on('data', (data) => {
@@ -18,10 +18,10 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.config = {
-    name: "update",
-    aliases: [],
-    use: "update",
-    description: "Update the bot",
+    name: "uploadlog",
+    aliases: ["upl"],
+    use: "uploadlog",
+    description: "Upload the log file to Discord",
     state: "gamma",
     page: 4
 };
