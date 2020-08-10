@@ -111,11 +111,17 @@ client.on('message', async message => {
     /**
      * @module rawPastebin
      * @author sourTaste000
+     * @author dominikaaaa
      */
     if (message.content.includes("pastebin.com/")) {
         if (message.author.bot) return;
-        let rawpaste = message.content;
-        message.channel.send(`Raw:\n${rawpaste.replace("pastebin.com/", "pastebin.com/raw/")}`)
+        let rawpaste = message.content.replace("pastebin.com/", "pastebin.com/raw/");
+
+        let versionEmbed = new Discord.MessageEmbed()
+            .setTitle("Direct link to paste")
+            .setColor(client.colors.kamiblue)
+            .setDescription(rawpaste);
+        message.channel.send(versionEmbed);
     }
 });
 
