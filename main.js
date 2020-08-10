@@ -107,6 +107,16 @@ client.on('message', async message => {
 
     if (message.author.bot) return; // Prevent botception loop
     autoResponder(message);
+    
+    /**
+     * @module rawPastebin
+     * @author sourTaste000
+     */
+    if (message.content.includes("pastebin.com/")) {
+        if (message.author.bot) return;
+        let rawpaste = message.content;
+        message.channel.send(`Raw:\n${rawpaste.replace("pastebin.com/", "pastebin.com/raw/")}`)
+    }
 });
 
 /**
