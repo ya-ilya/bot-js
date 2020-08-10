@@ -8,25 +8,26 @@
 ## Usage
 
 ```
-git clone git@github.com:kami-blue/bot.git kamiBlueBot
-cd kamiBlueBot
-npm i
-node index.js
+git clone git@github.com:kami-blue/bot.git
+cd bot
+./start.sh
 ```
 
 Requirements: 
+
+Make sure to also run `npm i` the first time
+
 ```
 node >=12
 
-//on Linux
-sudo apt-get install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
-sudo apt-get install ffmpeg
+// Linux
+sudo apt-get install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev ffmpeg
 
-//on Windows
+// Windows
 npm i -g --add-python-to-path --vs2015 --production windows-build-tools
 //http://blog.gregzaal.com/how-to-install-ffmpeg-on-windows/
 
-//on MacOS
+// MacOS
 xcode-select --install
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" //if you dont have homebrew installed
 brew install ffmpeg
