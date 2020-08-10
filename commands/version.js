@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const fs = require("graceful-fs");
 const fetch = require('node-fetch');
 const exec = require('child_process').exec;
+const auth = require("../auth.json");
 
 module.exports.run = async (client, message, args) => {
     if (!(message.author.id === "563138570953687061") && !(message.author.id === "297096161842429963")) return;
