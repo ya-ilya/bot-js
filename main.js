@@ -120,8 +120,8 @@ client.on('message', async message => {
         let versionEmbed = new Discord.MessageEmbed()
             .setTitle("Direct link to paste")
             .setColor(client.colors.kamiblue)
-            .setDescription(paste);
-        message.channel.send("https://" + versionEmbed);
+            .setDescription("https://" + paste);
+        message.channel.send(versionEmbed);
     }
 });
 
