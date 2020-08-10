@@ -1,4 +1,5 @@
 #!/bin/bash
 
 cd /home/mika/bot
-./run.sh
+git pull
+pm2 reload bot
