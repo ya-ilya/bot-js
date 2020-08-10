@@ -5,18 +5,6 @@ let logfile = logdir + "latest.log";
 
 fs.stat(logfile, function(err, stat) {
     if (err == null) {
-
-        message.reply("Uploading...")
-        const myShellScript = exec('sh uploadLog.sh /home/mika/bot/');
-        myShellScript.stdout.on('data', (data) => {
-            console.log(data);
-            message.channel.send(data.substring(0, data.length - 1))
-        });
-
-        myShellScript.stderr.on('data', (data) => {
-            console.error(data);
-        });
-
         fs.rename(logfile, logdir + Date.now() + ".txt", function(err) {
             if (err) console.log('ERROR: ' + err);
         });
