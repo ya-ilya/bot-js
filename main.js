@@ -177,6 +177,8 @@ function autoResponder(message) {
 
         const versionRegex1 = new RegExp("(1.?(14|15|16))") /* (1.{0,1}(14|15|16)) */
         const versionRegex2 = new RegExp("(update|port|version)")
+        
+        const baritoneCrashRegex = new RegExp("(Incompatible.{0,2}Class.{0,2}Change.{0,2}Error|non.{0,2}static.{0,2}field.{0,2}Baritone)")
 
         let cleanedMessage = message.content.toLowerCase();
         /* hacks / cheats regex */
@@ -230,6 +232,11 @@ function autoResponder(message) {
         /* how to open gui regex */
         if (howWorkRegex.test(cleanedMessage) && guiRegex.test(cleanedMessage)) {
             message.channel.send("Use `Y` to open the GUI. Use `;bind clickgui rshift` to change it.\nRead more at https://kamiblue.org/faq")
+        }
+        
+        /* -noverify crash Baritone */
+        if (baritoneCrashRegex.test(cleanedMessage)) {
+            message.channel.send("Disable `-noverify` in your JVM arguments, this is a Baritone bug and won't be fixed")
         }
     }
 }
