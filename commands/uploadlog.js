@@ -11,7 +11,7 @@ module.exports.run = async (client, message, args) => {
         if (file) files.push(file);
       });
     console.log(files.sort().reverse()[0])
-    const myShellScript = (`sh uploadLog.sh ${files.sort().reverse()[0]}.txt`);
+    const myShellScript = exec(`sh uploadLog.sh ${files.sort().reverse()[0]}.txt`);
     myShellScript.stdout.on('data', (data) => {
         console.log(data);
         message.channel.send(data.substring(0, data.length - 1))
