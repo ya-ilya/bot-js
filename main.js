@@ -113,14 +113,14 @@ client.on('message', async message => {
      * @author sourTaste000
      * @author dominikaaaa
      */
-    if (message.content.includes("pastebin.com/")) {
+    if (message.content.includes("pastebin.com")) {
         if (message.author.bot) return;
-        let rawpaste = message.content.replace("pastebin.com/", "pastebin.com/raw/");
+        const paste = (extractPastebinLinks(message.content.toLowerCase()))
 
         let versionEmbed = new Discord.MessageEmbed()
             .setTitle("Direct link to paste")
             .setColor(client.colors.kamiblue)
-            .setDescription(rawpaste);
+            .setDescription(paste);
         message.channel.send(versionEmbed);
     }
 });
@@ -255,6 +255,10 @@ function autoResponder(message) {
             message.channel.send("Disable `-noverify` in your JVM arguments, this is a Baritone bug and won't be fixed")
         }
     }
+}
+
+function extractPastebinLinks(link) {
+    return /pastebin.com\//g.exec(link)[1];
 }
 
 client.login(auth.token);
