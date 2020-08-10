@@ -121,7 +121,7 @@ client.on('message', async message => {
             .setTitle("Direct link to paste")
             .setColor(client.colors.kamiblue)
             .setDescription(paste);
-        message.channel.send(versionEmbed);
+        message.channel.send("https://" + versionEmbed);
     }
 });
 
@@ -152,9 +152,6 @@ client.on('messageReactionAdd', async (reaction, user) => {
             }
     }
 });
-
-
-
 
 /* when message is edited */
 client.on('messageUpdate', (oldMessage, newMessage) => {
