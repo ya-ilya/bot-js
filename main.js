@@ -115,7 +115,7 @@ client.on('message', async message => {
      */
     if (message.content.includes("pastebin.com")) {
         if (message.author.bot) return;
-        const paste = (extractPastebinLinks(message.content.toLowerCase()))
+        const paste = (extractPastebinLinks(message.content))
 
         let versionEmbed = new Discord.MessageEmbed()
             .setTitle("Direct link to paste")
