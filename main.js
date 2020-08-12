@@ -242,7 +242,7 @@ function autoResponder(message) {
 
         /* new version regex */
         if (versionRegex1.test(cleanedMessage) && versionRegex2.test(cleanedMessage)) {
-            message.reply(replyMsg("No, KAMI Blue will not be coming out for newer versions of Minecraft. It will stay on version `1.12.2` because it relies on version specific code. The developers are instead working on a new client called Vasya.\nVasya Website: https://vasya.dominikaaaa.org/"))
+            message.reply(replyMsg("No, KAMI Blue will not be coming out for newer versions of Minecraft. \n\nIt will stay on version `1.12.2` because it relies on version specific code. The developers are instead working on a new client called Vasya.\nVasya Website: https://vasya.dominikaaaa.org/"))
         }
 
         /* how to install kami blue and forge regex */
@@ -250,7 +250,7 @@ function autoResponder(message) {
             if (forgeRegex.test(cleanedMessage)) {
                 message.reply(replyMsg("Download Forge from this link (<\https://files.minecraftforge.net/maven/net/minecraftforge/forge/index_1.12.2.html>)\nand select Installer. Open the file that it downloads and follow the instructions it gives you."))
             } else {
-                message.reply(replyMsg("KAMI Blue is a 1.12.2 Forge mod.\nDownload KAMI Blue from <#634549110145286156> or the website at https://kamiblue.org/download, then open the file. This should open an installer where you can choose which version you want.\nTo find out more, please read the <More Info> at: https://kamiblue.org/download"))
+                message.reply(replyMsg("KAMI Blue is a 1.12.2 Forge mod.\nDownload KAMI Blue from <#634549110145286156> or the website at https://kamiblue.org/download, then open the file. \n\nThis should open an installer where you can choose which version you want.\nTo find out more, please read the <More Info> at: https://kamiblue.org/download"))
             }
         }
 
