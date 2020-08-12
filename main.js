@@ -88,7 +88,6 @@ client.on("ready", () => {
     }, 60000); // One minute
     try {
         client.channels.cache.get("699982782515904603").send("Bot has started up!!");
-        client.channels.cache.get("634012886930423818").send("Hey, I have a new icon, designed by Skrub! Also coming soon, a seperate moderation bot in Kotlin. Please welcome <@743237292294013013>!")
     } catch (error) {
         (`${error}\nThis is a developmental version of the bot; as such some commands more integrated with the KAMI Blue Discord will **not** function as intended.`)
     }
