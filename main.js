@@ -41,7 +41,7 @@ const fs = require("graceful-fs");
 const discordInviteRegex = new RegExp("(d.{0,3}.{0,3}s.{0,3}c.{0,3}.{0,3}r.{0,3}d).{0,7}(gg|com.{0,3}invite)");
 const hacksRegex = new RegExp("(hack|hacks|cheat|cheats|hacking|salhack)");
 const slursRegex = new RegExp("(nigg(?!a).{1,2}|tran(?![spfqcg]).{1,2}|fag.{1,2}t|r(?!s).{1,2}tar.)");
-const zeroWidthSpacesRegex = new RegExp("([\u200B\u200C\u200D\uFEFF])")
+const zeroWidthSpacesRegex = new RegExp("([\u200B\u200C\u200D\u200E\u200F\uFEFF])")
 
 /* help regexes */
 const elytraRegex1 = new RegExp("(elytra|elytra.{0,2}light|elytra.{0,2}\\+|elytra.{0,2}fly)");
@@ -160,7 +160,7 @@ client.on('message', async message => {
         let originalMessage = new Discord.MessageEmbed()
             .setTitle("Original Message")
             .setColor(client.colors.kamiblue)
-            .setDescription(message.content.replace(/[\u200B-\u200D\uFEFF]/g, ''))
+            .setDescription(message.content.replace(/[\u200B-\u200F\uFEFF]/g, ''))
         message.channel.send(originalMessage)
         return message.delete()
     }
