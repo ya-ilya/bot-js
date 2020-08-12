@@ -35,6 +35,8 @@ const config = {
 // Import Modules (for this file)
 const Discord = require("discord.js");
 const fs = require("graceful-fs");
+const convert = require("ms")
+const fetch = require("node-fetch")
 
 // Regexes
 /* bad messages regexes */
@@ -85,13 +87,44 @@ client.on("ready", () => {
             }
         });
 
-    }, 60000); // One minute
+    }, convert('1m')); // One minute
     try {
         client.channels.cache.get("699982782515904603").send("Bot has started up!!");
     } catch (error) {
         (`${error}\nThis is a developmental version of the bot; as such some commands more integrated with the KAMI Blue Discord will **not** function as intended.`)
     }
+    /**
+     * @module DownloadCount
+     * @author sourTaste000
+     * @since  8/12/2020
+     */
+    setInterval(() => {
+        fetch("https://api.github.com/repos/kami-blue/nightly-releases/releases", {headers: {Authorization: `token ${auth.githubtoken}`}})
+            .then(response => response.json())
+            .then(data => {
+                const nightly = JSON.parse(JSON.stringify(data));
+                let nightlyCount = 0;
+                for(let i = 0; i <= 29; i++){ nightlyCount += nightly[i].assets[0].download_count }
+                fetch("https://api.github.com/repos/kami-blue/client/releases", {headers: {Authorization: `token ${auth.githubtoken}`}})
+                    .then(response => response.json())
+                    .then(data => {
+                        const stable = JSON.parse(JSON.stringify(data));
+                        let stableCount = 0;
+                        for(let i = 0; i <= 29; i++){ stableCount += stable[i].assets[0].download_count }
+                        fetch("https://kamiblue.org/api/v1/totalNightlies.json")
+                            .then(response => response.json())
+                            .then(data => {
+                                const total = JSON.parse(JSON.stringify(data))
+                                client.channels.cache.get('743240299069046835').setName(`${nightlyCount*(total.count/30)+stableCount} Downloads`)
+                            })
+                    })
 
+            })
+            .catch((error) => {
+                console.error("Failed to grab downloads!")
+                console.error('Error:', error)
+            })
+    }, convert('10m'))
 });
 
 
