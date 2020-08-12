@@ -4,7 +4,7 @@ const exec = require('child_process').exec;
 
 module.exports.run = async (client, message, args) => {
     if (!(message.author.id === "563138570953687061") && !(message.author.id === "297096161842429963")) return;
-    message.reply("Uploading...")
+    message.channel.send("Uploading...")
     let files=[]
     fs.readdirSync("logs").forEach(file => {
         file = file.replace(".txt", "").replace("latest.log", "");

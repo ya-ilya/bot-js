@@ -5,8 +5,8 @@ const Canvas = require('canvas');
 module.exports.run = async (client, message, args) => {
     try {
         /**
-            @param {Array} [promisedMessages]
-        */
+         @param {Array} [promisedMessages]
+         */
 
         async function snapshot(promisedMessages) {
             let messages = await promisedMessages;
@@ -45,11 +45,11 @@ module.exports.run = async (client, message, args) => {
 
         }
 
-        if (!args[0] || parseInt(args[0]) == NaN) return message.channel.send("You need to provide a valid number of messages to snapshot.");
-        if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("You do not have snapshot cringe.");
+        if (!args[0] || isNaN(parseInt(args[0]))) return message.channel.send(replyErr("You need to provide a valid number of messages to snapshot."));
+        if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send(replyErr("You do not have snapshot cringe."));
 
         let cringe = [];
-        count = parseInt(args[0])+1;
+        count = parseInt(args[0]) + 1;
 
 
         message.channel.messages.fetch({
@@ -73,7 +73,7 @@ module.exports.run = async (client, message, args) => {
             })
         })
     } catch (idgaf) {
-        message.channel.send(":/");
+        message.channel.send(replyErr("An error occurred somehow, this wasn't supposed to happen"));
     }
 }
 

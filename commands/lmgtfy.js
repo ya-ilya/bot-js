@@ -3,7 +3,7 @@ const fs = require("graceful-fs");
 
 module.exports.run = async (client, message, args) => {
     if (!args[0]) {
-        message.channel.send("Please enter a question query!");
+        message.channel.send(replyErr("Please enter a question query!"))
         return;
     }
 

@@ -205,18 +205,18 @@ function autoResponder(message) {
         let cleanedMessage = message.content.toLowerCase();
         /* hacks / cheats regex */
         if (hacksRegex.test(cleanedMessage.replace(/[^\w@430]/g, ""))) {
-            message.reply(warnRule(message, "3, 9", "Hacks / cheats are against Discord TOS"));
+            message.channel.send(warnRule(message, "3, 9", "Hacks / cheats are against Discord TOS"));
         }
 
         /* discord invite link regex */
         if (discordInviteRegex.test(cleanedMessage)) {
-            message.reply(warnRule(message, 5, "lmfao stop advertising your discord server"));
+            message.channel.send(warnRule(message, 5, "lmfao stop advertising your discord server"));
             return message.delete();
         }
 
         /* slurs regex */
         if (slursRegex.test(cleanedMessage)) {
-            message.reply(warnRule(message, "1a, 1b, 1c, 1d", "Slurs are not allowed in this Discord server"));
+            message.channel.send(warnRule(message, "1a, 1b, 1c, 1d", "Slurs are not allowed in this Discord server"));
             return message.delete()
         }
 
@@ -232,36 +232,36 @@ function autoResponder(message) {
         if (elytraRegex2.test(cleanedMessage)) elytraRegexMatches++;
 
         if (elytraRegexMatches > 1 && elytraMatch) {
-            return message.reply(replyMsg("Make sure you're using default settings in the latest beta. Run the defaults button in ElytraFlight's settings if you updated KAMI Blue before.\n\nIf it still doesn't help, make sure you're not using NoFall, AntiHunger or any other movement related mods from **other** clients, such as Sprint in Rage mode, as they make you go over the speed limit and rubberband.\n\nIf you're having issues taking off at higher ping on 2b2t, lower the MinTakeoffHeight setting"));
+            return message.channel.send(replyMsg("Make sure you're using default settings in the latest beta. Run the defaults button in ElytraFlight's settings if you updated KAMI Blue before.\n\nIf it still doesn't help, make sure you're not using NoFall, AntiHunger or any other movement related mods from **other** clients, such as Sprint in Rage mode, as they make you go over the speed limit and rubberband.\n\nIf you're having issues taking off at higher ping on 2b2t, lower the MinTakeoffHeight setting"));
         }
 
         /* game crash regex */
         if (crashRegex.test(cleanedMessage)) {
-            message.reply(replyMsg("Find the `latest.log` file inside `~/.minecraft/logs` and paste the contents to https://pastebin.com/, and the send the link."));
+            message.channel.send(replyMsg("Find the `latest.log` file inside `~/.minecraft/logs` and paste the contents to https://pastebin.com/, and the send the link."));
         }
 
         /* new version regex */
         if (versionRegex1.test(cleanedMessage) && versionRegex2.test(cleanedMessage)) {
-            message.reply(replyMsg("No, KAMI Blue will not be coming out for newer versions of Minecraft. \n\nIt will stay on version `1.12.2` because it relies on version specific code. The developers are instead working on a new client called Vasya.\nVasya Website: https://vasya.dominikaaaa.org/"))
+            message.channel.send(replyMsg("No, KAMI Blue will not be coming out for newer versions of Minecraft. \n\nIt will stay on version `1.12.2` because it relies on version specific code. The developers are instead working on a new client called Vasya.\nVasya Website: https://vasya.dominikaaaa.org/"))
         }
 
         /* how to install kami blue and forge regex */
         if (howWorkRegex.test(cleanedMessage) && installRegex.test(cleanedMessage)) {
             if (forgeRegex.test(cleanedMessage)) {
-                message.reply(replyMsg("Download Forge from this link (<\https://files.minecraftforge.net/maven/net/minecraftforge/forge/index_1.12.2.html>)\nand select Installer. Open the file that it downloads and follow the instructions it gives you."))
+                message.channel.send(replyMsg("Download Forge from this link (<\https://files.minecraftforge.net/maven/net/minecraftforge/forge/index_1.12.2.html>)\nand select Installer. Open the file that it downloads and follow the instructions it gives you."))
             } else {
-                message.reply(replyMsg("KAMI Blue is a 1.12.2 Forge mod.\nDownload KAMI Blue from <#634549110145286156> or the website at https://kamiblue.org/download, then open the file. \n\nThis should open an installer where you can choose which version you want.\nTo find out more, please read the <More Info> at: https://kamiblue.org/download"))
+                message.channel.send(replyMsg("KAMI Blue is a 1.12.2 Forge mod.\nDownload KAMI Blue from <#634549110145286156> or the website at https://kamiblue.org/download, then open the file. \n\nThis should open an installer where you can choose which version you want.\nTo find out more, please read the <More Info> at: https://kamiblue.org/download"))
             }
         }
 
         /* how to open gui regex */
         if (howWorkRegex.test(cleanedMessage) && guiRegex.test(cleanedMessage)) {
-            message.reply(replyMsg("Use `Y` to open the GUI. Use `;bind clickgui rshift` to change it.\nRead more at https://kamiblue.org/faq"))
+            message.channel.send(replyMsg("Use `Y` to open the GUI. Use `;bind clickgui rshift` to change it.\nRead more at https://kamiblue.org/faq"))
         }
 
         /* -noverify crash Baritone */
         if (baritoneCrashRegex.test(cleanedMessage)) {
-            message.reply(replyMsg("Disable `-noverify` in your JVM arguments, this is a Baritone bug and won't be fixed"))
+            message.channel.send(replyMsg("Disable `-noverify` in your JVM arguments, this is a Baritone bug and won't be fixed"))
         }
     }
 }
@@ -282,9 +282,12 @@ function warnRule(message, ruleNumber, reason) {
         .setDescription(`<@${message.author.id}>, ${reason}`)
 }
 
-/**
- * @author dominikaaaa
- */
+function replyErr(description) {
+    return new Discord.MessageEmbed()
+        .setColor(client.colors.red)
+        .setDescription(description)
+}
+
 function replyMsg(description) {
     return new Discord.MessageEmbed()
         .setColor(client.colors.kamiblue)

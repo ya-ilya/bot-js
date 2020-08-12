@@ -3,20 +3,20 @@ const fs = require("graceful-fs");
 const ytdl = require("ytdl-core"),
     ytpl = require("ytpl"),
     ytsearch = require("yt-search"),
-    { Util } = require("discord.js");
+    {Util} = require("discord.js");
 
 module.exports.run = async (client, message, args) => {
-    config = client.config;  
+    config = client.config;
     const voiceChannel = message.member.voice.channel;
-    if (!message.member.roles.cache.find(role => config["dj_role"] === role.name)) return message.channel.send("You do not have permissions to use music.");
-    if (!message.member.voice.channel) return message.channel.send("You are not in a voice channel.")
+    if (!message.member.roles.cache.find(role => config["dj_role"] === role.name)) return message.channel.send(replyErr("You do not have permissions to use music."))
+    if (!message.member.voice.channel) return message.channel.send(replyErr("You are not in a voice channel."))
 
 
     const url = args.join(" ")
     if (url.includes("list=")) {
         const playlist = await ytpl(url.split("list=")[1]);
         const videos = playlist.items;
-        message.channel.send(`${playlist.title} (${videos.length}) was added to the queue.`)
+        message.channel.send(replyMsg(`${playlist.title} (${videos.length}) was added to the queue.`))
         for (const video of videos) await queueSong(video, message, voiceChannel, client)
     } else {
         let video;
@@ -24,55 +24,51 @@ module.exports.run = async (client, message, args) => {
             video = await ytdl.getBasicInfo(url);
         } catch (e) {
             try {
-              
-              const results = await ytsr(url);
+
+                const results = await ytsr(url);
                 const videos = results.videos.slice(0, 10);
                 let index = 0;
-                await message.channel.send([
+                await message.channel.send(replyMsg([
                     "__**Song selection:**__",
                     videos.map(v => ++index + " - **" + v.title + "**").join("\n"),
                     ("*Please provide a value to select one of the search query ranging from 1 to [LIST_LENGTH]:*").replace("[LIST_LENGTH]", videos.length)
-                ].join("\n\n"))
-              
-             let response;
+                ].join("\n\n")))
+
+                let response;
                 try {
-                        response = await message.channel.awaitMessages(msg => 0 < msg.content && msg.content < videos.length + 1 && msg.author.id == message.author.id, {
-                            max: 1,
-                            time: 1e4,
-                            errors: ['time']
-                        });
-                  
-                        const videoIndex = parseInt(response.first().content);
-                        video = await ytdl.getBasicInfo(videos[videoIndex - 1].videoId);
-                    } catch (e) {
-                        return message.channel.send("`❌` An unknown error occoured upon trying to join the voice channel!");
-                    }
-                    
-                   
+                    response = await message.channel.awaitMessages(msg => 0 < msg.content && msg.content < videos.length + 1 && msg.author.id == message.author.id, {
+                        max: 1,
+                        time: 1e4,
+                        errors: ['time']
+                    });
+
+                    const videoIndex = parseInt(response.first().content);
+                    video = await ytdl.getBasicInfo(videos[videoIndex - 1].videoId);
+                } catch (e) {
+                    return message.channel.send(replyErr("`❌` An unknown error occoured upon trying to join the voice channel!"))
+                }
+
 
             } catch (e) {
                 console.log(e)
-                return message.channel.send("`❌` I have indexed thousands of multi-dimensional datasets from my backbrain and was unable to find what you were looking for.");
+                return message.channel.send(replyErr("`❌` I have indexed thousands of multi-dimensional datasets from my backbrain and was unable to find what you were looking for."))
             }
         }
-        await message.channel.send(`${video.title} has been added to the queue.`)
+        await message.channel.send(replyMsg(`${video.title} has been added to the queue.`))
         return await queueSong(video, message, voiceChannel, client)
     }
-  
-} 
 
+}
 
 
 module.exports.config = {
-  name: "play",
-  aliases: ["sing"],
-  use: "play [Song]",
-  description: "When used it will yield ten search results, simply type a number from 1-10 of which song should be played.",
-  state : "gamma",
-  page: 5
+    name: "play",
+    aliases: ["sing"],
+    use: "play [Song]",
+    description: "When used it will yield ten search results, simply type a number from 1-10 of which song should be played.",
+    state: "gamma",
+    page: 5
 };
-
-
 
 
 //Async - Music
@@ -94,7 +90,7 @@ async function queueSong(video, message, voiceChannel, client) {
             voiceChannel,
             connection: null,
             songs: [song],
-            volume: 50, 
+            volume: 50,
             playing: true
         }
         try {
@@ -104,12 +100,13 @@ async function queueSong(video, message, voiceChannel, client) {
             playSong(message.guild, queueConstruct.songs[0], message, client);
         } catch (e) {
             console.log(e)
-            message.channel.send("An unknown error occoured upon trying to join the voice channel!");
+            message.channel.send(replyErr("An unknown error occurred upon trying to join the voice channel!"))
             return queue.delete(message.guild.id);
         }
     } else serverQueue.songs.push(song);
-    return;
+
 }
+
 async function playSong(guild, song, message, client) {
     const serverQueue = client.queue.get(guild.id);
     if (!song) {
@@ -126,4 +123,5 @@ async function playSong(guild, song, message, client) {
         .setVolumeLogarithmic(serverQueue.volume / 250);
     serverQueue.textChannel.send(`Now playing ${song.title}`);
 }
+
 const ytsr = (url) => new Promise((resolve, reject) => ytsearch(url, (err, r) => err ? reject(err) : resolve(r)))

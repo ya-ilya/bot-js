@@ -3,29 +3,28 @@ const fs = require("graceful-fs");
 const ytdl = require("ytdl-core"),
     ytpl = require("ytpl"),
     ytsearch = require("yt-search"),
-    { Util } = require("discord.js");
+    {Util} = require("discord.js");
 module.exports.run = async (client, message, args) => {
-    config = client.config;  
-    if (!message.member.roles.cache.find(role => config["dj_role"] === role.name)) return message.channel.send("You do not have permissions to use music.");
-    if (!message.member.voice.channel) return message.channel.send("You are not in a voice channel.")
- 
-  
-  var url = "https://www.youtube.com/playlist?list=PL0aso3-ouj1yJDaJkq72TY9-WLuFC-oe_"
-  const playlist = await ytpl(url.split("list=")[1])
-  const videos = playlist.items;
-  message.channel.send(client.msg["music_playlist_success"].replace("[PLAYLIST_TITLE]", `${playlist.title} (${videos.length})`))
-  for (const video of videos) await queueSong(video, message, message.member.voice.channel, client)
+    config = client.config;
+    if (!message.member.roles.cache.find(role => config["dj_role"] === role.name)) return message.channel.send(replyErr("You do not have permissions to use music."))
+    if (!message.member.voice.channel) return message.channel.send(replyErr("You are not in a voice channel."))
+
+
+    var url = "https://www.youtube.com/playlist?list=PL0aso3-ouj1yJDaJkq72TY9-WLuFC-oe_"
+    const playlist = await ytpl(url.split("list=")[1])
+    const videos = playlist.items;
+    message.channel.send(replyMsg(client.msg["music_playlist_success"].replace("[PLAYLIST_TITLE]", `${playlist.title} (${videos.length})`)))
+    for (const video of videos) await queueSong(video, message, message.member.voice.channel, client)
 }
 
 
-
 module.exports.config = {
-  name: "swoge",
-  aliases: [],
-  use: "swoge",
-  description: "Plays Custom `12 Song Playlist`",
-  state : "gamma",
-  page: -1
+    name: "swoge",
+    aliases: [],
+    use: "swoge",
+    description: "Plays Custom `12 Song Playlist`",
+    state: "gamma",
+    page: -1
 };
 
 
@@ -48,7 +47,7 @@ async function queueSong(video, message, voiceChannel, client) {
             voiceChannel,
             connection: null,
             songs: [song],
-            volume: 50, 
+            volume: 50,
             playing: true
         }
         try {
@@ -58,14 +57,14 @@ async function queueSong(video, message, voiceChannel, client) {
             playSong(message.guild, queueConstruct.songs[0], message, client)
         } catch (e) {
             console.log(e)
-            message.channel.send("An unknown error occoured upon trying to join the voice channel!")
+            message.channel.send(replyErr("An unknown error occoured upon trying to join the voice channel!"))
             return queue.delete(message.guild.id)
         }
     } else serverQueue.songs.push(song);
-    return;
-}
-async function playSong(guild, song, message, client) {
 
+}
+
+async function playSong(guild, song, message, client) {
 
 
     const serverQueue = client.queue.get(guild.id);
@@ -83,4 +82,5 @@ async function playSong(guild, song, message, client) {
         .setVolumeLogarithmic(serverQueue.volume / 250)
     serverQueue.textChannel.send(`Now playing ${song.title}`)
 }
+
 const ytsr = (url) => new Promise((resolve, reject) => ytsearch(url, (err, r) => err ? reject(err) : resolve(r)))

@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const fs = require("graceful-fs");
 
 module.exports.run = async (client, message, args) => {
-    message.channel.send("https://kamiblue.org/modules")
+    message.channel.send(replyMsg("https://kamiblue.org/modules"))
 };
 
 module.exports.config = {

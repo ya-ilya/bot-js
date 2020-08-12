@@ -3,7 +3,7 @@ const fs = require("graceful-fs");
 
 function timeConverter(unixTimestamp) {
     var timestampDateObject = new Date(unixTimestamp);
-    var months = ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     var year = timestampDateObject.getFullYear();
     var month = months[timestampDateObject.getMonth()];
     var date = timestampDateObject.getDate();
@@ -26,7 +26,7 @@ module.exports.run = async (client, message, args) => {
     } else {
         user = client.users.cache.get(args[0].replace(/[@!<>]/g, ""));
     }
-    if (!user) return message.channel.send("Please mention a valid user.");
+    if (!user) return message.channel.send(replyErr("Please mention a valid user."))
 
 
     let devices = " ";

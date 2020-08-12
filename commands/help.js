@@ -11,7 +11,7 @@ module.exports.run = async (client, message, args) => {
         let command = client.commands.filter(c => c.config.name === args[0].toLowerCase());
         if (command.map(c => c.config).length == false) command = client.commands.filter(c => c.config.aliases.indexOf(args[0].toLowerCase()) >= 0);
         command = command.map(c => c.config)[0];
-        if (command === undefined) return message.channel.send("There exists nothing at that page.");
+        if (command === undefined) return message.channel.send(replyErr("That page is empty!"));
         let commandEmbed = new Discord.MessageEmbed()
             .setColor(client.colors.kamiblue)
             .setTitle(command.name)
@@ -21,7 +21,7 @@ module.exports.run = async (client, message, args) => {
         return message.channel.send(commandEmbed)
     }
 
-    if (itemTypeKey[args[0]] === undefined) return message.channel.send("There exists nothing at that page.");
+    if (itemTypeKey[args[0]] === undefined) return message.channel.send(replyErr("That page is empty!"))
     const helpEmbed = new Discord.MessageEmbed()
         .setColor(client.colors.kamiblue)
         .setTitle(`${(itemTypeKey[args[0]].emoji)} __${itemTypeKey[args[0]].name}__ (Page ${args[0]}/${itemTypeKey.length - 1})`)

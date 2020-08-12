@@ -18,7 +18,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send(colorEmbed)
             })
     } catch (err) {
-        message.channel.send("Error parsing color! Use `;help color`")
+        message.channel.send(replyErr("Error parsing color! Use `;help color`"))
         console.error(err);
     }
 }

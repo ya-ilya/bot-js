@@ -23,9 +23,9 @@ module.exports.run = async (client, message, args) => {
                     .setColor(client.colors.kamiblue);
                 message.channel.send(uuidEmbed);
             })
-            .catch(err => message.channel.send("Error: invalid username!"))
+            .catch(err => message.channel.send(replyErr("Error: invalid username!")))
     } catch (err) {
-        message.channel.send("Failed to get the uuid of player!");
+        message.channel.send(replyErr("Failed to get the uuid of player!"))
         console.error(err);
     }
 }

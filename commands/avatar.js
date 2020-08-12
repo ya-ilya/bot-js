@@ -8,7 +8,7 @@ module.exports.run = async (client, message, args) => {
     } else {
         user = client.users.cache.get(args[0].replace(/[@!<>]/g, ""));
     }
-    if (!user) return message.channel.send("Please mention a valid user.");
+    if (!user) return message.channel.send(replyErr("Please mention a valid user."));
 
     const embed = new Discord.MessageEmbed()
         .setTitle(user.username)

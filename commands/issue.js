@@ -37,7 +37,7 @@ module.exports.run = async (client, message, args) => {
                             message.channel.send(pullEmbed)
                         })
                         .catch((error) => {
-                            message.channel.send("Bad issue number or repository!")
+                            message.channel.send(replyErr("Bad issue number or repository!"))
                             console.error('Error:', error)
                         })
                 } else {
@@ -67,7 +67,7 @@ module.exports.run = async (client, message, args) => {
                 }
             })
             .catch((error) => {
-                message.channel.send("Bad issue number or repository!");
+                message.channel.send(replyErr("Bad issue number or repository!"))
                 console.error('Error:', error);
             })
 };

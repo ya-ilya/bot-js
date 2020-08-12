@@ -3,11 +3,11 @@ const fs = require("graceful-fs");
 
 
 module.exports.run = async (client, message, args) => {
-    if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("You don't have permission to do that 🤡");
+    if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send(replyErr("You don't have permission to do that 🤡"))
     message.channel.parent.createOverwrite(message.guild.roles.everyone, {
         SEND_MESSAGES: false
     });
-    message.channel.send("Locked this channel!");
+    message.channel.send(replyMsg("Locked this channel!"))
 }
 
 module.exports.config = {
