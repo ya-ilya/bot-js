@@ -153,16 +153,14 @@ client.on('message', async message => {
      */
     if (zeroWidthSpacesRegex.test(message.content)) {
         let warning = new Discord.MessageEmbed()
-            .setTitle("Rule 5")
+            .setTitle("Rule 6")
             .setColor(client.colors.red)
-            .setDescription(`<@${message.author.id}>, you're not allowed to use zero width characters in messages, as per Rule 5`)
-        message.channel.send(warning)
+            .setDescription(`<@${message.author.id}>, you're not allowed to use zero width characters in messages, as per Rule 6`)
         let originalMessage = new Discord.MessageEmbed()
             .setTitle("Original Message:")
             .setColor(client.colors.kamiblue)
             .setDescription(message.content.replace(/[\u200B-\u200F\uFEFF]/g, ''))
-        message.channel.send(originalMessage)
-        return message.delete()
+        message.channel.send(warning).then(message.channel.send(originalMessage).then(message.delete()))
     }
 });
 
