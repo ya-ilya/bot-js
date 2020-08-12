@@ -90,8 +90,6 @@ client.on("ready", () => {
     }, convert('1m')); // One minute
     try {
         client.channels.cache.get("699982782515904603").send("Bot has started up!!");
-        client.channels.cache.get("634012886930423818").send("<@297096161842429963> magic")
-        client.channels.cache.get("634012886930423818").send("btw my icon is now fixed! trans rights~ ;3")
     } catch (error) {
         (`${error}\nThis is a developmental version of the bot; as such some commands more integrated with the KAMI Blue Discord will **not** function as intended.`)
     }
