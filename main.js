@@ -91,7 +91,7 @@ client.on("ready", () => {
     } catch (error) {
         (`${error}\nThis is a developmental version of the bot; as such some commands more integrated with the KAMI Blue Discord will **not** function as intended.`)
     }
-    
+
 });
 
 
@@ -130,7 +130,7 @@ client.on('message', async message => {
 
     if (message.author.bot) return; // Prevent botception loop
     autoResponder(message);
-    
+
     /**
      * @module rawPastebin
      * @author sourTaste000
@@ -152,10 +152,7 @@ client.on('message', async message => {
      * @author dominikaaaa
      */
     if (zeroWidthSpacesRegex.test(message.content)) {
-        let warning = new Discord.MessageEmbed()
-            .setTitle("Rule 6")
-            .setColor(client.colors.red)
-            .setDescription(`<@${message.author.id}>, you're not allowed to use zero width characters in messages, as per Rule 6`)
+        let warning = warnRule(message, "Rule 6", "<@${message.author.id}>, you're not allowed to use zero width characters in messages, as per Rule 6")
         let originalMessage = new Discord.MessageEmbed()
             .setTitle("Original Message:")
             .setColor(client.colors.kamiblue)
@@ -173,22 +170,22 @@ let pinnedMessages = [];
 let i = 0;
 
 client.on('messageReactionAdd', async (reaction, user) => {
-    if(reaction.emoji.toString() === "⭐" && !pinnedMessages.includes(reaction.message.content)) {
-            client.channels.cache.get('579741237377236992').send(`${user.username} voted for starboard`);
-            if (reaction.count === 3) {
-                pinnedMessages[i] = reaction.message.content;
-                const image = reaction.message.attachments.size > 0 ? reaction.message.attachments.array()[0].url : ''; //very pog lol
-                const starEmbed = new Discord.MessageEmbed()
-                    .setAuthor("カミブルー！", "https://cdn.discordapp.com/avatars/638403216278683661/1e8bed04cb18e1cb1239e208a01893a1.png", "https://kamiblue.org")
-                    .setDescription(reaction.message.content)
-                    .addField("[link]", reaction.message.url, true)
-                    .setFooter(reaction.message.author.username, reaction.message.author.avatarURL())
-                    .setColor(client.colors.yellow)
-                    .setTimestamp();
-                client.channels.cache.get('735680230148276286').send(starEmbed);
-                client.channels.cache.get('735680230148276286').send(image);
-                i++
-            }
+    if (reaction.emoji.toString() === "⭐" && !pinnedMessages.includes(reaction.message.content)) {
+        client.channels.cache.get('579741237377236992').send(`${user.username} voted for starboard`);
+        if (reaction.count === 3) {
+            pinnedMessages[i] = reaction.message.content;
+            const image = reaction.message.attachments.size > 0 ? reaction.message.attachments.array()[0].url : ''; //very pog lol
+            const starEmbed = new Discord.MessageEmbed()
+                .setAuthor("カミブルー！", "https://cdn.discordapp.com/avatars/638403216278683661/1e8bed04cb18e1cb1239e208a01893a1.png", "https://kamiblue.org")
+                .setDescription(reaction.message.content)
+                .addField("[link]", reaction.message.url, true)
+                .setFooter(reaction.message.author.username, reaction.message.author.avatarURL())
+                .setColor(client.colors.yellow)
+                .setTimestamp();
+            client.channels.cache.get('735680230148276286').send(starEmbed);
+            client.channels.cache.get('735680230148276286').send(image);
+            i++
+        }
     }
 });
 
@@ -232,7 +229,10 @@ function autoResponder(message) {
         /* elytra help regex */
         let elytraRegexMatches = 0;
         let elytraMatch = false;
-        if (elytraRegex1.test(cleanedMessage)) { elytraMatch = true; elytraRegexMatches++; }
+        if (elytraRegex1.test(cleanedMessage)) {
+            elytraMatch = true;
+            elytraRegexMatches++;
+        }
         if (doesNotRegex.test(cleanedMessage)) elytraRegexMatches++;
         if (howWorkRegex.test(cleanedMessage)) elytraRegexMatches++;
         if (elytraRegex2.test(cleanedMessage)) elytraRegexMatches++;
@@ -264,12 +264,29 @@ function autoResponder(message) {
         if (howWorkRegex.test(cleanedMessage) && guiRegex.test(cleanedMessage)) {
             message.channel.send("Use `Y` to open the GUI. Use `;bind clickgui rshift` to change it.\nRead more at https://kamiblue.org/faq")
         }
-        
+
         /* -noverify crash Baritone */
         if (baritoneCrashRegex.test(cleanedMessage)) {
             message.channel.send("Disable `-noverify` in your JVM arguments, this is a Baritone bug and won't be fixed")
         }
     }
+}
+
+/**
+ * @author dominikaaaa
+ */
+function warnRule(message, ruleName, reason) {
+    return new Discord.MessageEmbed()
+        .setTitle(ruleName)
+        .setColor(client.colors.red)
+        .setDescription(reason)
+}
+
+/**
+ * @author dominikaaaa
+ */
+function autoReplyMessage(message, helpMsg) {
+
 }
 
 function extractPastebinLinks(link) {
