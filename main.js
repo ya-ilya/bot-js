@@ -36,6 +36,29 @@ const config = {
 const Discord = require("discord.js");
 const fs = require("graceful-fs");
 
+// Regexes
+/* bad messages regexes */
+const discordInviteRegex = new RegExp("(d.{0,3}.{0,3}s.{0,3}c.{0,3}.{0,3}r.{0,3}d).{0,7}(gg|com.{0,3}invite)");
+const hacksRegex = new RegExp("(hack|hacks|cheat|cheats|hacking|salhack)");
+const slursRegex = new RegExp("(nigg(?!a).{1,2}|tran(?![spfqcg]).{1,2}|fag.{1,2}t|r(?!s).{1,2}tar.)");
+const zeroWidthSpacesRegex = new RegExp("([\u200B\u200C\u200D\uFEFF])")
+
+/* help regexes */
+const elytraRegex1 = new RegExp("(elytra|elytra.{0,2}light|elytra.{0,2}\\+|elytra.{0,2}fly)");
+const elytraRegex2 = new RegExp("(settings|config|configure)");
+
+const doesNotRegex = new RegExp("(does.{0,5}t)");
+const howWorkRegex = new RegExp("(what|work|how|how to)");
+const crashRegex = new RegExp("(c(?!a).{0,2}sh)");
+const installRegex = new RegExp("(install|download)")
+const guiRegex = new RegExp("(gui|menu|hud|click.?gui)")
+const forgeRegex = new RegExp("(f.{1,2}ge)")
+
+const versionRegex1 = new RegExp("(1.?(14|15|16))") /* (1.{0,1}(14|15|16)) */
+const versionRegex2 = new RegExp("(update|port|version)")
+
+const baritoneCrashRegex = new RegExp("(Incompatible.{0,2}Class.{0,2}Change.{0,2}Error|non.{0,2}static.{0,2}field.{0,2}Baritone)")
+
 // Client Definitions
 const client = new Discord.Client();
 client.queue = new Map();
@@ -123,6 +146,20 @@ client.on('message', async message => {
             .setDescription("https://" + paste.replace("pastebin.com/", "pastebin.com/raw/"));
         message.channel.send(versionEmbed);
     }
+
+    /**
+     * @module removeZWS
+     * @author dominikaaaa
+     */
+    if (zeroWidthSpacesRegex.test(message.content)) {
+        message.channel.send("You're not allowed to use zero width characters in messages, as per Rule 5")
+        let originalMessage = new Discord.MessageEmbed()
+            .setTitle("Original Message")
+            .setColor(client.colors.kamiblue)
+            .setDescription(message.content.replace(/[\u200B-\u200D\uFEFF]/g, ''))
+        message.channel.send(originalMessage)
+        return message.delete()
+    }
 });
 
 /**
@@ -172,27 +209,6 @@ client.on('messageUpdate', (oldMessage, newMessage) => {
 function autoResponder(message) {
     /* members with roles bypass the filter */
     if (!message.member.hasPermission("CHANGE_NICKNAME")) {
-        /* bad messages regexes */
-        const discordInviteRegex = new RegExp("(d.{0,3}.{0,3}s.{0,3}c.{0,3}.{0,3}r.{0,3}d).{0,7}(gg|com.{0,3}invite)");
-        const hacksRegex = new RegExp("(hack|hacks|cheat|cheats|hacking|salhack)");
-        const slursRegex = new RegExp("(nigg(?!a).{1,2}|tran(?![spfqcg]).{1,2}|fag.{1,2}t|r(?!s).{1,2}tar.{1})");
-
-        /* help regexes */
-        const elytraRegex1 = new RegExp("(elytra|elytra.{0,2}light|elytra.{0,2}\\+|elytra.{0,2}fly)");
-        const elytraRegex2 = new RegExp("(settings|config|configure)");
-
-        const doesNotRegex = new RegExp("(does.{0,5}t)");
-        const howWorkRegex = new RegExp("(what|work|how|how to)");
-        const crashRegex = new RegExp("(c(?!a).{0,2}sh)");
-        const installRegex = new RegExp("(install|download)")
-        const guiRegex = new RegExp("(gui|menu|hud|click.?gui)")
-        const forgeRegex = new RegExp("(f.{1,2}ge)")
-
-        const versionRegex1 = new RegExp("(1.?(14|15|16))") /* (1.{0,1}(14|15|16)) */
-        const versionRegex2 = new RegExp("(update|port|version)")
-        
-        const baritoneCrashRegex = new RegExp("(Incompatible.{0,2}Class.{0,2}Change.{0,2}Error|non.{0,2}static.{0,2}field.{0,2}Baritone)")
-
         let cleanedMessage = message.content.toLowerCase();
         /* hacks / cheats regex */
         if (hacksRegex.test(cleanedMessage.replace(/[^\w@430]/g, ""))) {
