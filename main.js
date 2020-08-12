@@ -152,7 +152,7 @@ client.on('message', async message => {
      * @author dominikaaaa
      */
     if (zeroWidthSpacesRegex.test(message.content)) {
-        let warning = warnRule(message, "Rule 6", "<@${message.author.id}>, you're not allowed to use zero width characters in messages, as per Rule 6")
+        let warning = warnRule(message, "Rule 6", `<@${message.author.id}>, you're not allowed to use zero width characters in messages, as per Rule 6`)
         let originalMessage = new Discord.MessageEmbed()
             .setTitle("Original Message:")
             .setColor(client.colors.kamiblue)
