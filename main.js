@@ -181,12 +181,9 @@ client.on('message', async message => {
      */
     if (message.content.includes("pastebin.com")) {
         if (message.author.bot) return;
-        const paste = (extractPastebinLinks(message.content))
+        const paste = (extractPastebinLinks(message.content)).replace("pastebin.com/", "pastebin.com/raw/")
 
-        let versionEmbed = new Discord.MessageEmbed()
-            .setTitle("Direct link to paste")
-            .setColor(client.colors.kamiblue)
-            .setDescription("https://" + paste.replace("pastebin.com/", "pastebin.com/raw/"));
+        let versionEmbed = replyMsgT(message, "Direct link to paste", "https://" + paste)
         message.channel.send(versionEmbed);
     }
 
@@ -195,11 +192,8 @@ client.on('message', async message => {
      * @author dominikaaaa
      */
     if (zeroWidthSpacesRegex.test(message.content)) {
-        let warning = warnRule(message, "Rule 6", `<@${message.author.id}>, you're not allowed to use zero width characters in messages, as per Rule 6`)
-        let originalMessage = new Discord.MessageEmbed()
-            .setTitle("Original Message:")
-            .setColor(client.colors.kamiblue)
-            .setDescription(message.content.replace(/[\u200B-\u200F\uFEFF]/g, ''))
+        let warning = warnRule(message, 6, `you're not allowed to use zero width characters in messages`)
+        let originalMessage = replyMsgT(message, "Original Message: ", message.content.replace(/[\u200B-\u200F\uFEFF]/g, ''))
         message.channel.send(warning).then(message.channel.send(originalMessage).then(message.delete()))
     }
 });
@@ -254,19 +248,19 @@ function autoResponder(message) {
         let cleanedMessage = message.content.toLowerCase();
         /* hacks / cheats regex */
         if (hacksRegex.test(cleanedMessage.replace(/[^\w@430]/g, ""))) {
-            message.channel.send("Hacks / cheats are against Discord TOS (Rules 3 and 9)");
+            message.reply(warnRule(message, "3, 9", "Hacks / cheats are against Discord TOS"));
         }
 
         /* discord invite link regex */
         if (discordInviteRegex.test(cleanedMessage)) {
-            message.reply("lmfao stop advertising your discord server (Rule 5)");
+            message.reply(warnRule(message, 5, "lmfao stop advertising your discord server"));
             return message.delete();
         }
 
         /* slurs regex */
         if (slursRegex.test(cleanedMessage)) {
-            message.reply("Slurs are against Rule 1b and 1c");
-            return message.delete() // TODO: warn
+            message.reply(warnRule(message, "1a, 1b, 1c, 1d", "Slurs are not allowed in this Discord server"));
+            return message.delete()
         }
 
         /* elytra help regex */
@@ -281,36 +275,36 @@ function autoResponder(message) {
         if (elytraRegex2.test(cleanedMessage)) elytraRegexMatches++;
 
         if (elytraRegexMatches > 1 && elytraMatch) {
-            return message.channel.send("Make sure you're using default settings in the latest beta. Run the defaults button in ElytraFlight's settings if you updated KAMI Blue before.\n\nIf it still doesn't help, make sure you're not using NoFall, AntiHunger or any other movement related mods from **other** clients, such as Sprint in Rage mode, as they make you go over the speed limit and rubberband.\n\nIf you're having issues taking off at higher ping on 2b2t, lower the MinTakeoffHeight setting");
+            return message.reply(replyMsg("Make sure you're using default settings in the latest beta. Run the defaults button in ElytraFlight's settings if you updated KAMI Blue before.\n\nIf it still doesn't help, make sure you're not using NoFall, AntiHunger or any other movement related mods from **other** clients, such as Sprint in Rage mode, as they make you go over the speed limit and rubberband.\n\nIf you're having issues taking off at higher ping on 2b2t, lower the MinTakeoffHeight setting"));
         }
 
         /* game crash regex */
         if (crashRegex.test(cleanedMessage)) {
-            message.channel.send("Find the `latest.log` file inside `~/.minecraft/logs` and paste the contents to https://pastebin.com/, and the send the link.");
+            message.reply(replyMsg("Find the `latest.log` file inside `~/.minecraft/logs` and paste the contents to https://pastebin.com/, and the send the link."));
         }
 
         /* new version regex */
         if (versionRegex1.test(cleanedMessage) && versionRegex2.test(cleanedMessage)) {
-            message.channel.send("No, KAMI Blue will not be coming out for newer versions of Minecraft. It will stay on version `1.12.2` because it relies on version specific code. The developers are instead working on a new client called Vasya.\nVasya Website: https://vasya.dominikaaaa.org/")
+            message.reply(replyMsg("No, KAMI Blue will not be coming out for newer versions of Minecraft. It will stay on version `1.12.2` because it relies on version specific code. The developers are instead working on a new client called Vasya.\nVasya Website: https://vasya.dominikaaaa.org/"))
         }
 
         /* how to install kami blue and forge regex */
         if (howWorkRegex.test(cleanedMessage) && installRegex.test(cleanedMessage)) {
             if (forgeRegex.test(cleanedMessage)) {
-                message.channel.send("Download Forge from this link (<\https://files.minecraftforge.net/maven/net/minecraftforge/forge/index_1.12.2.html>)\nand select Installer. Open the file that it downloads and follow the instructions it gives you.")
+                message.reply(replyMsg("Download Forge from this link (<\https://files.minecraftforge.net/maven/net/minecraftforge/forge/index_1.12.2.html>)\nand select Installer. Open the file that it downloads and follow the instructions it gives you."))
             } else {
-                message.channel.send("KAMI Blue is a 1.12.2 Forge mod.\nDownload KAMI Blue from <#634549110145286156> or the website at https://kamiblue.org/download, then open the file. This should open an installer where you can choose which version you want.\nTo find out more, please read the <More Info> at: https://kamiblue.org/download")
+                message.reply(replyMsg("KAMI Blue is a 1.12.2 Forge mod.\nDownload KAMI Blue from <#634549110145286156> or the website at https://kamiblue.org/download, then open the file. This should open an installer where you can choose which version you want.\nTo find out more, please read the <More Info> at: https://kamiblue.org/download"))
             }
         }
 
         /* how to open gui regex */
         if (howWorkRegex.test(cleanedMessage) && guiRegex.test(cleanedMessage)) {
-            message.channel.send("Use `Y` to open the GUI. Use `;bind clickgui rshift` to change it.\nRead more at https://kamiblue.org/faq")
+            message.reply(replyMsg("Use `Y` to open the GUI. Use `;bind clickgui rshift` to change it.\nRead more at https://kamiblue.org/faq"))
         }
 
         /* -noverify crash Baritone */
         if (baritoneCrashRegex.test(cleanedMessage)) {
-            message.channel.send("Disable `-noverify` in your JVM arguments, this is a Baritone bug and won't be fixed")
+            message.reply(replyMsg("Disable `-noverify` in your JVM arguments, this is a Baritone bug and won't be fixed"))
         }
     }
 }
@@ -318,18 +312,33 @@ function autoResponder(message) {
 /**
  * @author dominikaaaa
  */
-function warnRule(message, ruleName, reason) {
+function warnRule(message, ruleNumber, reason) {
+    function getS() {
+        if (ruleNumber.length > 1) {
+            return "s"
+        }
+        return ""
+    }
     return new Discord.MessageEmbed()
-        .setTitle(ruleName)
+        .setTitle(`Rule${getS()} ${ruleNumber}`)
         .setColor(client.colors.red)
-        .setDescription(reason)
+        .setDescription(`<@${message.author.id}>, ${reason}`)
 }
 
 /**
  * @author dominikaaaa
  */
-function autoReplyMessage(message, helpMsg) {
+function replyMsg(description) {
+    return new Discord.MessageEmbed()
+        .setColor(client.colors.kamiblue)
+        .setDescription(description)
+}
 
+function replyMsgT(message, title, description) {
+    return new Discord.MessageEmbed()
+        .setTitle(title)
+        .setColor(client.colors.kamiblue)
+        .setDescription(description)
 }
 
 function extractPastebinLinks(link) {
