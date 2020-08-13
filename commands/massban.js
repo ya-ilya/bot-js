@@ -7,8 +7,8 @@ module.exports.run = async (client, message, args) => {
     if (!args[0]) return message.channel.send("Specifiy ids to ban");
     let reason = "Get ezed";
     args.forEach(async user => {
-        var member = client.users.fetch(user);
-        if (member != undefined && member.hasPermissions("BAN_MEMBERS")) return message.channel.send("How would you like it if I banned **you**!");
+   //     var member = client.users.fetch(user);
+     //   if (member != undefined && member.hasPermissions("BAN_MEMBERS")) return message.channel.send("How would you like it if I banned **you**!");
         await message.guild.ban(user).catch(error => message.channel.send(error));
         message.channel.send(user + "was banend")
     })
