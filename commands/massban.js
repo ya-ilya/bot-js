@@ -13,6 +13,7 @@ module.exports.run = async (client, message, args) => {
         .setColor("ff5050");
     for (user in args) {
         var member = client.users.cache.get(user);
+        message.channel.send(member.username + "was banend")
         if (member.hasPermission("BAN_MEMBERS")) return message.channel.send("How would you like it if I banned **you**!");
         await member.send(banEmbed);
         await member.ban(reason).catch(error => message.channel.send(error));
@@ -25,7 +26,7 @@ module.exports.run = async (client, message, args) => {
 module.exports.config = {
     name: "massban",
     aliases: [],
-    use: "massbam ids",
+    use: "massban ids",
     description: "Ban a user from the server",
     state: "gamma",
     page: 4
