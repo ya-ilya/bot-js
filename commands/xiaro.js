@@ -3,7 +3,7 @@ const fs = require("graceful-fs");
 
 module.exports.run = async (client, message, args) => {
     const m = message.content.split(";xiaro ");
-    message.channel.send(`Trans rights~! :3 ${m}`)
+    message.channel.send(`Trans rights~! :3${m}`)
 }
 
 module.exports.config = {
