@@ -9,7 +9,7 @@ module.exports.run = async (client, message, args) => {
     args.forEach(async user => {
         var member = client.users.fetch(user);
         if (member != undefined && member.hasPermissions("BAN_MEMBERS")) return message.channel.send("How would you like it if I banned **you**!");
-        await await message.guild.ban().catch(error => message.channel.send(error));
+        await message.guild.ban(user).catch(error => message.channel.send(error));
         message.channel.send(user + "was banend")
     })
 
