@@ -244,20 +244,10 @@ client.on('messageUpdate', (oldMessage, newMessage) => {
                                       |_|
 */
 function autoResponder(message) {
-    /* members with roles bypass the filter */
-    if (!message.member.hasPermission("CHANGE_NICKNAME")) {
-        let cleanedMessage = message.content.toLowerCase();
-        /* hacks / cheats regex */
-        if (hacksRegex.test(cleanedMessage.replace(/[^\w@430]/g, ""))) {
-            message.reply(warnRule(message, "3, 9", "Hacks / cheats are against Discord TOS"));
-        }
+    let cleanedMessage = message.content.toLowerCase();
 
-        /* discord invite link regex */
-        if (discordInviteRegex.test(cleanedMessage)) {
-            message.reply(warnRule(message, 5, "lmfao stop advertising your discord server"));
-            return message.delete();
-        }
-
+    /* moderators bypass */
+    if (!message.member.hasPermission("BAN_MEMBERS")) {
         /* zoom link regex */
         if (zoomInviteRegex.test(cleanedMessage)) {
             message.reply(warnRule(message, 9, "zoom meeting links are not allowed as you're likely infringing on the privacy of unconsenting individuals"))
@@ -268,6 +258,20 @@ function autoResponder(message) {
         if (slursRegex.test(cleanedMessage)) {
             message.reply(warnRule(message, "1a, 1b, 1c, 1d", "Slurs are not allowed in this Discord server"));
             return message.delete()
+        }
+    }
+
+    /* members with roles bypass the filter */
+    if (!message.member.hasPermission("CHANGE_NICKNAME")) {
+        /* hacks / cheats regex */
+        if (hacksRegex.test(cleanedMessage.replace(/[^\w@430]/g, ""))) {
+            message.reply(warnRule(message, "3, 9", "Hacks / cheats are against Discord TOS"));
+        }
+
+        /* discord invite link regex */
+        if (discordInviteRegex.test(cleanedMessage)) {
+            message.reply(warnRule(message, 5, "lmfao stop advertising your discord server"));
+            return message.delete();
         }
 
         /* elytra help regex */
