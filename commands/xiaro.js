@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const fs = require("graceful-fs");
 
 module.exports.run = async (client, message, args) => {
-    const m = message.content.split(";xiaro ");
+    const m = message.content.slice(7, -1);
     message.channel.send(`Trans rights~! :3 ${m}`)
 }
 
