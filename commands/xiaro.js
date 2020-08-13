@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const fs = require("graceful-fs");
 
 module.exports.run = async (client, message, args) => {
-    const trimmed = message.substring(7, message.length)
+    const trimmed = message.slice(7)
     message.channel.send(`Trans rights~! :3, ${trimmed}`)
 }
 
