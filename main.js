@@ -261,6 +261,7 @@ function autoResponder(message) {
         /* zoom link regex */
         if (zoomInviteRegex.test(cleanedMessage)) {
             message.reply(warnRule(message, 9, "zoom meeting links are not allowed as you're likely infringing on the privacy of unconsenting individuals"))
+            return message.delete()
         }
 
         /* slurs regex */
