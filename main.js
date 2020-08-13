@@ -41,7 +41,7 @@ const fetch = require("node-fetch")
 // Regexes
 /* bad messages regexes */
 const discordInviteRegex = new RegExp("(d.{0,3}.{0,3}s.{0,3}c.{0,3}.{0,3}r.{0,3}d).{0,7}(gg|com.{0,3}invite)");
-const zoomInviteRegex = new RegExp("(zoom.{0,2}\\..{0,2}us[^0-9].{11})");
+const zoomInviteRegex = new RegExp("(zoom.{0,2}\\..{0,2}us.{0,5}[^0-9].{11})");
 const hacksRegex = new RegExp("(hack|hacks|cheat|cheats|hacking|salhack)");
 const slursRegex = new RegExp("(nigg(?!a).{1,2}|tran(?![spfqcg]).{1,2}|fag.{1,2}t|r(?!s).{1,2}tar.)");
 const zeroWidthSpacesRegex = new RegExp("([\u200B\u200C\u200E\u200F\uFEFF])")
