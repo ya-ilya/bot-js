@@ -17,7 +17,7 @@ module.exports.run = async (client, message, args) => {
     
 
 
-    message.channel.send(banEmbed);
+    message.channel.send("Users banned.");
 }
 
 module.exports.config = {
