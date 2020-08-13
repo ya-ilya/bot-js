@@ -4,18 +4,13 @@ const fs = require("graceful-fs");
 
 module.exports.run = async (client, message, args) => {
     if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("How would you like it if I banned **you**!");
-    if (!args[0]) return;
+    if (!args[0]) return message.channel.send("Specifiy ids to ban");
     let reason = "Get ezed";
-    let banEmbed = new Discord.MessageEmbed()
-        .setTitle("Users Banned")
-        .setDescription(`${args}`)
-        .addField("Reason", reason)
-        .setColor("ff5050");
     for (user in args) {
         var member = client.users.cache.get(user);
         message.channel.send(member.username + "was banend")
         if (member.hasPermission("BAN_MEMBERS")) return message.channel.send("How would you like it if I banned **you**!");
-        await member.send(banEmbed);
+        await member.send("You were banned");
         await member.ban(reason).catch(error => message.channel.send(error));
     }
 
