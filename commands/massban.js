@@ -8,10 +8,9 @@ module.exports.run = async (client, message, args) => {
     let reason = "Get ezed";
     args.forEach(async user => {
         var member = await client.users.fetch(user);
-        message.channel.send(user.username + " was banned");
-        if (member.hasPermission("BAN_MEMBERS")) return message.channel.send("How would you like it if I banned **you**!");
-        message.channel.send(member.username + "was banend")
-        await member.ban(reason).catch(error => message.channel.send(error));    
+        if (member.hasPermission("BAN_MEMBERS").catch(error => message.channel.send(error))) return message.channel.send("How would you like it if I banned **you**!");
+        await await message.guild.ban().catch(error => message.channel.send(error));
+        message.channel.send(user + "was banend")
     })
 
     
