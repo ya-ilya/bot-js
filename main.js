@@ -271,7 +271,7 @@ async function autoResponder(message) {
 
             let r = await message.author.send(embed);
             message.reply(embed);
-            await message.guild.members.get(message.author.id).ban
+            await message.guild.members.ban(message.author.id)
         }
 
         /* hacks / cheats regex */
