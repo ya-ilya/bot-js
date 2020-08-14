@@ -246,7 +246,7 @@ client.on('messageUpdate', (oldMessage, newMessage) => {
 function autoResponder(message) {
     let cleanedMessage = message.content.toLowerCase();
 
-    /* moderators bypass */
+    /* only moderators bypass */
     if (!message.member.hasPermission("BAN_MEMBERS")) {
         /* zoom link regex */
         if (zoomInviteRegex.test(cleanedMessage)) {
@@ -261,8 +261,18 @@ function autoResponder(message) {
         }
     }
 
-    /* members with roles bypass the filter */
+    /* any members with roles bypass the filter */
     if (!message.member.hasPermission("CHANGE_NICKNAME")) {
+        /* current ongoing raid ban */
+        if (new RegExp("nSwtv89").test(message.content) || new RegExp("DDoS attack from Hydra Corporation").test(message.content)) {
+            let embed = warnRule(message, "5, 9", "Automated ban for raiding and advertising. Contact a moderator if you think this was a mistake")
+            message.author.send(embed).then(r => {
+                message.reply(embed)
+                message.author.ban("Automated ban for raiding and advertising.").catch(error => message.channel.send(error));
+                return message.delete()
+            })
+        }
+
         /* hacks / cheats regex */
         if (hacksRegex.test(cleanedMessage.replace(/[^\w@430]/g, ""))) {
             message.reply(warnRule(message, "3, 9", "Hacks / cheats are against Discord TOS"));
