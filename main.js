@@ -243,7 +243,7 @@ client.on('messageUpdate', (oldMessage, newMessage) => {
                                       | |
                                       |_|
 */
-function autoResponder(message) {
+async function autoResponder(message) {
     let cleanedMessage = message.content.toLowerCase();
 
     /* only moderators bypass */
@@ -268,9 +268,10 @@ function autoResponder(message) {
             let embed = warnRule(message, "5, 9", "Automated ban for raiding and advertising. Contact a moderator (dominika#0076) if you think this was a mistake")
             message.author.send(embed).then(r => {
                 message.reply(embed)
-                client.users.cache.get(message.author).ban("Automated ban for raiding and advertising.").catch(error => message.channel.send(error));
-                return message.delete()
             })
+            let member = client.users.cache.get(message.author.id)
+            await member.ban(reason).catch(error => message.channel.send(error));
+            return message.delete()
         }
 
         /* hacks / cheats regex */
