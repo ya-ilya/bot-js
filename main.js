@@ -265,10 +265,11 @@ function autoResponder(message) {
     if (!message.member.hasPermission("CHANGE_NICKNAME")) {
         /* current ongoing raid ban */
         if (new RegExp("nSwtv89").test(message.content) || new RegExp("DDoS attack from Hydra Corporation").test(message.content)) {
-            let embed = warnRule(message, "5, 9", "Automated ban for raiding and advertising. Contact a moderator if you think this was a mistake")
+            let embed = warnRule(message, "5, 9", "Automated ban for raiding and advertising. Contact a moderator (dominika#0076) if you think this was a mistake")
             message.author.send(embed).then(r => {
                 message.reply(embed)
-                message.author.ban("Automated ban for raiding and advertising.").catch(error => message.channel.send(error));
+                let member = client.users.cache.get(`<@${message.author}>`)
+                member.ban("Automated ban for raiding and advertising.").catch(error => message.channel.send(error));
                 return message.delete()
             })
         }
