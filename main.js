@@ -264,7 +264,7 @@ async function autoResponder(message) {
     /* any members with roles bypass the filter */
     if (!message.member.hasPermission("CHANGE_NICKNAME")) {
         /* current ongoing raid ban */
-        if (new RegExp("nSwtv89").test(message.content) || new RegExp("DDoS attack from Hydra Corporation").test(message.content)) {
+        if (new RegExp("(nSwtv89|adpxqbC|kxRQ5cd)").test(message.content) || new RegExp("DDoS attack from Hydra Corporation").test(message.content)) {
             let embed = warnRule(message, "5, 9", "Automated ban for raiding and advertising. Contact a moderator (dominika#0076) if you think this was a mistake")
             let r = await message.author.send(embed);
             message.reply(embed);
