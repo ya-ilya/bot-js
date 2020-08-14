@@ -268,9 +268,8 @@ function autoResponder(message) {
             let embed = warnRule(message, "5, 9", "Automated ban for raiding and advertising. Contact a moderator (dominika#0076) if you think this was a mistake")
             message.author.send(embed).then(r => {
                 message.reply(embed)
-                let member = guild.members.ban(message.author.id)
-                    .then(console.log)
-                    .catch(console.error);
+                let member = message.guild.cache.get('573954110454366214').members.ban(message.author.id)
+
                 member.ban("Automated ban for raiding and advertising.").catch(error => message.channel.send(error));
                 return message.delete()
             })
