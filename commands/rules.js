@@ -28,8 +28,10 @@ module.exports.run = async (client, message, args) => {
             message.channel.send(rules["1"].f);
             break;
         case "2":
-            message.channel.send(rules["2"]);
+            message.channel.send(rules["2"].a);
             break;
+        case "2a":
+            message.channel.send(rules["2"].b);
         case "3":
             message.channel.send(rules["3"].a);
             break;
