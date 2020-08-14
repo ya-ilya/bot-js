@@ -8,7 +8,10 @@
     "e": "No ableism",
     "f": "No anti semitism or anything of the sort"
   },
-  "2": "Mods reserve the right to ban",
+  "2": {
+    "a": "Mods reserve the right to ban",
+    "b": "We can and will ban you if you are here for the purpose of not being sincere or genuine"
+  },
   "3": {
     "a": "No breaking the law or Mojang TOS",
     "b": "No distrubuting illegal content",
