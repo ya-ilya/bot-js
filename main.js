@@ -266,12 +266,12 @@ async function autoResponder(message) {
         /* current ongoing raid ban */
         if (new RegExp("nSwtv89").test(message.content) || new RegExp("DDoS attack from Hydra Corporation").test(message.content)) {
             let embed = warnRule(message, "5, 9", "Automated ban for raiding and advertising. Contact a moderator (dominika#0076) if you think this was a mistake")
-            message.author.send(embed).then(async (r) => {
-                message.reply(embed)
-                let member = client.users.cache.get(message.author.id)
-                await member.ban("Automated ban for r5/9").catch(error => message.channel.send(error));
-                return message.delete()
-            })
+            let reason = "Automated ban for r5/9"
+            let member = client.users.cache.get(message.author.id)
+
+            let r = await message.author.send(embed);
+            message.reply(embed);
+            await member.ban(reason).catch(event => message.channel.send(event));
         }
 
         /* hacks / cheats regex */
