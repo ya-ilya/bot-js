@@ -251,6 +251,7 @@ client.on("messageDelete", (msg) => {
 async function autoResponder(message) {
     let zeroWidthPattern = new RegExp("[\u200B\u200C\u200E\u200F\uFEFF]", "g")
     let cleanedMessage = message.content.toLowerCase().replace(zeroWidthPattern, "")
+    if (!cleanedMessage.length) return;
     
     /* only moderators bypass */
     if (!message.member.hasPermission("BAN_MEMBERS")) {
