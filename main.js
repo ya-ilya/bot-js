@@ -254,7 +254,7 @@ async function autoResponder(message) {
     
     /* only moderators bypass */
     if (!message.member.hasPermission("BAN_MEMBERS")) {
-        if (!cleanedMessage.length) return;
+        if (!cleanedMessage.length) return message.delete();
         /* zoom link regex */
         if (zoomInviteRegex.test(cleanedMessage)) {
             message.reply(warnRule(message, 9, "zoom meeting links are not allowed as you're likely infringing on the privacy of unconsenting individuals"))
