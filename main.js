@@ -44,7 +44,6 @@ const discordInviteRegex = new RegExp("(d.{0,3}.{0,3}s.{0,3}c.{0,3}.{0,3}r.{0,3}
 const zoomInviteRegex = new RegExp("(zoom.{0,2}\\..{0,2}us.{0,5}[^0-9].{11})");
 const hacksRegex = new RegExp("(hack|hacks|cheat|cheats|hacking|salhack)");
 const slursRegex = new RegExp("(nigg(?!a).{1,2}|tran(?![spfqcg]).{1,2}|fag.{1,2}t|r(?!s).{1,2}tar.)");
-const zeroWidthSpacesRegex = new RegExp("([\u200B\u200C\u200E\u200F\uFEFF])")
 
 /* help regexes */
 const elytraRegex1 = new RegExp("(elytra|elytra.{0,2}light|elytra.{0,2}\\+|elytra.{0,2}fly)");
@@ -190,15 +189,7 @@ client.on('message', async message => {
         message.channel.send(versionEmbed);
     }
 
-    /**
-     * @module removeZWS
-     * @author dominikaaaa
-     */
-    if (zeroWidthSpacesRegex.test(message.content)) {
-        let warning = warnRule(message, 6, `you're not allowed to use zero width characters in messages`)
-        let originalMessage = replyMsgT(message, "Original Message: ", message.content.replace(/[\u200B-\u200F\uFEFF]/g, ''))
-        message.channel.send(warning).then(message.channel.send(originalMessage).then(message.delete()))
-    }
+
 });
 
 /**
@@ -258,8 +249,9 @@ client.on("messageDelete", (msg) => {
                                       |_|
 */
 async function autoResponder(message) {
-    let cleanedMessage = message.content.toLowerCase();
-
+    let zeroWidthPattern = new RegExp("[\u200B\u200C\u200E\u200F\uFEFF]", "g")
+    let cleanedMessage = message.content.toLowerCase().replace(zeroWidthPattern, "")
+    
     /* only moderators bypass */
     if (!message.member.hasPermission("BAN_MEMBERS")) {
         /* zoom link regex */
