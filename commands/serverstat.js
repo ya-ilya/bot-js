@@ -6,7 +6,7 @@ module.exports.run = async (client, message, args) => {
     try {
         let result;
         if (!args[0]) return;
-        args[0] = args[0].replace("sqs.skrub.dev", "2b2t,org");
+        args[0] = args[0].replace("sqs.skrub.dev", "2b2t.org");
         fetch(`https://api.mcsrvstat.us/2/${args[0]}`)
             .then(response => response.json())
             .then(data => {
