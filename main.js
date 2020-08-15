@@ -181,7 +181,7 @@ client.on('message', async message => {
      * @author sourTaste000
      * @author dominikaaaa
      */
-    if (message.content.includes("pastebin.com")) {
+    if (message.content.includes("pastebin.com") && !message.content.includes("pastebin.com/raw")) {
         if (message.author.bot) return;
         const paste = (extractPastebinLinks(message.content)).replace("pastebin.com/", "pastebin.com/raw/")
 
