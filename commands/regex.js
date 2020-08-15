@@ -33,7 +33,7 @@ module.exports.run = async (client, message, args) => {
       "https://askthethunderhead.com/sharing/non-difficult.jpg",
       "https://askthethunderhead.com/sharing/non-especially.jpg",
       "https://askthethunderhead.com/sharing/non-belies.jpg"
-    ],
+    ];
     var scytheRandom = Math.floor(Math.random() * ask_answers.length);
         message.channel.send(`You asked: *${args.join(" ").replace("@", "")}*`, {
             files: [ask_answers[scytheRandom]]
