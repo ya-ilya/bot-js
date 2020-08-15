@@ -168,14 +168,14 @@ client.on('message', async message => {
     let cmd = messageArray[0].toLowerCase();
     let args = messageArray.slice(1);
 
+    if (message.author.bot) return; // Prevent botception loop
+    autoResponder(message);
+
     /* Command handler */
     if (message.content.startsWith(prefix)) {
         let commandFile = client.commands.get(cmd.slice(prefix.length)) || client.commands.get(client.aliases.get(cmd.slice(prefix.length)));
         if (commandFile) commandFile.run(client, message, args);
     }
-
-    if (message.author.bot) return; // Prevent botception loop
-    autoResponder(message);
 
     /**
      * @module rawPastebin
