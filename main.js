@@ -122,7 +122,7 @@ client.on("ready", () => {
                             .then(data => {
                                 const totalNightlies = JSON.parse(JSON.stringify(data))
                                 client.channels.cache.get('743240299069046835').setName(`${Math.ceil(nightlyCount * (totalNightlies.count / 30) + stableCount)} Downloads`)
-                                client.channels.cache.get('744072202869014571').setName(`${latestNightlyDownloads} Latest Nightly Dl`)
+                                client.channels.cache.get('744072202869014571').setName(`${latestNightlyDownloads} Latest Nightly DLs`)
                             })
                             .catch((error) => {
                                 console.error("Failed to nightly counts!")
