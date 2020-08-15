@@ -104,6 +104,7 @@ client.on("ready", () => {
             .then(response => response.json())
             .then(data => {
                 const nightly = JSON.parse(JSON.stringify(data));
+                const latestNightlyDownloads = nightly[0].assets[0].download_count
                 let nightlyCount = 0;
                 for (i of nightly) {
                     nightlyCount += i.assets[0].download_count
@@ -119,8 +120,9 @@ client.on("ready", () => {
                         fetch("https://kamiblue.org/api/v1/totalNightlies.json")
                             .then(response => response.json())
                             .then(data => {
-                                const total = JSON.parse(JSON.stringify(data))
-                                client.channels.cache.get('743240299069046835').setName(`${Math.ceil(nightlyCount * (total.count / 30) + stableCount)} Downloads`)
+                                const totalNightlies = JSON.parse(JSON.stringify(data))
+                                client.channels.cache.get('743240299069046835').setName(`${Math.ceil(nightlyCount * (totalNightlies.count / 30) + stableCount)} Downloads`)
+                                client.channels.cache.get('744072202869014571').setName(`${latestNightlyDownloads} Latest Nightly Dl`)
                             })
                             .catch((error) => {
                                 console.error("Failed to nightly counts!")
