@@ -21,7 +21,7 @@ Make sure to also run `npm i` the first time
 node >=12
 
 // Linux
-sudo apt-get install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev ffmpeg
+sudo apt-get install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev ffmpeg pm2
 
 // Windows
 npm i -g --add-python-to-path --vs2015 --production windows-build-tools
