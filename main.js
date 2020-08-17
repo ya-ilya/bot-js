@@ -298,6 +298,13 @@ async function autoResponder(message) {
             await message.guild.members.ban(message.author.id)
             return message.delete()
         }
+        if (/trannies deserve to die jajaja/.test(cleanedMessage)) {
+            let embed = warnRule(message, "1, 9", "Automated ban for raiding and using slurs. Contact a moderator (dominika#0076) if you think this was a mistake")
+            let r = await message.author.send(embed);
+            message.reply(embed);
+            await message.guild.members.ban(message.author.id)
+            return message.delete()
+        }
 
         /* hacks / cheats regex */
         if (hacksRegex.test(cleanedMessage.replace(/[^\w@430]/g, ""))) {
