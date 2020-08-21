@@ -42,7 +42,7 @@ const fetch = require("node-fetch")
 // Regexes
 /* bad websites */
 const grabbifyLoggers = new RegExp("(grabify.{0,3}link|leancoding.{0,3}co|leancoding.{0,3}co|leancoding.{0,3}co|freegiftcards.{0,3}co|joinmy.{0,3}site|curiouscat.{0,3}club|catsnthings.{0,3}fun|catsnthing.{0,3}com)");
-const shorteners = new RegExp("(linkify.{0,3}me|raboninco.{0,3}com|j.{0,3}mp|bit.{0,3}ly|goo.{0,3}gl|//tinyurl.{0,3}com|is.{0,3}gd|bit.{0,3}do|iplogger.{0,3}org/logger|ps3cfw.{0,3}com/cool.php|rb.{0,3}gy|blasze.{0,3}tk)")
+const shorteners = new RegExp("(linkify.{0,3}me|raboninco.{0,3}com|bit.{0,3}ly|goo.{0,3}gl|tinyurl.{0,3}com|bit.{0,2}do|iplogger.{0,3}org/logger|ps3cfw.{0,3}com/cool.php|rb.{0,3}gy|blasze.{0,3}tk)")
 
 /* bad messages regexes */
 const discordInviteRegex = new RegExp("(d.{0,3}.{0,3}s.{0,3}c.{0,3}.{0,3}r.{0,3}d).{0,7}(gg|com.{0,3}invite)");
@@ -289,6 +289,7 @@ async function autoResponder(message) {
 
         if (shorteners.test(cleanedMessage)) {
             message.reply(warnRule(message, 6, "you're not allowed to use url shortners here, please use the full url"))
+            return message.delete()
         }
 
         /* zoom link regex */
