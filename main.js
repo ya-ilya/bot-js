@@ -287,11 +287,6 @@ async function autoResponder(message) {
             return message.delete()
         }
 
-        if (shorteners.test(cleanedMessage)) {
-            message.reply(warnRule(message, 6, "you're not allowed to use url shortners here, please use the full url"))
-            return message.delete()
-        }
-
         /* zoom link regex */
         if (zoomInviteRegex.test(cleanedMessage)) {
             message.reply(warnRule(message, 9, "zoom meeting links are not allowed as you're likely infringing on the privacy of unconsenting individuals"))
@@ -320,6 +315,11 @@ async function autoResponder(message) {
             let r = await message.author.send(embed);
             message.reply(embed);
             await message.guild.members.ban(message.author.id)
+            return message.delete()
+        }
+
+        if (shorteners.test(cleanedMessage)) {
+            message.reply(warnRule(message, 6, "you're not allowed to use url shortners here, please use the full url"))
             return message.delete()
         }
 
