@@ -47,7 +47,7 @@ const shorteners = new RegExp("(linkify.{0,3}me|raboninco.{0,3}com|bit.{0,3}ly|g
 /* bad messages regexes */
 const discordInviteRegex = new RegExp("(d.{0,3}.{0,3}s.{0,3}c.{0,3}.{0,3}r.{0,3}d).{0,7}(gg|com.{0,3}invite)");
 const zoomInviteRegex = new RegExp("(zoom.{0,2}\\..{0,2}us.{0,5}[^0-9].{11})");
-const hacksRegex = new RegExp("(hack|hacks|cheat|cheats|hacking|salhack)");
+const hacksRegex = new RegExp("(hack|hacks|cheat|cheats|hacking)");
 const slursRegex = new RegExp("(nigg(?!a).{1,2}|tran(?![spfqcg]).{1,2}|fag.{1,2}t|r[ea]tar.)");
 
 /* help regexes */
@@ -324,7 +324,7 @@ async function autoResponder(message) {
         }
 
         /* hacks / cheats regex */
-        if (hacksRegex.test(cleanedMessage.replace(/[^\w@430]/g, ""))) {
+        if (hacksRegex.test(cleanedMessage.replace(/salhack/g, ""))) { // remove salhack from message to prevent false flagging
             message.reply(warnRule(message, "3, 9", "hacks / cheats are against Discord TOS"));
         }
 
