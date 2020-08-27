@@ -318,7 +318,7 @@ async function autoResponder(message) {
             return message.delete()
         }
         
-        if (/1.1.6/.test(cleanedMessage) {
+        if (/1.1.6/.test(cleanedMessage)) {
             message.reply(replyMsg("Download the latest nightly from <#634549110145286156>, v1.1.6 is not the latest version")
         }
 
