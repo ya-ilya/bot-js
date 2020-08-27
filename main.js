@@ -317,6 +317,10 @@ async function autoResponder(message) {
             await message.guild.members.ban(message.author.id)
             return message.delete()
         }
+        
+        if (/1.1.7.{0,2}beta/.test(cleanedMessage)) {
+            message.reply(replyMsg("v1.1.7-beta is not the full version, as we use v1.1.7-hash. Use `;tsc` in game to get the current version"));
+        }
 
         if (shorteners.test(cleanedMessage)) {
             message.reply(warnRule(message, 6, "you're not allowed to use url shortners here, please use the full url"))
