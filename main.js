@@ -319,7 +319,7 @@ async function autoResponder(message) {
         }
         
         if (/1.1.6/.test(cleanedMessage)) {
-            message.reply(replyMsg("Download the latest nightly from <#634549110145286156>, v1.1.6 is not the latest version")
+            message.reply(replyMsg("Download the latest nightly from <#634549110145286156>, v1.1.6 is not the latest version"))
         }
 
         if (/1.1.7.{0,2}beta/.test(cleanedMessage)) {
