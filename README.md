@@ -43,6 +43,7 @@ brew install ffmpeg
 ```
 
 ## Thank you
+[Thunderhead](https://github.com/humboldt123/the-thunderhead)
 [opus](https://github.com/discordjs/opus)  
 [discord.js](https://github.com/discordjs/discord.js)  
 [better-sqlite3](https://github.com/JoshuaWise/better-sqlite3)  
