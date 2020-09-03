@@ -354,7 +354,8 @@ async function autoResponder(message) {
         if (elytraRegex2.test(cleanedMessage)) elytraRegexMatches++;
 
         if (elytraRegexMatches > 1 && elytraMatch) {
-            return message.reply(replyMsg("Make sure you're using default settings in the latest beta. Run the defaults button in ElytraFlight's settings if you updated KAMI Blue before.\n\nIf it still doesn't help, make sure you're not using NoFall, AntiHunger or any other movement related mods from **other** clients, such as Sprint in Rage mode, as they make you go over the speed limit and rubberband.\n\nIf you're having issues taking off at higher ping on 2b2t, enable HighPingOptimize"));
+            //return message.reply(replyMsg("Make sure you're using default settings in the latest beta. Run the defaults button in ElytraFlight's settings if you updated KAMI Blue before.\n\nIf it still doesn't help, make sure you're not using NoFall, AntiHunger or any other movement related mods from **other** clients, such as Sprint in Rage mode, as they make you go over the speed limit and rubberband.\n\nIf you're having issues taking off at higher ping on 2b2t, enable HighPingOptimize"));
+            return message.reply(replyMsg("Read the #announcements channel for instructions!!"))
         }
 
         /* game crash regex */
