@@ -26,7 +26,7 @@
     "ytpl": "^0.1.22"
   },
   "repository": {
-    "url": "https://github.com/kami-blue/bot"
+    "url": "https://github.com/kami-blue/bot-js"
   },
   "license": "ISC"
 }

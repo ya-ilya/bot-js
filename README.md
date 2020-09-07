@@ -8,8 +8,8 @@
 ## Usage
 
 ```
-git clone git@github.com:kami-blue/bot.git
-cd bot
+git clone git@github.com:kami-blue/bot-js.git
+cd bot-js
 ./start.sh
 ```
 
@@ -50,4 +50,4 @@ brew install ffmpeg
 [canvas](https://github.com/Automattic/node-canvas)  
 [cat-ascii-faces](https://github.com/melaniecebula/cat-ascii-faces)  
 [cat-facts](https://github.com/vadimdemedes/cat-facts)  
-[...](https://github.com/kami-blue/bot/blob/b77edef859e942f2fb1257448d794df14e86c0eb/package.json#L12)  
+[...](https://github.com/kami-blue/bot-js/blob/b77edef859e942f2fb1257448d794df14e86c0eb/package.json#L12)  

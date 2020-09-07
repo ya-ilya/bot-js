@@ -13,7 +13,7 @@ module.exports.run = async (client, message, args) => {
             console.log(`exec error: ${error}`);
             return;
         }
-        fetch(`https://api.github.com/repos/kami-blue/bot/commits/master`, {headers: {Authorization: `token ${auth.githubtoken}`}}).then(res => res.json()).then((out) => {
+        fetch(`https://api.github.com/repos/kami-blue/bot-js/commits/master`, {headers: {Authorization: `token ${auth.githubtoken}`}}).then(res => res.json()).then((out) => {
             var latest_sha = out["sha"].replace(/[^0-9a-z]/gi, '');
             var local_sha = stdout.replace(/[^0-9a-z]/gi, '');
             if (local_sha === latest_sha) var embedTitle = "All up to date!!";
