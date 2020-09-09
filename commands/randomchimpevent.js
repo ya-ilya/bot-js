@@ -23,7 +23,7 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.config = {
     name: "randomchimpevent",
-    aliases: ["funnymonkey"],
+    aliases: ["funnymonkey", "hause"],
     use: "randomchimpevent",
     description: "Truly, a random chimp event.",
     state: "gamma",
