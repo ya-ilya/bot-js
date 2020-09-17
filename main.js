@@ -104,7 +104,7 @@ client.on("ready", () => {
      * @since  8/12/2020
      */
     setInterval(() => {
-        fetch("https://api.github.com/repos/kami-blue/nightly-releases/releases", {headers: {Authorization: `token ${auth.githubtoken}`}})
+        fetch("https://api.github.com/repos/kami-blue/nightly-releases/releases?per_page=200", {headers: {Authorization: `token ${auth.githubtoken}`}})
             .then(response => response.json())
             .then(data => {
                 const nightly = JSON.parse(JSON.stringify(data));
@@ -125,7 +125,7 @@ client.on("ready", () => {
                             .then(response => response.json())
                             .then(data => {
                                 const totalNightlies = JSON.parse(JSON.stringify(data))
-                                client.channels.cache.get('743240299069046835').setName(`${Math.ceil(nightlyCount * (totalNightlies.count / 30) + stableCount)} Downloads`)
+                                client.channels.cache.get('743240299069046835').setName(`${Math.ceil((nightlyCount * (totalNightlies.count + stableCount)) / 55)} Downloads`)
                                 client.channels.cache.get('744072202869014571').setName(`${latestNightlyDownloads} Latest Nightly DLs`)
                             })
                             .catch((error) => {
