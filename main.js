@@ -171,7 +171,8 @@ client.on('message', async message => {
     let prefix = config.prefix;
     let cmd = messageArray[0].toLowerCase();
     let args = messageArray.slice(1);
-
+  
+    
     if (message.author.bot) return; // Prevent botception loop
     autoResponder(message);
 
@@ -192,6 +193,11 @@ client.on('message', async message => {
 
         let versionEmbed = replyMsgT(message, "Direct link to paste", "https://" + paste)
         message.channel.send(versionEmbed);
+    }
+    
+    if (message.content.includes("b4fRukmrBuc")) {
+        message.delete();
+        message.channel.send("https://cdn.discordapp.com/attachments/634010583527587840/756220420658823304/video.mp4");
     }
 
 
