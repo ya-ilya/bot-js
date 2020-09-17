@@ -81,18 +81,12 @@ client.config = config;
 
 client.on("ready", () => {
     console.log("Bot loaded!");
-    const activities_list = ["you skid KAMI", ";help", "help in the #help-en channel"]; // add more then add the type of them below
-    const activities_type = ["WATCHING", "LISTENING", "STREAMING"]; // types are PLAYING WATCHING LISTENING and STREAMING
-    setInterval(() => {
-        const activityIndex = Math.floor(Math.random() * activities_list.length);
-        client.user.setPresence({
-            activity: {
-                name: activities_list[activityIndex],
-                type: activities_type[activityIndex]
-            }
-        });
-
-    }, convert('1m')); // One minute
+    client.user.setPresence({
+        activity: {
+            name: "discord.gg/kamiblue",
+            type: "PLAYING"
+        }
+    });
     try {
         client.channels.cache.get("699982782515904603").send("Bot has started up!!");
     } catch (error) {
