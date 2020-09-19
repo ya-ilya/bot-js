@@ -14,7 +14,8 @@ module.exports.run = async (client, message, args) => {
     "https://bigrat.monster/media/monkeys/monkeymoney.gif",
     "https://bigrat.monster/media/monkeys/orangutan.gif",
     "https://bigrat.monster/media/monkeys/piere.gif",
-    "https://bigrat.monster/media/monkeys/telephonemonkey.gif"
+    "https://bigrat.monster/media/monkeys/telephonemonkey.gif",
+    "https://cdn.discordapp.com/attachments/634010567107149824/756703349541437469/video0.mp4"
   ]; 
 
     message.channel.send(randomChimpEvents[Math.floor(Math.random() * randomChimpEvents.length)]);
