@@ -179,7 +179,7 @@ client.on('message', async message => {
     /**
      * @module rawPastebin
      * @author sourTaste000
-     * @author dominikaaaa
+     * @author l1ving
      */
     if (message.content.includes("pastebin.com") && !message.content.includes("pastebin.com/raw")) {
         if (message.author.bot) return;
@@ -365,7 +365,7 @@ async function autoResponder(message) {
 
         /* new version regex */
         if (versionRegex1.test(cleanedMessage) && versionRegex2.test(cleanedMessage)) {
-            message.reply(replyMsg("No, KAMI Blue will not be coming out for newer versions of Minecraft. \n\nIt will stay on version `1.12.2` because it relies on version specific code. The developers are instead working on a new client called Vasya.\nVasya Website: https://vasya.dominikaaaa.org/"))
+            message.reply(replyMsg("No, KAMI Blue will not be coming out for newer versions of Minecraft. \n\nIt will stay on version `1.12.2` because it relies on version specific code. The developers are instead working on a new client called Vasya.\nVasya Website: https://vasya.l1ving.org/"))
         }
 
         /* how to install kami blue and forge regex */
@@ -390,7 +390,7 @@ async function autoResponder(message) {
 }
 
 /**
- * @author dominikaaaa
+ * @author l1ving
  */
 function warnRule(message, ruleNumber, reason) {
     function getS() {
