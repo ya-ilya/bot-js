@@ -365,7 +365,7 @@ async function autoResponder(message) {
 
         /* new version regex */
         if (versionRegex1.test(cleanedMessage) && versionRegex2.test(cleanedMessage)) {
-            message.reply(replyMsg("No, KAMI Blue will not be coming out for newer versions of Minecraft. \n\nIt will stay on version `1.12.2` because it relies on version specific code. The developers are instead working on a new client called Vasya.\nVasya Website: https://vasya.l1ving.org/"))
+            message.reply(replyMsg("No, KAMI Blue's codebase is too big and relies on Forge events way too much to port to a newer version. Instead, you can use [KAMI](https://kamiclient.com), a 1.16.x client."))
         }
 
         /* how to install kami blue and forge regex */
