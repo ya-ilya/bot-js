@@ -83,8 +83,8 @@ client.on("ready", () => {
     console.log("Bot loaded!");
     client.user.setPresence({
         activity: {
-            name: "discord.gg/kamiblue",
-            type: "PLAYING"
+            name: "us hit 69420 downloads",
+            type: "WATCHING"
         }
     });
     try {
