@@ -83,7 +83,7 @@ client.on("ready", () => {
     console.log("Bot loaded!");
     client.user.setPresence({
         activity: {
-            name: "us hit 69420 downloads",
+            name: "us hit 100k downloads",
             type: "WATCHING"
         }
     });
