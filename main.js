@@ -334,7 +334,7 @@ async function autoResponder(message) {
         }
 
         /* hacks / cheats regex */
-        if (hacksRegex.test(cleanedMessage.replace(/salhack/g, ""))) { // remove salhack from message to prevent false flagging
+        if (hacksRegex.test(cleanedMessage.replace(/salhack/g, "").replace(/anti.{0,2}cheat/g, ""))) {
             message.reply(warnRule(message, "3, 9", "hacks / cheats are against Discord TOS"));
         }
 
