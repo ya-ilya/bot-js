@@ -197,6 +197,7 @@ client.on('message', async message => {
     if (/cursedballs/.test(message.content)) message.delete()
 
     if (/ٴ/.test(message.content)) message.delete()
+    if (/\*\* \*\*/.test(message.content)) message.delete()
 
 });
 
