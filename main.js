@@ -196,7 +196,7 @@ client.on('message', async message => {
 
     if (/cursedballs/.test(message.content)) message.delete()
 
-    if (/trans.*flag/.test(message.content)) message.channel.send("Trans rights~:3 :transgender_flag:")
+    if (/ٴ/.test(message.content)) message.delete()
 
 });
 
