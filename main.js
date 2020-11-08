@@ -281,7 +281,7 @@ async function autoResponder(message) {
     let cleanedMessage = message.content.toLowerCase().replace(zeroWidthPattern, "")
     
     /* only moderators bypass */
-    if (!message.member.hasPermission("BAN_MEMBERS")) {
+    if (!message.member.hasPermission("MANAGE_MESSAGES")) {
         /*ip logger regex */
         if (!cleanedMessage.length && !message.attachments) return message.delete();
 
