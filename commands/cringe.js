@@ -46,7 +46,7 @@ module.exports.run = async (client, message, args) => {
         }
 
         if (!args[0] || parseInt(args[0]) == NaN) return message.channel.send("You need to provide a valid number of messages to snapshot.");
-        if (!message.member.hasPermission("MANAGE_MESSAGES") && !(message.member.id === "557429876618166283")) return message.channel.send("You do not have snapshot cringe.");
+        if (!message.member.hasPermission("MANAGE_MESSAGES") && !(message.member.id === "557429876618166283") && !(message.member.id === "688398900721352716")) return message.channel.send("You do not have snapshot cringe.");
 
         let cringe = [];
         count = parseInt(args[0])+1;
