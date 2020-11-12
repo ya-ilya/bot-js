@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     if ((message.channel.id == "724349410858893372") || (message.channel.id == "722436626248237076")) {
         let FaqFreecamRu = new Discord.MessageEmbed()
         .setTitle("Freecam")
-        .setDescription("\n**Категория**: Player\n**Описание**: Покинь свое тело и войди в царство богов!!")
+        .setDescription("\n**Категория**: Player\n**Описание**: Покинь свое тело и войди в царство богов!")
         .setColor(client.colors.kamiblue)
         .setFooter("カミブルー！", client.user.avatarURL())
         message.channel.send(FaqFreecamRu)
