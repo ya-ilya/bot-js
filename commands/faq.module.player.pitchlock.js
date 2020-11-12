@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     if ((message.channel.id == "724349410858893372") || (message.channel.id == "722436626248237076")) {
         let FaqPitchLockRu = new Discord.MessageEmbed()
         .setTitle("Pitchlock")
-        .setDescription("\n**Категория**: Player\n**Описание**: Блокирует вашу камеру на ровном углу")
+        .setDescription("\n**Категория**: Player\n**Описание**: Блокирует вашу камеру на заданом углу")
         .setColor(client.colors.kamiblue)
         .setFooter("カミブルー！", client.user.avatarURL())
         message.channel.send(FaqPitchLockRu)

@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     if ((message.channel.id == "724349410858893372") || (message.channel.id == "722436626248237076")) {
         let FaqSelectionHighlightRu = new Discord.MessageEmbed()
         .setTitle("SelectionHighlight")
-        .setDescription("\n**Категория**: Render\n**Описание**: Подсвечивать объекты на которые вы смотрите")
+        .setDescription("\n**Категория**: Render\n**Описание**: Подсвечивает объекты на которые вы смотрите")
         .setColor(client.colors.kamiblue)
         .setFooter("カミブルー！", client.user.avatarURL())
         message.channel.send(FaqSelectionHighlightRu)

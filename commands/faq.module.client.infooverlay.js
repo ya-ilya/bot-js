@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     if ((message.channel.id == "724349410858893372") || (message.channel.id == "722436626248237076")) {
         let FaqInfoOverlayRu = new Discord.MessageEmbed()
         .setTitle("InfoOverlay")
-        .setDescription("\n**Категория**: Client\n**Описание**: Настраивает наложение игровой информации")
+        .setDescription("\n**Категория**: Client\n**Описание**: Настраивает наложение информации об игре")
         .setColor(client.colors.kamiblue)
         .setFooter("カミブルー！", client.user.avatarURL())
         message.channel.send(FaqInfoOverlayRu)

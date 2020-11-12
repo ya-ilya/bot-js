@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     if ((message.channel.id == "724349410858893372") || (message.channel.id == "722436626248237076")) {
         let FaqElytraFlightRu = new Discord.MessageEmbed()
         .setTitle("ElytraFlight")
-        .setDescription("\n**Категория**: Movement\n**Описание**: Позволяет бесконечно и намного легче летать на элитрах")
+        .setDescription("\n**Категория**: Movement\n**Описание**: Позволяет mесконечно и намного легче летать на элитрах")
         .setColor(client.colors.kamiblue)
         .setFooter("カミブルー！", client.user.avatarURL())
         message.channel.send(FaqElytraFlightRu)

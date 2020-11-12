@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     if ((message.channel.id == "724349410858893372") || (message.channel.id == "722436626248237076")) {
         let FaqBeaconSelectorRu = new Discord.MessageEmbed()
         .setTitle("BeaconSelector")
-        .setDescription("\n**Категория**: Misc\n**Описание**: Выберите любой из 5 эффектов маяка независимо от базовой высоты маяка.")
+        .setDescription("\n**Категория**: Misc\n**Описание**: Выберите любой из 5 эффектов маяка независимо от уровня маяка.")
         .setColor(client.colors.kamiblue)
         .setFooter("カミブルー！", client.user.avatarURL())
         message.channel.send(FaqBeaconSelectorRu)

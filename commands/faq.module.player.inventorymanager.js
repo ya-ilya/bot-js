@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     if ((message.channel.id == "724349410858893372") || (message.channel.id == "722436626248237076")) {
         let FaqInventoryManagerRu = new Discord.MessageEmbed()
         .setTitle("InventoryManager")
-        .setDescription("\n**Категория**: Player\n**Описание**: Управляет вашим инвентарем автоматически")
+        .setDescription("\n**Категория**: Player\n**Описание**: Автоматически управляет вашим инвентарём")
         .setColor(client.colors.kamiblue)
         .setFooter("カミブルー！", client.user.avatarURL())
         message.channel.send(FaqInventoryManagerRu)

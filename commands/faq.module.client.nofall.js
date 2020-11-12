@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     if ((message.channel.id == "724349410858893372") || (message.channel.id == "722436626248237076")) {
         let FaqNoFallRu = new Discord.MessageEmbed()
         .setTitle("NoFall")
-        .setDescription("\n**Категория**: Player\n**Описание**: Защищает вас от получения урона от падения")
+        .setDescription("\n**Категория**: Player\n**Описание**: Предотвращает получения урона от падения")
         .setColor(client.colors.kamiblue)
         .setFooter("カミブルー！", client.user.avatarURL())
         message.channel.send(FaqNoFallRu)

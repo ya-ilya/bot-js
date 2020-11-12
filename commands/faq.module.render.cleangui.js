@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     if ((message.channel.id == "724349410858893372") || (message.channel.id == "722436626248237076")) {
         let FaqCleanGUIRu = new Discord.MessageEmbed()
         .setTitle("CleanGUI")
-        .setDescription("\n**Категория**: Render\n**Описание**: Изменяет части графического интерфейса, чтобы они были прозрачными")
+        .setDescription("\n**Категория**: Render\n**Описание**: Изменяет части интерфейса, чтобы они были прозрачными")
         .setColor(client.colors.kamiblue)
         .setFooter("カミブルー！", client.user.avatarURL())
         message.channel.send(FaqCleanGUIRu)

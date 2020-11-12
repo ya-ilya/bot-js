@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     if ((message.channel.id == "724349410858893372") || (message.channel.id == "722436626248237076")) {
         let FaqShulkerPreviewRu = new Discord.MessageEmbed()
         .setTitle("ShulkerPreview")
-        .setDescription("\n**Категория**: Render\n**Описание**: Предварительный просмотр шалкера в графическом интерфейсе")
+        .setDescription("\n**Категория**: Render\n**Описание**: Предварительный просмотр шалкера в интерфейсе, при наведение на него курсора")
         .setColor(client.colors.kamiblue)
         .setFooter("カミブルー！", client.user.avatarURL())
         message.channel.send(FaqShulkerPreviewRu)

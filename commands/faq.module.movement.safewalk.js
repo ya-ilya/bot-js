@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     if ((message.channel.id == "724349410858893372") || (message.channel.id == "722436626248237076")) {
         let FaqSafeWalkRu = new Discord.MessageEmbed()
         .setTitle("SafeWalk")
-        .setDescription("\n**Категория**: Movement\n**Описание**: Не дает вам сходить с краев")
+        .setDescription("\n**Категория**: Movement\n**Описание**: Не дает вам сходить с краев блока")
         .setColor(client.colors.kamiblue)
         .setFooter("カミブルー！", client.user.avatarURL())
         message.channel.send(FaqSafeWalkRu)

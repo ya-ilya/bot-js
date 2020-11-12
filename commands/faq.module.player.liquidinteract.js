@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     if ((message.channel.id == "724349410858893372") || (message.channel.id == "722436626248237076")) {
         let FaqLiquidInteractRu = new Discord.MessageEmbed()
         .setTitle("LiquidInteract")
-        .setDescription("\n**Категория**: Player\n**Описание**: Позволяет вам ставить блоки на жидкость!")
+        .setDescription("\n**Категория**: Player\n**Описание**: Позволяет вам ставить блоки на воду или лаву!")
         .setColor(client.colors.kamiblue)
         .setFooter("カミブルー！", client.user.avatarURL())
         message.channel.send(FaqLiquidInteractRu)

@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     if ((message.channel.id == "724349410858893372") || (message.channel.id == "722436626248237076")) {
         let FaqPlayerModelRu = new Discord.MessageEmbed()
         .setTitle("PlayerModel")
-        .setDescription("\n**Категория**: Render\n**Описание**: Отображает модель вас или кого-то, на кого вы нападаете")
+        .setDescription("\n**Категория**: Render\n**Описание**: Отображает модель вас или кого-то, кого вы атакуете")
         .setColor(client.colors.kamiblue)
         .setFooter("カミブルー！", client.user.avatarURL())
         message.channel.send(FaqPlayerModelRu)

@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     if ((message.channel.id == "724349410858893372") || (message.channel.id == "722436626248237076")) {
         let FaqSurroundRu = new Discord.MessageEmbed()
         .setTitle("Surround")
-        .setDescription("\n**Категория**: Combat\n**Описание**: Окружает вас обсидианом, чтобы получать меньше урона")
+        .setDescription("\n**Категория**: Combat\n**Описание**: Ставит вокруг вас обсидиан, что-бы от кристалов наносился минимум урона")
         .setColor(client.colors.kamiblue)
         .setFooter("カミブルー！", client.user.avatarURL())
         message.channel.send(FaqSurroundRu)

@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     if ((message.channel.id == "724349410858893372") || (message.channel.id == "722436626248237076")) {
         let FaqPortalChatRu = new Discord.MessageEmbed()
         .setTitle("PortalChat")
-        .setDescription("\n**Категория**: Chat\n**Описание**: Позволяет вам открывать графические интерфейсы, находясь в портале")
+        .setDescription("\n**Категория**: Chat\n**Описание**: Позволяет вам открывать интерфейс, находясь в портале")
         .setColor(client.colors.kamiblue)
         .setFooter("カミブルー！", client.user.avatarURL())
         message.channel.send(FaqPortalChatRu)

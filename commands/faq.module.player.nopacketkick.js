@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     if ((message.channel.id == "724349410858893372") || (message.channel.id == "722436626248237076")) {
         let FaqNoPacketKickRu = new Discord.MessageEmbed()
         .setTitle("NoPacketKick")
-        .setDescription("\n**Категория**: Player\n**Описание**: Подавление сетевых ошибок и предотвращение кика")
+        .setDescription("\n**Категория**: Player\n**Описание**: Предотвращает кик, при отправке большого количества пакетов")
         .setColor(client.colors.kamiblue)
         .setFooter("カミブルー！", client.user.avatarURL())
         message.channel.send(FaqNoPacketKickRu)

@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     if ((message.channel.id == "724349410858893372") || (message.channel.id == "722436626248237076")) {
         let FaqAutoLogRu = new Discord.MessageEmbed()
         .setTitle("AutoLog")
-        .setDescription("\n**Категория**: Combat\n**Описание**: Автоматически выходить при опасности или при низком уровне здоровья")
+        .setDescription("\n**Категория**: Combat\n**Описание**: Автоматически выходит при опасности или при низком уровне здоровья")
         .setColor(client.colors.kamiblue)
         .setFooter("カミブルー！", client.user.avatarURL())
         message.channel.send(FaqAutoLogRu)

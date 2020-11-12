@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     if ((message.channel.id == "724349410858893372") || (message.channel.id == "722436626248237076")) {
         let FaqDiscordRPCRu = new Discord.MessageEmbed()
         .setTitle("DiscordRPC")
-        .setDescription("\n**Категория**: Misc\n**Описание**: Транслировать KAMI Blue в Discord Rich Presence")
+        .setDescription("\n**Категория**: Misc\n**Описание**: Показывает что вы играете с KAMI Blue в вашем статусе дискорда")
         .setColor(client.colors.kamiblue)
         .setFooter("カミブルー！", client.user.avatarURL())
         message.channel.send(FaqDiscordRPCRu)

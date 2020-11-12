@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     if ((message.channel.id == "724349410858893372") || (message.channel.id == "722436626248237076")) {
         let FaqDiscordRPCRu = new Discord.MessageEmbed()
         .setTitle("DiscordRPC")
-        .setDescription("\n**Категория**: Misc\n**Описание**: Щелкните правой кнопкой мыши объекты, чтобы выполнить с ними действия")
+        .setDescription("\n**Категория**: Misc\n**Описание**: Щелкните правой кнопкой мыши на обьекты, чтобы выполнить с ними действия")
         .setColor(client.colors.kamiblue)
         .setFooter("カミブルー！", client.user.avatarURL())
         message.channel.send(FaqEntityToolRu)

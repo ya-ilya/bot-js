@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     if ((message.channel.id == "724349410858893372") || (message.channel.id == "722436626248237076")) {
         let FaqOffHandGapRu = new Discord.MessageEmbed()
         .setTitle("OffHandGap")
-        .setDescription("\n**Категория**: Combat\n**Описание**: Удерживает яблоко бога при щелчке правой кнопкой мыши по мечу!")
+        .setDescription("\n**Категория**: Combat\n**Описание**: Берет золотое яблоко в левую руку!")
         .setColor(client.colors.kamiblue)
         .setFooter("カミブルー！", client.user.avatarURL())
         message.channel.send(FaqOffHandGapRu)

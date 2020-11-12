@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     if ((message.channel.id == "724349410858893372") || (message.channel.id == "722436626248237076")) {
         let FaqXCarryRu = new Discord.MessageEmbed()
         .setTitle("XCarry")
-        .setDescription("\n**Категория**: Player\n**Описание**: Храните предметы в слотах для крафта")
+        .setDescription("\n**Категория**: Player\n**Описание**: Позволяет хранить предметы в слотах для крафта")
         .setColor(client.colors.kamiblue)
         .setFooter("カミブルー！", client.user.avatarURL())
         message.channel.send(FaqXCarryRu)

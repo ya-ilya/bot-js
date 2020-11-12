@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     if ((message.channel.id == "724349410858893372") || (message.channel.id == "722436626248237076")) {
         let FaqDiscordNotifsRu = new Discord.MessageEmbed()
         .setTitle("DiscordNotifs")
-        .setDescription("\n**Категория**: Chat\n**Описание**: Отправляет ваш чат на установленный канал Discord")
+        .setDescription("\n**Категория**: Chat\n**Описание**: Отправляет чат сервера на установленый вами, канал Discord")
         .setColor(client.colors.kamiblue)
         .setFooter("カミブルー！", client.user.avatarURL())
         message.channel.send(FaqDiscordNotifsRu)

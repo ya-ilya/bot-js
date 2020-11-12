@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     if ((message.channel.id == "724349410858893372") || (message.channel.id == "722436626248237076")) {
         let FaqCustomChatRu = new Discord.MessageEmbed()
         .setTitle("CustomChat")
-        .setDescription("\n**Категория**: Chat\n**Описание**: Добавьте собственное окончание к своему сообщению!")
+        .setDescription("\n**Категория**: Chat\n**Описание**: Добавьте собственный суффикс к своему сообщению!")
         .setColor(client.colors.kamiblue)
         .setFooter("カミブルー！", client.user.avatarURL())
         message.channel.send(FaqCustomChatRu)

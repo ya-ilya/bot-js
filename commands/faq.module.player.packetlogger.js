@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     if ((message.channel.id == "724349410858893372") || (message.channel.id == "722436626248237076")) {
         let FaqPacketLoggerRu = new Discord.MessageEmbed()
         .setTitle("PacketLogger")
-        .setDescription("\n**Категория**: Player\n**Описание**: Записывать отправленные пакеты в файл")
+        .setDescription("\n**Категория**: Player\n**Описание**: Записывает отправленные пакеты в файл")
         .setColor(client.colors.kamiblue)
         .setFooter("カミブルー！", client.user.avatarURL())
         message.channel.send(FaqPacketLoggerRu)

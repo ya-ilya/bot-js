@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     if ((message.channel.id == "724349410858893372") || (message.channel.id == "722436626248237076")) {
         let FaqEyeFinderRu = new Discord.MessageEmbed()
         .setTitle("EyeFinder")
-        .setDescription("\n**Категория**: Render\n**Описание**: Проводит линии от голов сущностей туда, куда они смотрят")
+        .setDescription("\n**Категория**: Render\n**Описание**: Проводит линии от голов игроков и мобов, туда куда они смотрят")
         .setColor(client.colors.kamiblue)
         .setFooter("カミブルー！", client.user.avatarURL())
         message.channel.send(FaqEyeFinderRu)

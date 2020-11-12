@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
     if ((message.channel.id == "724349410858893372") || (message.channel.id == "722436626248237076")) {
         let FaqNoBreakAnimationRu = new Discord.MessageEmbed()
         .setTitle("NoBreakAnimation")
-        .setDescription("\n**Категория**: Player\n**Описание**: Предотвращает анимацию ломания блока на стороне сервера")
+        .setDescription("\n**Категория**: Player\n**Описание**: Другие игроки перестают видить анимацию, когда вы ломаете блок")
         .setColor(client.colors.kamiblue)
         .setFooter("カミブルー！", client.user.avatarURL())
         message.channel.send(FaqNoBreakAnimationRu)
